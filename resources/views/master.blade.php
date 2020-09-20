@@ -35,7 +35,7 @@
     <script type="text/javascript"  src="{{ asset('assets/tabler/js/vendors/bootstrap.bundle.min.js') }}"></script>
     <script type="text/javascript"  src="{{ asset('assets/tabler/js/core.js') }}"></script>
 
-
+    @livewireStyles
 </head>
 
 <body>
@@ -43,10 +43,15 @@
         <div class="flex-fill">
 @include('master_navbar')
           <div class="my-3 my-md-5">
+            <div class="container">
+              @livewire('mitra-index')
+            </div>
+            
           </div>
         </div>
 @include('master_footer')
       </div>
+      @livewireScripts
 </body>
 
 </html>
