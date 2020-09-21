@@ -16,6 +16,10 @@ class MitraCreate extends Component
     }
 
     public function store(){
+        $this->validate([
+            'name'=>'required|min:3',
+            'phone'=>'required|min:4',
+        ]);
         $mitra=Mitra::create([
             'name'=>$this->name,
             'phone'=>$this->phone,
