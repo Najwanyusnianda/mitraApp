@@ -26,6 +26,7 @@ class MitraCreate extends Component
         ]);
         $this->resetInput();
         $this->emit('mitraStored',$mitra);
+        $this->dispatchBrowserEvent('closeModal');
     }
 
     private function resetInput(){

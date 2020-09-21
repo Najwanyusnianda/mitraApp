@@ -1,8 +1,6 @@
 <div>
-<div class="card text-left">
-  
-  <div class="card-body">
-    <h4 class="card-title">Tambah Mitra Baru</h4>
+
+ 
     <!--form tambah mitra baru-->
     <form wire:submit.prevent="store">
         
@@ -39,6 +37,5 @@
    </form>
 
   
-  </div>
-</div>
+
 </div>

@@ -30,6 +30,7 @@ class MitraUpdate extends Component
          $this->resetInput();
 
          $this->emit('mitraUpdated',$mitra);
+         $this->dispatchBrowserEvent('closeModal');
       }  
     }
 
