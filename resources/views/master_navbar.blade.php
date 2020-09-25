@@ -3,7 +3,7 @@
       <div class="d-flex">
         <a class="header-brand" href="./index.html">
           <img src="{{ asset('assets/img_core/logo_bps.png') }}" class="header-brand-img" alt="Aplikasi Mitra - BPS Kota Subulussalam">
-          Aplikasi Mitra - BPS Kota Subulussalam
+          SIBERAS - Database Mitra BPS Kota Subulussalam
         </a>
         <!--<div class="d-flex order-lg-2 ml-auto">
           <div class="nav-item d-none d-md-flex">
@@ -111,7 +111,11 @@
             </li>
 
             <li class="nav-item">
-              <a href="./docs/index.html" class="nav-link"><i class="fe fe-file-text"></i> Dokumentasi</a>
+              <a href="./docs/index.html" class="nav-link" data-toggle="dropdown"><i class="fe fe-file-text"></i> Output</a>
+              <div class="dropdown-menu dropdown-menu-arrow">
+                <a href="./maps.html" class="dropdown-item ">Kontrak</a>
+                <a href="./icons.html" class="dropdown-item ">Sertifikat</a>
+              </div>
             </li>
           </ul>
         </div>

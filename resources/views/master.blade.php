@@ -44,9 +44,8 @@
 @include('master_navbar')
           <div class="my-3 my-md-5">
             <div class="container">
-              @livewire('mitra-index')
+              @yield('content')
             </div>
-            
           </div>
         </div>
 @include('master_footer')

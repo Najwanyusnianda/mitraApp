@@ -11,6 +11,17 @@
 |
 */
 
-Route::get('/', function () {
-    return view('master');
+
+
+
+
+
+
+Route::group(['layout' => 'master', 'section' => 'content'], function () {
+    //
+    Route::livewire('/', 'kegiatan-index');
+
+    Route::livewire('/kegiatan/{kegiatan_id}', 'mitra-index');
+
+
 });
