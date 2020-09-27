@@ -13,9 +13,9 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
-    <link rel="icon" href="./favicon.ico" type="image/x-icon"/>
+    <!--<link rel="icon" href="./favicon.ico" type="image/x-icon"/>
     <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico" />
-    <!-- Generated: 2019-04-04 16:55:45 +0200 -->
+     Generated: 2019-04-04 16:55:45 +0200 -->
     <title>mitraApp</title>
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">-->
     <link href="{{ asset('assets/fontawesome/css/all.min.css') }}" rel="stylesheet" />

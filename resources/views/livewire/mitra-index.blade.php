@@ -12,7 +12,7 @@
   
     <div class="card">
         <div class="card-header">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addMitra">
+            <button type="button" class="btn btn-primary"  wire:click="createMitra()">
                 Tambah Mitra Baru
             </button>
               
@@ -49,7 +49,7 @@
             </tbody>
           
           </table>
-        {{$mitras->links()}}
+        <!--{{$mitras->links()}}-->
           @endif
 
         </div>
@@ -61,15 +61,15 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel"></h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
-          </button>
+          </button>-->
         </div>
         <div class="modal-body">
             @if ($statusUpdate)
             @livewire('mitra-update')
             @else
-            @livewire('mitra-create')
+            @livewire('mitra-create',['kegiatan'=>$kegiatan])
             @endif
         </div>
 

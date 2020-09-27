@@ -15,8 +15,17 @@ class CreateMitrasTable extends Migration
     {
         Schema::create('mitras', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('nik')->unique();
             $table->string('name');
-            $table->string('phone',15);
+            $table->string('email')->nullable();
+            $table->string('phone',15)->nullable();
+            $table->date('tanggal_lahir');
+            $table->text('pengalaman')->default('tidak ada');
+            $table->boolean('is_gadget')->nullable()->default(false);
+            $table->boolean('is_kendaraan')->nullable()->default(false);
+            $table->string('nomor_rekening')->nullable();
+            $table->string('npwp')->nullable();
+        
             $table->timestamps();
         });
     }
