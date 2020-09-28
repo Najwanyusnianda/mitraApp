@@ -22,7 +22,7 @@ class MitraIndex extends Component
         'kegiatanSelected',
     ];
 
-    public function mount($kegiatan_id){
+    /*public function mount($kegiatan_id){
 
 
 
@@ -30,7 +30,7 @@ class MitraIndex extends Component
        
         $this->kegiatan_id=$kegiatan_id;
         
-    }
+    }*/
 
     public function render()
     {
