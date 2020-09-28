@@ -21,7 +21,7 @@
 
         <div class="form-group">
             <label class="form-label">Nomor Induk Kependudukan (NIK) </label>
-            <input wire:model="name" type="text" name="nik"
+            <input wire:model="nik" type="text" name="nik"
             id="nik" 
             class="form-control @error('nik') is-invalid @enderror" 
             placeholder="NIK" aria-describedby="helpId">
@@ -136,11 +136,11 @@
             <div class="form-label">Kualifikasi</div>
             <div class="custom-controls-stacked">
               <label class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" name="example-checkbox1" value="option1" checked="">
-                <span class="custom-control-label">Spesifikasi Gadget Mencukupo</span>
+                <input type="checkbox" class="custom-control-input" name="" wire:model="is_gadget" value="1" checked="">
+                <span class="custom-control-label">Spesifikasi Gadget Mencukupi</span>
               </label>
               <label class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" name="example-checkbox2" value="option2">
+                <input type="checkbox" class="custom-control-input" name="" value="1" wire:model="is_kendaraan">
                 <span class="custom-control-label">Mempunyai Kendaraan Bermotor</span>
               </label>
             </div>

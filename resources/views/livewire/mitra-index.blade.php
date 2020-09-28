@@ -9,8 +9,9 @@
     @endif
    
   
-  
-    <div class="card">
+
+    @livewire('kegiatan-select')
+    <div class="card row-12">
         <div class="card-header">
             <button type="button" class="btn btn-primary"  wire:click="createMitra()">
                 Tambah Mitra Baru

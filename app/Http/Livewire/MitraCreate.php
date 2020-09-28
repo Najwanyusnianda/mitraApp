@@ -43,9 +43,14 @@ class MitraCreate extends Component
         $this->validate([
             'name'=>'required|min:3',
             'phone'=>'required|min:4',
+            'bulan_lahir'=>'required',
+            'tahun_lahir'=>'required|digits:4',
+            'hari_lahir'=>'required',
+            'nik'=>'required',
+            'pekerjaan'=>'required',
         ]);
 
-        $is_mitra_already=Mitra::where('phone',$this->phone)->first();
+        $is_mitra_already=Mitra::where('nik',$this->nik)->first();
         
         
         if (!empty($is_mitra_already)) {
@@ -56,9 +61,17 @@ class MitraCreate extends Component
 
 
         }else{
+            $this->tanggal_lahir=$this->tahun_lahir.'-'.$this->bulan_lahir.'-'.$this->hari_lahir;
             $mitra=Mitra::create([
             'name'=>$this->name,
             'phone'=>$this->phone,
+            'tanggal_lahir'=>$this->tanggal_lahir,
+            'nik'=>$this->nik,
+            'pekerjaan'=>$this->pekerjaan,
+            'pengalaman'=>$this->pengalaman,
+            'is_gadget'=>$this->is_gadget,
+            'is_kendaraan'=>$this->is_kendaraan,
+            'email'=>$this->email
             ]);
         }
 

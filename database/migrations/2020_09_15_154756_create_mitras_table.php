@@ -20,7 +20,8 @@ class CreateMitrasTable extends Migration
             $table->string('email')->nullable();
             $table->string('phone',15)->nullable();
             $table->date('tanggal_lahir');
-            $table->text('pengalaman')->default('tidak ada');
+            $table->text('pengalaman')->nullable();
+            $table->text('pekerjaan');
             $table->boolean('is_gadget')->nullable()->default(false);
             $table->boolean('is_kendaraan')->nullable()->default(false);
             $table->string('nomor_rekening')->nullable();
