@@ -1,4 +1,9 @@
 <div>
+  <div class="page-header">
+    <h1 class="page-title">
+      Kelola Mitra
+    </h1>
+  </div>
     @if (session()->has('message'))
     <div class="alert alert-success" role="alert">
       <h4 class="alert-heading"></h4>
@@ -11,24 +16,91 @@
   
 
     @livewire('kegiatan-select')
+    <hr>
+    <!--<div class="row">
+      <div class="col-sm-6 col-lg-3">
+        <div class="card">
+          <div class="card-body text-center">
+            <div class="card-category">Daftar Mitra</div>
+
+            <div class="text-center mt-6">
+              <a href="#" class="btn btn-secondary btn-block">Pilih</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <div class="card">
+          <div class="card-body text-center">
+            <div class="card-category">Penilaian</div>
+
+            <div class="text-center mt-6">
+              <a href="#" class="btn btn-secondary btn-block">Pilih</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <div class="card">
+          <div class="card-body text-center">
+            <div class="card-category">Output</div>
+
+            <div class="text-center mt-6">
+              <a href="#" class="btn btn-secondary btn-block">Pilih</a>
+            </div>
+          </div>
+        </div>
+      </div>
 
 
+
+    </div>-->
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link active" href="#">Daftar Mitra</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Penilaian</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Output</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+      </li>
+    </ul>
+
+    <br>
     @if (!empty($kegiatan))
     
     <div class="card row-12">
       <div class="card-header">
       
-          <div class="col-6">
-            <button type="button" class="btn btn-primary btn-sm"  wire:click="createMitra()">
-              Tambah Mitra Baru
-            </button>
-          </div>
+       
+            <h3 class="card-title">Daftar Mitra</h3>
 
-          <div class="col-6">
-            <button type="button" class="btn btn-secondary btn-sm"  wire:click="createMitra()">
-              Upload Mitra
-            </button>
-          </div>
+            <div class="card-options">
+              <button type="button" class="btn btn-primary btn-sm"  wire:click="createMitra()">
+                Tambah Mitra Baru
+              </button>
+   
+  
+       
+              <button type="button" class="btn btn-secondary btn-sm ml-2"  wire:click="createMitra()">
+                Upload Mitra
+              </button>
+              <form action="">
+                <div class="input-group">
+                  <input type="text" class="form-control form-control-sm ml-3" placeholder="Cari Mitra" name="s">
+                  <span class="input-group-btn ml-2">
+                    <button class="btn btn-sm btn-default" type="submit">
+                      <span class="fe fe-search"></span>
+                    </button>
+                  </span>
+                </div>
+              </form>
+            </div>
+         
       </div>
       <div class="card-body mt-5">
         @if ($mitras->isEmpty())
@@ -40,7 +112,12 @@
                   <th>#</th>
                   <th>Nama</th>
                   <th>No. HP</th>
+                  <th>Kualifikasi Gadget</th>
+                  <th>Kepemilikan Kendaran</th>
                   <th></th>
+                  <th></th>
+
+
               </tr>
           </thead>
           <tbody>
@@ -51,10 +128,28 @@
               <th scope="row">{{$no}}</th>
                   <td>{{$mitra->name}}</td>
                   <td>{{$mitra->phone}}</td>
-                  <td>
-                      <button class="btn btn-sm btn-info text-white" wire:click="getMitra({{$mitra->id}})" >Edit</button>
+                  <th>Terpenuhi</th>
+                  <th>Terpenuhi</th>
+                  <!--<td>
+
+                      <button class="btn btn-sm btn-info text-white" wire:click="getMitra({{$mitra->id}})" >Update Data</button>
                       <button class="btn btn-sm btn-danger text-white" wire:click="deleteMitra({{$mitra->id}})" >Delete</button>
+                  
+                  </td>-->
+                  <td class="text-right">
+                    <a href="javascript:void(0)" class="btn btn-secondary btn-sm">Detail</a>
+                    <div class="dropdown">
+                      <button class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false">Aksi</button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">Penilaian</a>
+                        <a class="dropdown-item" href="#">Sertifikat</a>
+                        <a class="dropdown-item" href="#">Kontrak Kerja</a>
+                      </div>
+                    </div>
+
                   </td>
+                  <td></td>
+                
               </tr> 
               @endforeach
   

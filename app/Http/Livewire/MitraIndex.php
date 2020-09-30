@@ -1,5 +1,5 @@
 <?php
-
+                                                                                          
 namespace App\Http\Livewire;
 
 use Livewire\Component;
@@ -16,20 +16,16 @@ class MitraIndex extends Component
    // public $kegiatan;
     public $kegiatan_id;
 
+    public $tabs;
+
     protected $listeners=[
         'mitraStored'=>'handleStored',
         'mitraUpdated'=>'handleUpdated',
         'kegiatanSelected',
     ];
 
-    /*public function mount($kegiatan_id){
-
-
-
-     
-       
-        $this->kegiatan_id=$kegiatan_id;
-        
+    /*public function mount($kegiatan_id){       
+        $this->kegiatan_id=$kegiatan_id;       
     }*/
 
     public function render()

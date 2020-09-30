@@ -20,8 +20,9 @@
 Route::group(['layout' => 'master', 'section' => 'content'], function () {
     //
     Route::livewire('/', 'kegiatan-index');
-
-    Route::livewire('/mitra', 'mitra-index');
+    Route::livewire('/kegiatan/create','kegiatan-create');
+    Route::livewire('/mitra/create/{id}','mitra-create');
+    Route::livewire('/kegiatan/mitra', 'mitra-index');
 
 
 });

@@ -3,7 +3,7 @@
 <div class="card row-12">
 
     <div class="card-body">
-    <h4 class="card-title">Pilih Kegiatan: {{$kegiatan_id}}</h4>
+    <h4 class="card-title">Pilih Kegiatan: </h4>
         @if ($kegiatans->isNotEmpty())
             
         <div class="form-group">
