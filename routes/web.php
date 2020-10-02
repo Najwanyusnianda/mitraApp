@@ -19,11 +19,10 @@
 
 Route::group(['layout' => 'master', 'section' => 'content'], function () {
     //
-    Route::livewire('/kegiatan', 'kegiatan-index');
-
-    Route::livewire('/kegiatan/detail', 'mitra-index');
-
+    Route::livewire('/', 'kegiatan-index');
     Route::livewire('/kegiatan/create','kegiatan-create');
-
+    Route::livewire('/mitra/create/{id}','mitra-create');
+    Route::livewire('/kegiatan/mitra', 'mitra-index');
+    Route::livewire('/penilaian', 'mitra-penilaian-create');
 
 });

@@ -1,5 +1,5 @@
 <?php
-
+                                                                                          
 namespace App\Http\Livewire;
 
 use Livewire\Component;
@@ -16,20 +16,16 @@ class MitraIndex extends Component
    // public $kegiatan;
     public $kegiatan_id;
 
+    public $tabs;
+
     protected $listeners=[
         'mitraStored'=>'handleStored',
         'mitraUpdated'=>'handleUpdated',
         'kegiatanSelected',
     ];
 
-    /*public function mount($kegiatan_id){
-
-
-
-     
-       
-        $this->kegiatan_id=$kegiatan_id;
-        
+    /*public function mount($kegiatan_id){       
+        $this->kegiatan_id=$kegiatan_id;       
     }*/
 
     public function render()
@@ -69,6 +65,7 @@ class MitraIndex extends Component
     }
 
 
+    ///emit
     public function handleDeleted($mitra){
         session()->flash('message','Mitra berhasil dihapus');
     }
@@ -81,7 +78,14 @@ class MitraIndex extends Component
         session()->flash('message','Mitra berhasil diperbaharui');
     }
 
+    public function changesTab($tabs){
+        $kegiatan_id=$this->kegiatan_id;
+        $this->tabs=$tabs;
+        $this->emit('kegiatanPush',$kegiatan_id);
+    }
+
     public function kegiatanSelected($kegiatan_id){
+        $this->tabs=1;
         $this->kegiatan_id=$kegiatan_id;
     }
 

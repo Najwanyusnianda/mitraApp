@@ -1,7 +1,9 @@
 <div>
 
- 
+    <h4>Tambah Mitra Baru</h4>
+    <hr>
     <!--form tambah mitra baru-->
+    
     <form wire:submit.prevent="store">
         
 
@@ -147,7 +149,7 @@
           </div>
 
 
-<hr>
+      <hr>
 
     <!--<button type="submit" class="btn btn-sm btn-primary">Submit</button>-->
     <div class="btn-list text-center">
