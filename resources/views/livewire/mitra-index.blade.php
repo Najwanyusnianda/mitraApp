@@ -112,7 +112,7 @@
                     <th>Kualifikasi Gadget</th>
                     <th>Kepemilikan Kendaran</th>
                     <th></th>
-                    <th></th>
+                
   
   
                 </tr>
@@ -127,26 +127,25 @@
                     <td>{{$mitra->phone}}</td>
                     <th>Terpenuhi</th>
                     <th>Terpenuhi</th>
-                    <!--<td>
-  
-                        <button class="btn btn-sm btn-info text-white" wire:click="getMitra({{$mitra->id}})" >Update Data</button>
-                        <button class="btn btn-sm btn-danger text-white" wire:click="deleteMitra({{$mitra->id}})" >Delete</button>
-                    
-                    </td>-->
+
                     <td class="text-right">
                       <button class="btn btn-secondary btn-sm">Detail</button>
                       <div class="dropdown">
                         <button class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false">Aksi</button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                          <a class="dropdown-item" href="#">Penilaian</a>
-                          <a class="dropdown-item" href="#">Sertifikat</a>
-                          <a class="dropdown-item" href="#">Kontrak Kerja</a>
+                          <a class="dropdown-item" wire:click="getMitra({{$mitra->id}})">Edit</a>
+                          <a class="dropdown-item" wire:click="deleteMitra({{$mitra->id}})">Hapus</a>
+     
                         </div>
                       </div>
   
                     </td>
-                    <td></td>
+                    <!--<td>
+  
+                      <button class="btn btn-sm btn-info text-white" wire:click="getMitra({{$mitra->id}})" ><i class="fe fe-edit"></i></button>
+                      <button class="btn btn-sm btn-danger text-white" wire:click="deleteMitra({{$mitra->id}})" >Delete</button>
                   
+                  </td>-->
                 </tr> 
                 @endforeach
     
@@ -206,4 +205,6 @@
     </script>
   </div>
     @endif
+
+
 

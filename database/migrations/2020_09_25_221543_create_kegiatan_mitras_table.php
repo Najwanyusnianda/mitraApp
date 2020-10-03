@@ -20,12 +20,15 @@ class CreateKegiatanMitrasTable extends Migration
             $table->unsignedInteger('nilai_pelatihan1')->nullable();
             $table->unsignedInteger('nilai_pelatihan2')->nullable();
             $table->unsignedInteger('nilai_pelatihan3')->nullable();
+            $table->unsignedInteger('avg_pelatihan')->nullable();
             $table->unsignedInteger('nilai_pelaksanaan1')->nullable();
             $table->unsignedInteger('nilai_pelaksanaan2')->nullable();
             $table->unsignedInteger('nilai_pelaksanaan3')->nullable();
+            $table->unsignedInteger('avg_pelaksanaan')->nullable();
             $table->unsignedInteger('nilai_evaluasi1')->nullable();
             $table->unsignedInteger('nilai_evaluasi2')->nullable();
             $table->unsignedInteger('nilai_evaluasi3')->nullable();
+            $table->unsignedInteger('avg_evaluasi')->nullable();
             $table->timestamps();
         });
     }

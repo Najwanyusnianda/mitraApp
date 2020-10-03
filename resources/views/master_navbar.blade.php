@@ -92,7 +92,7 @@
         <div class="col-lg order-lg-first">
           <ul class="nav nav-tabs border-0 flex-column flex-lg-row">
             <li class="nav-item">
-              <a href="./index.html" class="nav-link"><i class="fe fe-home"></i> Dashboard </a>
+              <a href="{{ url('/dashboard') }}" class="nav-link"><i class="fe fe-home"></i> Dashboard </a>
             </li>
             <li class="nav-item">
               <a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fe fe-box"></i>Kelola Pengguna</a>
@@ -111,8 +111,8 @@
             <li class="nav-item">
               <a href="./docs/index.html" class="nav-link active" data-toggle="dropdown"><i class="fe fe-file-text"></i> Kelola Mitra</a>
               <div class="dropdown-menu dropdown-menu-arrow">
-                <a href="./maps.html" class="dropdown-item ">Kontrak</a>
-                <a href="./icons.html" class="dropdown-item ">Sertifikat</a>
+                <a href="{{ url('/kegiatan/mitra') }}" class="dropdown-item ">Kelola Mitra</a>
+                <a href="./icons.html" class="dropdown-item ">Daftar Mitra</a>
               </div>
             </li>
           </ul>

@@ -3,12 +3,16 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
+use Livewire\WithPagination;
 use App\Mitra;
 use App\KegiatanMitra;
 use App\Kegiatan;
 
 class MitraPenilaian extends Component
 {
+
+    use WithPagination;
+
     public $kegiatan_id;
 
     protected $listeners=[
@@ -33,6 +37,14 @@ class MitraPenilaian extends Component
     //mount kegiataan saat change tabs
     public function kegiatanPush($kegiatan_id){
         $this->kegiatan_id=$kegiatan_id;
+    }
+
+
+    public function addPenilaian($mitra_id){
+       // dd($mitra_id);
+       $mitra = Mitra::find($mitra_id);
+       $this->emit('getMitra',$mitra);
+       $this->dispatchBrowserEvent('showModalPenilaian');
     }
 
 

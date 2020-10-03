@@ -70,7 +70,7 @@
                     </td>
                     <td class="text-right">
                
-                        <button class="btn btn-info btn-sm">Beri Penilaian</button>
+                      <button class="btn btn-info btn-sm" wire:click="addPenilaian({{ $mitra->id }})">Beri Penilaian</button>
     
                     </td>
                     <!--<td>
@@ -93,4 +93,40 @@
   
         </div>
       </div>   
+
+
+
+
+      <!--modal-->
+      
+    @if (!empty($kegiatan))
+   
+    <div class="modal fade" id="addPenilaian" tabindex="-1" role="dialog" aria-labelledby="penilaianLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="penilaianLabel">Penilaian Mitra</h5>
+            <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>-->
+          </div>
+          <div class="modal-body">
+              @livewire('mitra-penilaian-create',['kegiatan_id'=>$kegiatan->id])
+          </div>
+  
+        </div>
+      </div>
+    </div>
+  
+    <script>
+        window.addEventListener('closeModalPenilaian',event=>{
+          $('#addPenilaian').modal('hide');  
+        });
+  
+        window.addEventListener('showModalPenilaian',event=>{
+          $('#addPenilaian').modal('show');  
+        });
+    </script>
+  </div>
+    @endif
 </div>
