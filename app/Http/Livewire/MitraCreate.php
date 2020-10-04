@@ -48,6 +48,7 @@ class MitraCreate extends Component
             'hari_lahir'=>'required',
             'nik'=>'required',
             'pekerjaan'=>'required',
+            
         ]);
 
         $is_mitra_already=Mitra::where('nik',$this->nik)->first();
