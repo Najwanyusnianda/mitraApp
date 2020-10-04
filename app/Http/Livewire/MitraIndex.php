@@ -64,6 +64,10 @@ class MitraIndex extends Component
         $this->handleDeleted($mitra);
     }
 
+    public function storeMitra(){
+        $this->emit('storeMitra');
+    }
+
 
     ///emit
     public function handleDeleted($mitra){

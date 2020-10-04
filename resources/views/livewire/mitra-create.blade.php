@@ -1,6 +1,7 @@
 <div>
 
-    <h4>Tambah Mitra Baru</h4>
+  
+    <h4 class="text-center">Tambah Mitra Baru</h4>
     <hr>
     <!--form tambah mitra baru-->
     
@@ -8,31 +9,39 @@
         
 
         <div class="form-group">
-          <label class="form-label">Nama : {{$name}}</label>
-          <input wire:model="name" type="text" name="name"
-          id="name" 
-          class="form-control @error('name') is-invalid @enderror" 
-          placeholder="Nama" aria-describedby="helpId">
-          @error('name')
-          <div class="invalid-feedback d-block" >
-           <strong>{{ $message }}</strong>
-           </div>
-          @enderror
-          <small id="helpId" class="text-muted">Isikan nama lengkap</small>
+          <div class="row gutters-xs">
+            <div class="col-6">
+              <label class="form-label">Nama : {{$name}}</label>
+              <input wire:model="name" type="text" name="name"
+              id="name" 
+              class="form-control @error('name') is-invalid @enderror" 
+              placeholder="Nama" aria-describedby="helpId">
+              @error('name')
+              <div class="invalid-feedback d-block" >
+               <strong>{{ $message }}</strong>
+               </div>
+              @enderror
+              <small id="helpId" class="text-muted">Isikan nama lengkap</small>
+            </div>
+            <div class="col-6">
+              <label class="form-label">Nomor Induk Kependudukan (NIK) </label>
+              <input wire:model="nik" type="text" name="nik"
+              id="nik" 
+              class="form-control @error('nik') is-invalid @enderror" 
+              placeholder="NIK" aria-describedby="helpId">
+              @error('nik')
+              <div class="invalid-feedback d-block" >
+               <strong>{{ $message }}</strong>
+               </div>
+              @enderror
+              <small id="helpId" class="text-muted">Isikan NIK sesuai dengan KTP</small>
+            </div>
+          </div>
+
         </div>
 
         <div class="form-group">
-            <label class="form-label">Nomor Induk Kependudukan (NIK) </label>
-            <input wire:model="nik" type="text" name="nik"
-            id="nik" 
-            class="form-control @error('nik') is-invalid @enderror" 
-            placeholder="NIK" aria-describedby="helpId">
-            @error('nik')
-            <div class="invalid-feedback d-block" >
-             <strong>{{ $message }}</strong>
-             </div>
-            @enderror
-            <small id="helpId" class="text-muted">Isikan NIK sesuai dengan KTP</small>
+
         </div>
 
         <div class="form-group">
