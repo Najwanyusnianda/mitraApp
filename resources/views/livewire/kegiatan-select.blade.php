@@ -9,7 +9,7 @@
         <div class="form-group">
             <label for=""></label>
             <select class="custom-select" name="" id=""  wire:model="kegiatan_id">
-                <option selected>Select one</option>
+                <option selected>Pilih Kegiatan</option>
                 @foreach ($kegiatans as $kegiatan)
             <option value="{{$kegiatan->id}}">{{$kegiatan->nama_kegiatan}}</option>
                 @endforeach

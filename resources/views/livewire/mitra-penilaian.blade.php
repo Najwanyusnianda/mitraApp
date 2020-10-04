@@ -70,7 +70,23 @@
                     </td>
                     <td class="text-right">
                
-                      <button class="btn btn-info btn-sm" wire:click="addPenilaian({{ $mitra->id }})">Beri Penilaian</button>
+                      @if (empty($mitra->avg_evaluasi))
+                      <button class="btn btn-secondary btn-sm" wire:click="addPenilaian({{ $mitra->id }})">
+                        @if (empty($mitra->avg_pelatihan))
+                          Beri nilai pelatihan
+                        @else
+                          @if (empty($mitra->avg_pelaksanaan))
+                          Beri nilai Pelaksaaan Lapangan
+                          @else
+                          Beri nilai Evaluasi Lapangan    
+                          @endif
+                        @endif
+                        
+                        </button>
+                      @else
+                          <button disabled="disabled" class="btn btn-success btn-sm"> Sudah diberi nilai</button>
+                      @endif
+
     
                     </td>
                     <!--<td>

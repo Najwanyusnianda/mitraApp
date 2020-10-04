@@ -1,6 +1,6 @@
 <div>
 
-  @if (!empty($kegiatan_mitra))
+  @if (!empty($kegiatan_mitra_id))
   
   <p>Nama: {{ $mitra_name }} </p>
   <p>Indikator: 
@@ -118,7 +118,7 @@
           </div>
 
     </div>
-</form>
+  </form>
   @else
       <h1>ga da</h1>
 

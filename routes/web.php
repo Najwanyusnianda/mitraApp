@@ -20,13 +20,16 @@
 Route::group(['layout' => 'master', 'section' => 'content'], function () {
     
     //dashboard
-    Route::livewire('/dashboard','dashboard-index');
+    //Route::livewire('/dashboard','dashboard-index');
     
     //mitra
-    Route::livewire('/', 'kegiatan-index');
+    Route::livewire('/', 'dashboard-index');
     Route::livewire('/kegiatan/create','kegiatan-create');
+
+
     Route::livewire('/mitra/create/{id}','mitra-create');
-    Route::livewire('/kegiatan/mitra', 'mitra-index');
+    Route::livewire('/mitra/kegiatan', 'mitra-index');
+    Route::livewire('/mitra/db', 'mitra-index');
    // Route::livewire('/penilaian/{kegiatan_id}/{mitra_id}', 'mitra-penilaian-create');
     
 

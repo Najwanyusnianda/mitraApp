@@ -92,16 +92,16 @@
         <div class="col-lg order-lg-first">
           <ul class="nav nav-tabs border-0 flex-column flex-lg-row">
             <li class="nav-item">
-              <a href="{{ url('/dashboard') }}" class="nav-link"><i class="fe fe-home"></i> Dashboard </a>
+              <a href="{{ url('/') }}" class="nav-link {{ Request::is('/') ? 'active' : ''  }}"><i class="fe fe-home"></i> Dashboard </a>
             </li>
             <li class="nav-item">
-              <a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fe fe-box"></i>Kelola Pengguna</a>
+              <a href="#" class="nav-link" data-toggle="dropdown"><i class="fe fe-user"></i>Kelola Pengguna</a>
               <div class="dropdown-menu dropdown-menu-arrow">
-                <a href="./cards.html" class="dropdown-item ">Kelola Pegawai</a>
+                <a href="./cards.html" class="dropdown-item ">Kelola Pengguna Organik</a>
               </div>
             </li>
             <li class="nav-item dropdown">
-              <a href="javascript:void(0)" class="nav-link " data-toggle="dropdown"><i class="fe fe-calendar"></i>Kegiatan Survei/Sensus</a>
+              <a href="#" class="nav-link " data-toggle="dropdown"><i class="fe fe-calendar"></i>Kegiatan Survei/Sensus</a>
               <div class="dropdown-menu dropdown-menu-arrow">
                 <a href="./maps.html" class="dropdown-item ">Daftar Kegiatan</a>
                 <a href="./icons.html" class="dropdown-item ">Penilaian</a>
@@ -109,10 +109,10 @@
             </li>
 
             <li class="nav-item">
-              <a href="./docs/index.html" class="nav-link active" data-toggle="dropdown"><i class="fe fe-file-text"></i> Kelola Mitra</a>
+              <a href="./docs/index.html" class="nav-link {{ Request::is('mitra/*') ? 'active' : '' }}" data-toggle="dropdown"><i class="fe fe-database"></i> Kelola Mitra</a>
               <div class="dropdown-menu dropdown-menu-arrow">
-                <a href="{{ url('/kegiatan/mitra') }}" class="dropdown-item ">Kelola Mitra</a>
-                <a href="./icons.html" class="dropdown-item ">Daftar Mitra</a>
+                <a href="{{ url('/mitra/kegiatan') }}" class="dropdown-item ">Kelola Mitra</a>
+                <a href="{{  url('/mitra/db')}}" class="dropdown-item ">Daftar Mitra</a>
               </div>
             </li>
           </ul>
