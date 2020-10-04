@@ -1,6 +1,7 @@
 <div>
 
-    <h4>Tambah Mitra Baru</h4>
+  
+    <h4 class="text-center">Tambah Mitra Baru</h4>
     <hr>
     <!--form tambah mitra baru-->
     

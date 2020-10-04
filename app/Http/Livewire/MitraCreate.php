@@ -27,6 +27,7 @@ class MitraCreate extends Component
     public $npwp;
 
 
+
     public function mount($kegiatan){
         
         $this->kegiatan_id=$kegiatan->id;
@@ -85,7 +86,9 @@ class MitraCreate extends Component
         $this->resetInput();
         $this->emit('mitraStored',$mitra);
         $this->dispatchBrowserEvent('closeModal');
+
     }
+
 
     public function closeModal(){
         $this->dispatchBrowserEvent('closeModal');
@@ -94,5 +97,17 @@ class MitraCreate extends Component
     private function resetInput(){
         $this->name=null;
         $this->phone=null;
+        $this->bulan_lahir=null;
+        $this->tahun_lahir=null;
+        $this->hari_lahir=null;
+        $this->tanggal_lahir=null;
+        $this->nik=null;
+        $this->email=null;
+        $this->pengalaman=null;
+        $this->pekerjaan=null;
+        $this->is_gadget=null;
+        $this->is_kendaraan=null;
+        $this->rekening=null;
+        $this->npwp=null;
     }
 }
