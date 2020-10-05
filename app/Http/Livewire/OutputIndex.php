@@ -8,16 +8,15 @@ use App\Mitra;
 use App\KegiatanMitra;
 use App\Kegiatan;
 
-class MitraPenilaian extends Component
+class OutputIndex extends Component
 {
-
     use WithPagination;
 
     public $kegiatan_id;
 
     protected $listeners=[
         'kegiatanPush',
-        'nilaiUpdated'=>'handleUpdated'
+       
     ];
     public function render()
     {
@@ -32,27 +31,11 @@ class MitraPenilaian extends Component
         'kegiatan_mitras.nilai_pelaksanaan1 AS avg_pelaksanaan',
         'kegiatan_mitras.nilai_evaluasi1 AS avg_evaluasi')
         ->paginate(10);
-        return view('livewire.mitra-penilaian',['mitras'=>$mitras,'kegiatan'=>$kegiatan]);
+        return view('livewire.output-index',['mitras'=>$mitras,'kegiatan'=>$kegiatan]);
     }
 
-    //mount kegiataan saat change tabs
+        //mount kegiataan saat change tabs
     public function kegiatanPush($kegiatan_id){
         $this->kegiatan_id=$kegiatan_id;
     }
-
-
-    public function addPenilaian($mitra_id){
-       // dd($mitra_id);
-       $mitra = Mitra::find($mitra_id);
-       $this->emit('getMitra',$mitra);
-       $this->dispatchBrowserEvent('showModalPenilaian');
-    }
-
-    public function handleUpdated($kegiatan_mitra){
-
-    }
-
-
-
-
 }

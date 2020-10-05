@@ -165,7 +165,7 @@
       @endif
 
       @if ($tabs==3)
-          
+        @livewire('output-index')
       @endif
 
     @endif

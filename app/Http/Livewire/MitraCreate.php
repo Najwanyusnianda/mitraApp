@@ -126,7 +126,7 @@ class MitraCreate extends Component
 
 
     public function updatedName(){
-        $this->users=Mitra::where('name','like','%'.$this->name.'%')->get()->toArray();
+        $this->users=Mitra::where('name','like','%'.$this->name.'%')->get(5)->toArray();
 
         if($this->name==''){
             $this->users=null;

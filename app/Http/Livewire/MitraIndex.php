@@ -22,6 +22,7 @@ class MitraIndex extends Component
         'mitraStored'=>'handleStored',
         'mitraUpdated'=>'handleUpdated',
         'kegiatanSelected',
+        'nilaiUpdated'
     ];
 
     /*public function mount($kegiatan_id){       
@@ -81,6 +82,10 @@ class MitraIndex extends Component
     public function handleUpdated($mitra){
         
         session()->flash('message','Mitra berhasil diperbaharui');
+    }
+
+    public function nilaiUpdated($kegiatan_mitra){
+        session()->flash('message','Nilai Mitra berhasil diperbaharui');
     }
 
     public function changesTab($tabs){

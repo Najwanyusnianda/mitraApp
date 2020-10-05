@@ -69,6 +69,7 @@ class MitraPenilaianCreate extends Component
                'avg_evaluasi'=>round($avg_val,2)
             ]);
         }
+        $this->emit('nilaiUpdated',$kegiatan_mitra);
         $this->resetInput();
         $this->dispatchBrowserEvent('closeModalPenilaian');
      
