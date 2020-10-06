@@ -95,16 +95,16 @@
               <a href="{{ url('/') }}" class="nav-link {{ Request::is('/') ? 'active' : ''  }}"><i class="fe fe-home"></i> Dashboard </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link" data-toggle="dropdown"><i class="fe fe-user"></i>Kelola Pengguna</a>
+              <a href="#" class="nav-link {{ Request::is('user/*') ? 'active' : ''  }}" data-toggle="dropdown"><i class="fe fe-user"></i>Kelola Pengguna</a>
               <div class="dropdown-menu dropdown-menu-arrow">
-                <a href="./cards.html" class="dropdown-item ">Kelola Pengguna Organik</a>
+                <a href="{{ url('/user/index') }}" class="dropdown-item ">Kelola Pengguna</a>
               </div>
             </li>
             <li class="nav-item dropdown">
-              <a href="#" class="nav-link " data-toggle="dropdown"><i class="fe fe-calendar"></i>Kegiatan Survei/Sensus</a>
+              <a href="#" class="nav-link {{ Request::is('kegiatan/*') ? 'active' : ''  }} " data-toggle="dropdown"><i class="fe fe-calendar"></i>Kelola Kegiatan Survei/Sensus</a>
               <div class="dropdown-menu dropdown-menu-arrow">
-                <a href="./maps.html" class="dropdown-item ">Daftar Kegiatan</a>
-                <a href="./icons.html" class="dropdown-item ">Penilaian</a>
+                <a href="{{ url('/kegiatan/index') }}" class="dropdown-item ">Daftar Kegiatan</a>
+                <a href="{{ url('/kegiatan/create') }}" class="dropdown-item ">Tambah Kegiatan</a>
               </div>
             </li>
 

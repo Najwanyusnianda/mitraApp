@@ -24,7 +24,7 @@ Route::group(['layout' => 'master', 'section' => 'content'], function () {
     
     
     Route::livewire('/', 'dashboard-index');
-
+    //kegiatan
     Route::livewire('/kegiatan/index','kegiatan-index');
     Route::livewire('/kegiatan/create','kegiatan-create');
 
@@ -34,9 +34,15 @@ Route::group(['layout' => 'master', 'section' => 'content'], function () {
     Route::livewire('/mitra/db', 'mitra-list');
    // Route::livewire('/penilaian/{kegiatan_id}/{mitra_id}', 'mitra-penilaian-create');
 
+   //user
+   Route::livewire('/user/index','user.user-index');
+   
    //output
     Route::get('/output/sertifikat/{kegiatan_id}/{mitra_id}','OutputController@getSertifikat');
     Route::get('/output/kontrak/{kegiatan_id}/{mitra_id}','OutputController@getKontrak');
     Route::get('/output/spj/{kegiatan_id}/{mitra_id}','OutputController@getSpj');
 
 });
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

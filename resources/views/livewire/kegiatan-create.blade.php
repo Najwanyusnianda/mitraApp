@@ -2,9 +2,6 @@
     <div class="container">
         <div class="row">
           <div class="col col-login mx-auto">
-            <div class="text-center mb-6">
-              <img src="./demo/brand/tabler.svg" class="h-6" alt="">
-            </div>
             <form class="card" wire:submit.prevent="store">
               <div class="card-body p-6">
                 <div class="card-title">Tambah Kegiatan Baru</div>

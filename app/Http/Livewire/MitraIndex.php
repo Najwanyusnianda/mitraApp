@@ -21,6 +21,7 @@ class MitraIndex extends Component
     protected $listeners=[
         'mitraStored'=>'handleStored',
         'mitraUpdated'=>'handleUpdated',
+        'mitraAlreadyStored'=>'handleAlreadyStored',
         'kegiatanSelected',
         'nilaiUpdated'
     ];
@@ -77,6 +78,10 @@ class MitraIndex extends Component
     }
     public function handleStored($mitra){
         session()->flash('message','Mitra berhasil ditambahkan');
+    }
+
+    public function handleAlreadyStored($mitra){
+        session()->flash('info','Mitra telah ditambahkan sebelumnya dalam kegiatan ini');
     }
 
     public function handleUpdated($mitra){

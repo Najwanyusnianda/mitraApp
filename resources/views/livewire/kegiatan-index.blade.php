@@ -1,18 +1,9 @@
 <div>
   <section>
-    <div class="card">
-
-      <div class="card-body">
-        <ul class="nav nav-pills nav-stacked">
-          <li class="nav-item">
-            <button class="nav-link btn btn-info">Tambah Kegiatan</button>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link btn btn-info">Daftar Kegiatan</a>
-          </li>
-
-        </ul>
-      </div>
+    <div class="page-header">
+      <h1 class="page-title">
+        Daftar Kegiatan
+      </h1>
     </div>
 
   </section>
@@ -23,14 +14,15 @@
             <div class="row-lg-8">
                 <div class="card">
                   <div class="card-header">
+                    <span class="mr-2 badge {{$kegiatan->is_active ? 'badge-success' : 'badge-danger' }} badge-sm"> {{$kegiatan->is_active ? 'aktif' : 'selesai' }} </span>
                     <h3 class="card-title">
-                        <span class="badge {{$kegiatan->is_active ? 'badge-success' : 'badge-danger' }} badge-sm">{{$kegiatan->is_active ? 'aktif' : 'tidak aktif' }} </span>
                          {{$kegiatan->nama_kegiatan }}
                     </h3>
+                   
                     <div class="card-options">
-                      <a href="#" class="btn btn-primary btn-sm">Detail</a>
+                      <a href="#" class="btn btn-secondary btn-sm">Detail</a>
                       @if ($kegiatan->is_active)
-                      <a href="#" class="btn btn-secondary btn-sm ml-2"> Tambah Petugas</a>
+                      <a href="#" class="btn btn-outline-danger btn-sm ml-2" wire:click="inActiveKegiatan({{ $kegiatan->id }})"> Tutup</a>
                       @else
                           
                       @endif

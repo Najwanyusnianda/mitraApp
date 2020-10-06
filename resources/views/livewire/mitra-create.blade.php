@@ -17,9 +17,9 @@
               <input wire:model="name" type="text" name="name"
               id="name" 
               class="form-control @error('name') is-invalid @enderror" 
-              placeholder="Nama" aria-describedby="helpId">
+              placeholder="Nama" aria-describedby="userId">
               @if (!empty($users))
-              <div class="position-absolute  list-group bg-white shadow-lg" style="z-index: 1000">
+              <div class="position-absolute  w-100 list-group bg-white shadow-lg row" id="user-list" style="z-index: 1000">
                 @foreach ($users as $user)
                     <button type="button"  class="list-group-item list-group-item-action" wire:click="fillUserForm({{ $user['id'] }})" >{{ $user['name'] }}</button>
                 @endforeach
@@ -30,7 +30,7 @@
                <strong>{{ $message }}</strong>
                </div>
               @enderror
-              <small id="helpId" class="text-muted">Isikan nama lengkap</small>
+              <small id="userId" class="text-muted">Isikan nama lengkap</small>
 
 
             </div>
@@ -164,5 +164,13 @@
    </form>
 
   
- onblur="blurFunction()"
+   <script>
+     $( "#name" ).blur(function() {
+  
+      setTimeout(function() {
+        $('#user-list').html('');
+    }, 1500);
+      //
+    });
+   </script>
 </div>

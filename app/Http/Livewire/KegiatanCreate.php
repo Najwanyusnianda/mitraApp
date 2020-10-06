@@ -32,7 +32,7 @@ class KegiatanCreate extends Component
             'deskripsi'=>$this->deskripsi
         ]);
         $this->resetInput();
-
+        return redirect()->to('/kegiatan/index'))->with('success', 'Kegiatan Berhasil Ditambahkan');
         
     }
 

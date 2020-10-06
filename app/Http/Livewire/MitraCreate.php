@@ -87,16 +87,24 @@ class MitraCreate extends Component
             ]);
         }
 
-     
-        $mitra_kegiatan=KegiatanMitra::create([
+        $mitra_check=KegiatanMitra::where('kegiatan_id',$this->kegiatan_id)
+        ->where('mitra_id',$mitra->id)->first();
+        if(empty($mitra_check)){
+            $mitra_kegiatan=KegiatanMitra::create([
                 'kegiatan_id'=>$this->kegiatan_id,
                 'mitra_id'=>$mitra->id,
 
-        ]);
+            ]);
 
-        $this->resetInput();
-        $this->emit('mitraStored',$mitra);
-        $this->dispatchBrowserEvent('closeModal');
+            $this->resetInput();
+            $this->emit('mitraStored',$mitra);
+            $this->dispatchBrowserEvent('closeModal');
+        }else{
+            $this->resetInput();
+            $this->emit('mitraAlreadyStored',$mitra);
+            $this->dispatchBrowserEvent('closeModal');
+        }
+
 
     }
 
@@ -126,7 +134,7 @@ class MitraCreate extends Component
 
 
     public function updatedName(){
-        $this->users=Mitra::where('name','like','%'.$this->name.'%')->get(5)->toArray();
+        $this->users=Mitra::where('name','like','%'.$this->name.'%')->take(5)->get()->toArray();
 
         if($this->name==''){
             $this->users=null;
@@ -136,7 +144,7 @@ class MitraCreate extends Component
     }
 
     public function fillUserForm($mitra_id){
-        $mitra=Mitra::find($mitra_id)->first();
+        $mitra=Mitra::find($mitra_id);
 
         $this->tanggal_lahir=$mitra['tanggal_lahir'];
 

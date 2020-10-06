@@ -12,6 +12,15 @@
     </div>
         
     @endif
+
+    @if (session()->has('info'))
+    <div class="alert alert-info" role="alert">
+      <h4 class="alert-heading"></h4>
+     
+      <p class="mb-0">{{session('info')}}</p>
+    </div>
+        
+    @endif
    
   
 
