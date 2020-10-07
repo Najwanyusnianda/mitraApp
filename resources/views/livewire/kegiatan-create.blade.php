@@ -1,7 +1,12 @@
 <div>
+  <div class="page-header">
+    <h1 class="page-title">
+      Buat Kegiatan Baru 
+    </h1>
+  </div>
     <div class="container">
         <div class="row">
-          <div class="col col-login mx-auto">
+          <div class="col col-login ">
             <form class="card" wire:submit.prevent="store">
               <div class="card-body p-6">
                 <div class="card-title">Tambah Kegiatan Baru</div>

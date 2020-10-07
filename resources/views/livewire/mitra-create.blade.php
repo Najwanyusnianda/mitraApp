@@ -150,7 +150,7 @@
                 <span class="custom-control-label">Mempunyai Kendaraan Bermotor</span>
               </label>
             </div>
-          </div>
+        </div>
 
 
       <hr>

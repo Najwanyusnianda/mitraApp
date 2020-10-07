@@ -38,7 +38,9 @@ class MitraIndex extends Component
         ->join('mitras','mitras.id','=','kegiatan_mitras.mitra_id')
         ->join('kegiatans','kegiatans.id','=','kegiatan_mitras.kegiatan_id')
         ->select('kegiatans.nama_kegiatan AS nama_kegiatan',
-        'mitras.id AS id','mitras.name AS name','mitras.phone AS phone')
+        'mitras.id AS id','mitras.name AS name','mitras.phone AS phone',
+        'mitras.nik AS nik',
+        'mitras.is_gadget AS is_gadget','mitras.is_kendaraan AS is_kendaraan')
         ->paginate(10);
 
         return view('livewire.mitra-index',['mitras'=>$mitras,'kegiatan'=>$kegiatan]);

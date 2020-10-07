@@ -92,9 +92,7 @@
      
     
          
-                <button type="button" class="btn btn-secondary btn-sm ml-2"  wire:click="createMitra()">
-                  Upload Mitra
-                </button>
+
                 <form action="">
                   <div class="input-group">
                     <input type="text" class="form-control form-control-sm ml-3" placeholder="Cari Mitra" name="s">
@@ -117,6 +115,7 @@
                 <tr>
                     <th>#</th>
                     <th>Nama</th>
+                    <th>NIK</th>
                     <th>No. HP</th>
                     <th>Kualifikasi Gadget</th>
                     <th>Kepemilikan Kendaran</th>
@@ -133,9 +132,16 @@
                 <tr>
                 <th scope="row">{{$no}}</th>
                     <td>{{$mitra->name}}</td>
+                    <td>{{$mitra->nik}}</td>
                     <td>{{$mitra->phone}}</td>
-                    <th>Terpenuhi</th>
-                    <th>Terpenuhi</th>
+                    <td>
+                      <span class="status-icon bg-{{ $mitra->is_gadget ? 'success' : 'danger' }}"></span>
+                      {{$mitra->is_gadget ? 'Terpenuhi' : 'Tidak Terpenuhi'}}
+                    </td>
+                    <td>
+                      <span class="status-icon bg-{{ $mitra->is_kendaraan ? 'success' : 'danger' }}"></span>
+                      {{$mitra->is_kendaraan ? 'Terpenuhi' : 'Tidak Terpenuhi'}}
+                    </td>
 
                     <td class="text-right">
                       <button class="btn btn-secondary btn-sm">Detail</button>
