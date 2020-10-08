@@ -22,11 +22,15 @@ class CreateMitrasTable extends Migration
             $table->date('tanggal_lahir');
             $table->text('pengalaman')->nullable();
             $table->text('pekerjaan');
-            $table->boolean('is_gadget')->nullable()->default(false);
-            $table->boolean('is_kendaraan')->nullable()->default(false);
+            $table->string('pendidikan')->nullable();
+            $table->text('alamat')->nullable();
+            $table->string('jenis_kelamin')->nullable();
+            $table->string('agama')->nullable();
+            $table->string('is_kawin')->nullable();
             $table->string('nomor_rekening')->nullable();
             $table->string('npwp')->nullable();
-        
+            $table->boolean('is_gadget')->nullable()->default(false);
+            $table->boolean('is_kendaraan')->nullable()->default(false);
             $table->timestamps();
         });
     }

@@ -53,21 +53,37 @@
                 <th scope="row">{{$no}}</th>
                     <td>{{$mitra->name}}</td>
                     <td>{{$mitra->nik ?? 'tidak ada'}}</td>
-                    <td>
-                        <span class="badge badge-pill badge-{{$mitra->avg_pelatihan ? 'success' : 'danger' }}">
-                            {{$mitra->avg_pelatihan ?? 'belum ada penilaian'}}
-                        </span>
+                    <td style="text-align: center">
+                      @if ($mitra->avg_pelatihan)
+                        {{ $mitra->avg_pelatihan }}
+                      @else    
+                      <span class="badge badge-pill badge-info">
+                        belum ada penilaian
+                      </span>
+                      @endif
+
                     </td>
-                    <td>
-                        <span class="badge badge-pill badge-{{$mitra->avg_pelaksanaan ? 'success' : 'danger' }}">
-                            {{$mitra->avg_pelaksanaan ?? 'belum ada penilaian'}}
-                        </span>
+                    <td style="text-align: center">
+                      @if ($mitra->avg_pelaksanaan)
+                        {{ $mitra->avg_pelaksanaan }}
+                      @else    
+                      <span class="badge badge-pill badge-info">
+                        belum ada penilaian
+                      </span>
+                      @endif
+
                     </td>
-                    <td>
-                        <span class="badge badge-pill badge-{{$mitra->avg_evaluasi ? 'success' : 'danger' }}">
-                            {{$mitra->avg_evaluasi ?? 'belum ada penilaian'}}
-                        </span>
+                    <td style="text-align: center">
+                      @if ($mitra->avg_evaluasi)
+                        {{ $mitra->avg_evaluasi }}
+                      @else    
+                      <span class="badge badge-pill badge-info">
+                        belum ada penilaian
+                      </span>
+                      @endif
+
                     </td>
+
                     <td class="text-right">
                
                       @if (empty($mitra->avg_evaluasi))

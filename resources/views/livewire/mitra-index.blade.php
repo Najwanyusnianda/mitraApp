@@ -144,7 +144,7 @@
                     </td>
 
                     <td class="text-right">
-                      <button class="btn btn-secondary btn-sm">Detail</button>
+                      <button class="btn btn-secondary btn-sm" wire:click="getMitraDetail({{$mitra->id}})">Detail</button>
                       <div class="dropdown">
                         <button class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false">Aksi</button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -209,13 +209,35 @@
       </div>
     </div>
   
+    <div class="modal fade" id="detailMitra" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"  data-backdrop="static">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel"></h5>
+            <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>-->
+          </div>
+          <div class="modal-body">
+              @livewire('mitra-detail')
+          </div>
+  
+        </div>
+      </div>
+    </div>
+
     <script>
         window.addEventListener('closeModal',event=>{
           $('#addMitra').modal('hide');  
+          $('#detailMitra').modal('hide');
         });
   
         window.addEventListener('showModal',event=>{
           $('#addMitra').modal('show');  
+        });
+
+        window.addEventListener('showModalDetail',event=>{
+          $('#detailMitra').modal('show');  
         });
     </script>
   </div>

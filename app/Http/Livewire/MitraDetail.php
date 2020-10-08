@@ -6,8 +6,7 @@ use Livewire\Component;
 
 class MitraDetail extends Component
 {
-    public $name;
-    public $phone;
+
     public $mitraId;
     public $name;
     public $phone; 
@@ -25,7 +24,7 @@ class MitraDetail extends Component
     public $npwp;
 
     protected $listeners=[
-        'getMitra'=>'showMitra'
+        'getMitraDetail'=>'showMitra'
     ];
 
     public function render()

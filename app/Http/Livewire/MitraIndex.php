@@ -63,6 +63,12 @@ class MitraIndex extends Component
     $this->dispatchBrowserEvent('showModal');
     }
 
+    public function getMitraDetail($id){
+        $mitra = Mitra::find($id);
+        $this->emit('getMitraDetail',$mitra);
+        $this->dispatchBrowserEvent('showModalDetail');
+    }
+
     public function deleteMitra($id){
         $mitra = Mitra::find($id);
         $mitra->delete();

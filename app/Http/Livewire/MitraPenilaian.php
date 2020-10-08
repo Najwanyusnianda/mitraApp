@@ -28,9 +28,9 @@ class MitraPenilaian extends Component
         ->join('kegiatans','kegiatans.id','=','kegiatan_mitras.kegiatan_id')
         ->select('kegiatans.nama_kegiatan AS nama_kegiatan',
         'mitras.id AS id','mitras.name AS name','mitras.phone AS phone',
-        'mitras.nik AS nik','kegiatan_mitras.nilai_pelatihan1 AS avg_pelatihan',
-        'kegiatan_mitras.nilai_pelaksanaan1 AS avg_pelaksanaan',
-        'kegiatan_mitras.nilai_evaluasi1 AS avg_evaluasi')
+        'mitras.nik AS nik','kegiatan_mitras.avg_pelatihan AS avg_pelatihan',
+        'kegiatan_mitras.avg_pelaksanaan AS avg_pelaksanaan',
+        'kegiatan_mitras.avg_evaluasi AS avg_evaluasi')
         ->paginate(10);
         return view('livewire.mitra-penilaian',['mitras'=>$mitras,'kegiatan'=>$kegiatan]);
     }
