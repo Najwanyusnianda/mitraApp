@@ -5,8 +5,8 @@
           <img src="{{ asset('assets/img_core/logo_bps.png') }}" class="header-brand-img" alt="Aplikasi Mitra - BPS Kota Subulussalam">
           SIBERAS - Database Mitra BPS Kota Subulussalam
         </a>
-        <!--<div class="d-flex order-lg-2 ml-auto">
-          <div class="nav-item d-none d-md-flex">
+        <div class="d-flex order-lg-2 ml-auto">
+          <!--<div class="nav-item d-none d-md-flex">
             <a href="https://github.com/tabler/tabler" class="btn btn-sm btn-outline-primary" target="_blank">Source code</a>
           </div>
           <div class="dropdown d-none d-md-flex">
@@ -39,13 +39,15 @@
               <div class="dropdown-divider"></div>
               <a href="#" class="dropdown-item text-center">Mark all as read</a>
             </div>
-          </div>
+          </div>-->
           <div class="dropdown">
             <a href="#" class="nav-link pr-0 leading-none" data-toggle="dropdown">
               <span class="avatar" style="background-image: url(./demo/faces/female/25.jpg)"></span>
               <span class="ml-2 d-none d-lg-block">
-                <span class="text-default">Jane Pearson</span>
-                <small class="text-muted d-block mt-1">Administrator</small>
+                <span class="text-default">{{ auth()->user()->name }}</span>
+                <small class="text-muted d-block mt-1">
+                  {{ auth()->user()->role ==1 ? 'Administrator' : 'operator' }}
+                </small>
               </span>
             </a>
             <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
@@ -71,7 +73,8 @@
               </a>
             </div>
           </div>
-        </div>-->
+        </div>
+        
         <a href="#" class="header-toggler d-lg-none ml-3 ml-lg-0" data-toggle="collapse" data-target="#headerMenuCollapse">
           <span class="header-toggler-icon"></span>
         </a>
@@ -94,12 +97,15 @@
             <li class="nav-item">
               <a href="{{ url('/') }}" class="nav-link {{ Request::is('/') ? 'active' : ''  }}"><i class="fe fe-home"></i> Dashboard </a>
             </li>
+            @if (auth()->user()->role==1)
             <li class="nav-item">
               <a href="#" class="nav-link {{ Request::is('user/*') ? 'active' : ''  }}" data-toggle="dropdown"><i class="fe fe-user"></i>Kelola Pengguna</a>
               <div class="dropdown-menu dropdown-menu-arrow">
                 <a href="{{ url('/user/index') }}" class="dropdown-item ">Kelola Pengguna</a>
               </div>
             </li>
+            @endif
+
             <li class="nav-item dropdown">
               <a href="#" class="nav-link {{ Request::is('kegiatan/*') ? 'active' : ''  }} " data-toggle="dropdown"><i class="fe fe-calendar"></i>Kelola Kegiatan Survei/Sensus</a>
               <div class="dropdown-menu dropdown-menu-arrow">

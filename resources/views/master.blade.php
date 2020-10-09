@@ -28,8 +28,9 @@
       });
     </script>-->
     <!-- Dashboard Core -->
-    <link href="{{ asset('assets/tabler/css/dashboard.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/flatpickr/flatpickr.min.css') }}" rel="stylesheet" />
 
+    <link href="{{ asset('assets/tabler/css/dashboard.css') }}" rel="stylesheet" />
     <script src="{{ asset('assets/tabler/js/dashboard.js') }}"></script>
     <script type="text/javascript"  src="{{ asset('assets/tabler/js/vendors/jquery-3.2.1.min.js') }}"></script>
     <script type="text/javascript"  src="{{ asset('assets/tabler/js/vendors/bootstrap.bundle.min.js') }}"></script>
@@ -51,6 +52,7 @@
 @include('master_footer')
       </div>
       @livewireScripts
+      <script type="text/javascript" src="{{ asset('assets/flatpickr/flatpickr.js') }}" ></script>
 </body>
 
 </html>

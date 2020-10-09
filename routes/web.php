@@ -16,8 +16,8 @@
 
 
 
-
-Route::group(['layout' => 'master', 'section' => 'content'], function () {
+Route::group(['middleware' => ['auth']], function () {
+    Route::group(['layout' => 'master', 'section' => 'content'], function () {
     
     //dashboard
     //Route::livewire('/dashboard','dashboard-index');
@@ -42,7 +42,9 @@ Route::group(['layout' => 'master', 'section' => 'content'], function () {
     Route::get('/output/kontrak/{kegiatan_id}/{mitra_id}','OutputController@getKontrak');
     Route::get('/output/spj/{kegiatan_id}/{mitra_id}','OutputController@getSpj');
 
+    });
 });
+
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+#Route::get('/home', 'HomeController@index')->name('home');

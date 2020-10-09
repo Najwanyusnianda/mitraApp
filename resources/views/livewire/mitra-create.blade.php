@@ -7,11 +7,187 @@
     
     <form wire:submit.prevent="store" autocomplete="off">
         
+      <div class="row align-items-center">
+          <div class="col-sm-6">
+            <label class="form-label"><span class="mr-4">1.</span>Nama Lengkap (Sesuai KTP)
+            </label>
+          </div>
+          <div class="col-sm 6">
+            <div class="form-group mb-2 ml-5">
+              <input wire:model="name" type="text" name="name"
+              id="name" 
+              class="form-control @error('name') is-invalid @enderror" 
+              placeholder="Nama" aria-describedby="userId">
+              @if (!empty($users))
+              <div class="position-absolute  w-100 list-group bg-white shadow-lg row" id="user-list" style="z-index: 1000">
+                @foreach ($users as $user)
+                    <button type="button"  class="list-group-item list-group-item-action" wire:click="fillUserForm({{ $user['id'] }})" >{{ $user['name'] }}</button>
+                @endforeach
+              </div>
+             @endif
+              @error('name')
+              <div class="invalid-feedback d-block" >
+               <strong>{{ $message }}</strong>
+               </div>
+              @enderror
+            </div>
 
+          </div>
+      </div>
+      <hr class="mt-0 mb-2">
+      <div class="row align-items-center">
+        <div class="col-sm-6">
+          <label class="form-label"><span class="mr-4">2.</span>Nomor NIK (Sesuai E-KTP/SUKET)
+          </label>
+        </div>
+        <div class="col-sm 6">
+          <div class="form-group mb-2 ml-5">
+            <input wire:model="nik" type="text" name="nik"
+            id="nik" 
+            class="form-control @error('nik') is-invalid @enderror" 
+            placeholder="NIK" aria-describedby="helpId">
+            @error('nik')
+            <div class="invalid-feedback d-block" >
+             <strong>{{ $message }}</strong>
+             </div>
+            @enderror
+          </div>
 
-        <div class="form-group">
+        </div>
+      </div>
+      <hr class="mt-0 mb-2">
+      <div class="row align-items-center">
+        <div class="col-sm-6">
+          <label class="form-label"><span class="mr-4">3.</span>Nomor NPWP [*Jika Ada]
+          </label>
+        </div>
+        <div class="col-sm 6">
+          <div class="form-group mb-2 ml-5">
+            <input wire:model="npwp" type="text" name="npwp"
+            id="npwp" 
+            class="form-control @error('npwp') is-invalid @enderror" 
+            placeholder="Nomor NPWP">
+            @error('npwp')
+            <div class="invalid-feedback d-block" >
+             <strong>{{ $message }}</strong>
+             </div>
+            @enderror
+          </div>
+
+        </div>
+      </div>
+      <hr class="mt-0 mb-2">
+      <div class="row align-items-center">
+        <div class="col-sm-12">
+          <div class="form-group">
+            <label class="form-label"><span class="mr-4">4.</span>Alamat Domisili Saat Ini</label>
+            <textarea class="form-control" id="alamat" wire:model="alamat" rows="2"></textarea>
+          </div>
+        </div>
+
+      </div>
+      <hr class="mt-0 mb-2">
+      <div class="row align-items-center">
+        <div class="col-sm-6">
+          <label class="form-label"><span class="mr-4">5.</span>Tanggal Lahir
+          </label>
+        </div>
+        <div class="col-sm 6">
+          <div class="form-group mb-2 ml-5">
+            <input wire:model="tanggal_lahir" type="text" name="tanggal_lahir"
+            id="tanggal_lahir" 
+            class="form-control @error('nik') is-invalid @enderror" 
+            placeholder="Tanggal Lahir">
+            @error('tanggal_lahir')
+            <div class="invalid-feedback d-block" >
+             <strong>{{ $message }}</strong>
+             </div>
+            @enderror
+          </div>
+
+        </div>
+      </div>
+      <hr class="mt-0 mb-2">
+      <div class="row align-items-center">
+        <div class="col-sm-6">
+          <label class="form-label"><span class="mr-4">6.</span>Jenis Kelamin
+          </label>
+        </div>
+        <div class="col-sm 6">
+          <div class="form-group mb-2 ml-5">
+            <div class="form-group mb-0 ml-5"><span>
+                    <div class="selectgroup w-100"><label class="selectgroup-item">
+                            <input type="radio"
+                                name="jenis_kelamin" value="1" class="selectgroup-input is-invalid"> <span
+                                class="selectgroup-button">Laki-laki</span>
+                              </label> 
+                                <label class="selectgroup-item">
+                                  <input type="radio" name="jenis_kelamin" value="2"
+                                class="selectgroup-input"> 
+                                <span class="selectgroup-button">Perempuan</span>
+                              </label>
+                    </div>
+                    <div class="error-radio-message" style="display: none;"></div>
+                </span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <hr class="mt-0 mb-2">
+
+      <div class="row align-items-center">
+        <div class="col-sm-6">
+          <label class="form-label"><span class="mr-4">7.</span>Agama
+          </label>
+        </div>
+        <div class="col-sm 6">
+          <div class="form-group mb-2 ml-5">
+            <select name="" class="form-control custom-select" wire:model="is_kawin">
+              <option value="" >Islam</option>
+              <option value="" >Kristen</option>
+              <option value="" >Katholik</option>
+              <option value="" >Hindu</option>
+              <option value="" >Budha</option>
+              <option value="" >Konghucu</option>
+              <option value="" >Lainnya</option>     
+            </select>
+          </div>
+
+        </div>
+      </div>
+      <hr class="mt-0 mb-2">
+
+        <!--<div class="form-group">
           <div class="row gutters-xs">
-            <div class="col-6">
+            <div class="col-4">
+              <label class="form-label">Jenis Kelamin</label>
+              <select name="" class="form-control custom-select" wire:model="jenis_kelamin">
+                <option value="" selected>Jenis Kelamin</option>
+                <option value="L">Laki-Laki</option>
+                <option value="P">Perempuan</option>
+
+              </select>
+            </div>
+            <div class="col-4">
+ 
+                <label class="form-label">Status Perkawinan</label>
+                <select name="" class="form-control custom-select" wire:model="is_kawin">
+                  <option value="1" selected>Kawin</option>
+                  <option value="2" selected>Sudah Kawin</option> 
+                </select>
+           
+            </div>
+              <div class="col-4">
+                <label class="form-label">Agama</label>
+                <select name="" class="form-control custom-select" wire:model="is_kawin">
+                  <option value="1" selected>Kawin</option>
+                  <option value="2" selected>Sudah Kawin</option> 
+                </select>
+              </div>
+          </div>
+          <div class="row gutters-xs">
+              <div class="col-6">
 
               <label class="form-label">Nama Lengkap : {{$name}}</label>
               <input wire:model="name" type="text" name="name"
@@ -75,6 +251,8 @@
             </div>
           </div>
         </div>
+
+        
         
         <div class="form-group">
             <label class="form-label">Tanggal Lahir</label>
@@ -130,9 +308,6 @@
             <small id="helpId" class="text-muted">Isikan Pekerjaan/Profesi </small>
         </div>
 
-
-
-
         <div class="form-group">
             <label class="form-label">Pengalaman Survei</label>
             <textarea class="form-control" id="pengalaman" wire:model="pengalaman" rows="3" cols="5"></textarea>
@@ -153,7 +328,7 @@
         </div>
 
 
-      <hr>
+      <hr>-->
 
     <!--<button type="submit" class="btn btn-sm btn-primary">Submit</button>-->
     <div class="btn-list text-center">
@@ -171,6 +346,11 @@
         $('#user-list').html('');
     }, 1500);
       //
+    });
+
+
+    $("#tanggal_lahir").flatpickr({
+      dateFormat: "d-m-Y",
     });
    </script>
 </div>

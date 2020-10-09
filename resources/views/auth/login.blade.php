@@ -13,19 +13,20 @@
             <div class="text-center mb-6 mt-3">
                 <h4>SIBERAS - BPS KOTA SUBULUSSALAM</h4>
             </div>
-            <form class="card" action="" method="post">
+            <form class="card" action="{{ route('login') }}" method="post">
+              @csrf
               <div class="card-body p-6">
                 <div class="card-title">Login</div>
                 <div class="form-group">
                   <label class="form-label">Alamat Email</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                  <input type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
                 </div>
                 <div class="form-group">
                   <label class="form-label">
                     Password
                     <a href="#" class="float-right small">Lupa Password?</a>
                   </label>
-                  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                  <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
                 </div>
                <!-- <div class="form-group">
                   <label class="custom-control custom-checkbox">
