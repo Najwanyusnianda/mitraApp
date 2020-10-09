@@ -9,15 +9,24 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">-->
+    <link href="{{ asset('assets/fontawesome/css/all.min.css') }}" rel="stylesheet" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,500,500i,600,600i,700,700i&amp;subset=latin-ext">
+    <!--<script src="{{ asset('assets/tabler/js/require.min.js') }}"></script>
 
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <script>
+      requirejs.config({
+          baseUrl: '.'
+      });
+    </script>-->
+    <!-- Dashboard Core -->
+    <link href="{{ asset('assets/tabler/css/dashboard.css') }}" rel="stylesheet" />
 
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <script src="{{ asset('assets/tabler/js/dashboard.js') }}"></script>
+    <script type="text/javascript"  src="{{ asset('assets/tabler/js/vendors/jquery-3.2.1.min.js') }}"></script>
+    <script type="text/javascript"  src="{{ asset('assets/tabler/js/vendors/bootstrap.bundle.min.js') }}"></script>
+    <script type="text/javascript"  src="{{ asset('assets/tabler/js/core.js') }}"></script>
+
 </head>
 <body>
     <div id="app">
