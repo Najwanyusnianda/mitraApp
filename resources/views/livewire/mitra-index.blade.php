@@ -83,7 +83,7 @@
         <div class="card-header">
         
          
-              <h3 class="card-title">Daftar Mitra</h3>
+              <h3 class="card-title">Daftar Mitra {{ $kegiatan->nama_kegiatan }} {{ $kegiatan->tahun }}</h3>
   
               <div class="card-options">
                 <button type="button" class="btn btn-primary btn-sm"  wire:click="createMitra()">
@@ -106,20 +106,23 @@
               </div>
            
         </div>
-        <div class="card-body mt-5">
+        <div class="card-body">
+   
           @if ($mitras->isEmpty())
-              <h4>kosong</h4>
+          <div class="alert alert-primary mt-5 mb-6">
+            <div>Tidak ada mitra yang tersedia</div>
+          </div>
           @else
-          <table class="table table-condensed">
+          <table class="table card-table table-vcenter text-nowrap" style="vertical-align: middle;">
             <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Nama</th>
-                    <th>NIK</th>
-                    <th>No. HP</th>
-                    <th>Kualifikasi Gadget</th>
-                    <th>Kepemilikan Kendaran</th>
-                    <th></th>
+                <tr style="">
+                    <th scope="col">#</th>
+                    <th scope="col">Nama</th>
+                    <th scope="col">NIK</th>
+                    <th scope="col">No. HP</th>
+                    <th scope="col">Kualifikasi Gadget</th>
+                    <th scope="col">Kepemilikan Kendaran</th>
+                    <th scope="col"></th>
                 
   
   
@@ -225,7 +228,7 @@
         </div>
       </div>
     </div>
-
+    
     <script>
         window.addEventListener('closeModal',event=>{
           $('#addMitra').modal('hide');  

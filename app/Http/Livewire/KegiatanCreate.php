@@ -12,6 +12,10 @@ class KegiatanCreate extends Component
     public $nama_kegiatan;
     public $tahun;
     public $deskripsi;
+    public $mulai_pelatihan;
+    public $mulai_pelaksanaan;
+    public $selesai_pelatihan;
+    public $selesai_pelaksanaan;
 
     
     public function render()

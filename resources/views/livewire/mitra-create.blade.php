@@ -81,7 +81,16 @@
         <div class="col-sm-12">
           <div class="form-group">
             <label class="form-label"><span class="mr-4">4.</span>Alamat Domisili Saat Ini</label>
-            <textarea class="form-control" id="alamat" wire:model="alamat" rows="2"></textarea>
+            <select name="" class="form-control custom-select" wire:model="kecamatan">
+              <option value="" selected>Pilih Kecamatan</option>
+              @if (!empty($kecamatans))
+                  @foreach ($kecamatans as $key => $kec)
+                      <option value="{{ $kec }}">{{ $key+1 }}. {{ $kec }}</option>
+                  @endforeach
+              @endif
+            </select>
+            <textarea class="form-control mt-4" id="alamat" wire:model="alamat" rows="2" ></textarea>
+
           </div>
         </div>
 
@@ -94,7 +103,7 @@
         </div>
         <div class="col-sm 6">
           <div class="form-group mb-2 ml-5">
-            <input wire:model="tanggal_lahir" type="text" name="tanggal_lahir"
+            <input wire:model="tanggal_lahir" type="date" name="tanggal_lahir"
             id="tanggal_lahir" 
             class="form-control @error('nik') is-invalid @enderror" 
             placeholder="Tanggal Lahir">
@@ -118,11 +127,11 @@
             <div class="form-group mb-0 ml-5"><span>
                     <div class="selectgroup w-100"><label class="selectgroup-item">
                             <input type="radio"
-                                name="jenis_kelamin" value="1" class="selectgroup-input is-invalid"> <span
+                                name="jenis_kelamin" value="laki-laki" class="selectgroup-input is-invalid" wire:model="jenis_kelamin"> <span
                                 class="selectgroup-button">Laki-laki</span>
                               </label> 
                                 <label class="selectgroup-item">
-                                  <input type="radio" name="jenis_kelamin" value="2"
+                                  <input type="radio" name="jenis_kelamin" value="Perempuan"
                                 class="selectgroup-input"> 
                                 <span class="selectgroup-button">Perempuan</span>
                               </label>
@@ -143,20 +152,122 @@
         </div>
         <div class="col-sm 6">
           <div class="form-group mb-2 ml-5">
-            <select name="" class="form-control custom-select" wire:model="is_kawin">
-              <option value="" >Islam</option>
-              <option value="" >Kristen</option>
-              <option value="" >Katholik</option>
-              <option value="" >Hindu</option>
-              <option value="" >Budha</option>
-              <option value="" >Konghucu</option>
-              <option value="" >Lainnya</option>     
+            <select name="agama" class="form-control custom-select" wire:model="agama">
+              <option value="" >Pilih Agama</option>
+              <option value="islam" >Islam</option>
+              <option value="kristen" >Kristen</option>
+              <option value="katholik" >Katholik</option>
+              <option value="hindu" >Hindu</option>
+              <option value="budha" >Budha</option>
+              <option value="konghucu" >Konghucu</option>
+              <option value="lainnya" >Lainnya</option>     
             </select>
           </div>
 
         </div>
       </div>
       <hr class="mt-0 mb-2">
+      <div class="row align-items-center">
+        <div class="col-sm-6">
+          <label class="form-label"><span class="mr-4">8.</span>Status Perkawinan
+          </label>
+        </div>
+        <div class="col-sm 6">
+          <div class="form-group mb-2 ml-5">
+            <select name="" class="form-control custom-select" wire:model="is_kawin">
+              <option value="" selected disabled>Pilih Status Perkawinan</option>
+              <option value="Belum Kawin" >Belum Kawin</option>
+              <option value="Kawin" >Kawin</option>
+              <option value="Cerai Hidup" >Cerai Hidup</option>
+              <option value="Cerai Mati" >Cerai Mati</option>
+  
+            </select>
+          </div>
+        </div>
+      </div>
+      <hr class="mt-0 mb-2">
+
+      <div class="row align-items-center">
+        <div class="col-sm-6">
+          <label class="form-label"><span class="mr-4">10.</span>Ijazah Tertinggi
+          </label>
+        </div>
+        <div class="col-sm 6">
+          <div class="form-group mb-2 ml-5">
+            <select name="pendidikan" class="form-control custom-select" wire:model="pendidikan">
+              <option value="" >Pilih Ijazah Tertinggi</option>
+              <option value="SD / Sederajat ke bawah" >SD / Sederajat ke bawah</option>
+              <option value="Tamat SMP / Sederajat" >Tamat SMP / Sederajat</option>
+              <option value="Tamat SMA / Sederajat" >Tamat SMA / Sederajat</option>
+              <option value="Tamat D1 / D2 / D3" >Tamat D1 / D2 / D3</option>
+              <option value="Tamat D4 / S1" >Tamat D4 / S1</option>
+              <option value="Tamat S2" >Tamat S2</option>
+              <option value="Tamat S3" >Tamat S3</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <hr class="mt-0 mb-2">
+
+      <div class="row align-items-center">
+        <div class="col-sm-6">
+          <label class="form-label"><span class="mr-4">11.</span>Pekerjaan/Kegiatan Sehari-hari
+          </label>
+        </div>
+        <div class="col-sm 6">
+          <div class="form-group mb-2 ml-5">
+            <input wire:model="pekerjaan" type="text" name="pekerjaan"
+            id="pekerjaan" 
+            class="form-control @error('pekerjaan') is-invalid @enderror" 
+            placeholder="Isikan Pekerjaan Sehari hari" aria-describedby="helpId">
+            @error('pekerjaan')
+            <div class="invalid-feedback d-block" >
+             <strong>{{ $message }}</strong>
+             </div>
+            @enderror
+          </div>
+        </div>
+      </div>
+      <hr class="mt-0 mb-2">
+
+      
+      <div class="row align-items-center">
+        <div class="col-sm-6">
+          <label class="form-label"><span class="mr-4">12.</span>Nomor Handphone yang bisa dihubungi
+          </label>
+        </div>
+        <div class="col-sm 6">
+          <div class="form-group mb-2 ml-5">
+            <input wire:model="phone" type="text" name="phone" id="phone" class="form-control  @error('phone') is-invalid @enderror" placeholder="Nomor Hp" aria-describedby="helpId">
+            @error('phone')
+            <div class="invalid-feedback d-block" >
+             <strong>{{ $message }}</strong>
+             </div>
+            @enderror
+          </div>
+        </div>
+      </div>
+      <hr class="mt-0 mb-2">
+
+      <div class="row align-items-center">
+        <div class="col-sm-6">
+          <label class="form-label"><span class="mr-4">13.</span>Alamat Email
+          </label>
+        </div>
+        <div class="col-sm 6">
+          <div class="form-group mb-2 ml-5">
+            <input wire:model="email" type="email" name="email" id="email" class="form-control  @error('email') is-invalid @enderror" placeholder="Email" aria-describedby="helpId">
+            @error('email')
+            <div class="invalid-feedback d-block" >
+             <strong>{{ $message }}</strong>
+             </div>
+            @enderror
+          </div>
+        </div>
+      </div>
+      <hr class="mt-0 mb-2">
+
+
 
         <!--<div class="form-group">
           <div class="row gutters-xs">
@@ -326,8 +437,6 @@
               </label>
             </div>
         </div>
-
-
       <hr>-->
 
     <!--<button type="submit" class="btn btn-sm btn-primary">Submit</button>-->
@@ -338,9 +447,9 @@
       </div>
    </form>
 
-  
+   <script type="text/javascript" src="{{ asset('assets/flatpickr/flatpickr.js') }}" ></script>
    <script>
-     $( "#name" ).blur(function() {
+    /* $( "#name" ).blur(function() {
   
       setTimeout(function() {
         $('#user-list').html('');
@@ -350,7 +459,9 @@
 
 
     $("#tanggal_lahir").flatpickr({
-      dateFormat: "d-m-Y",
-    });
+      altInput: true,
+      altFormat: "d-m-Y",
+      dateFormat: "Y/m/d",
+    });*/
    </script>
 </div>

@@ -39,7 +39,7 @@ Route::group(['middleware' => ['auth']], function () {
    
    //output
     Route::get('/output/sertifikat/{kegiatan_id}/{mitra_id}','OutputController@getSertifikat');
-    Route::get('/output/kontrak/{kegiatan_id}/{mitra_id}','OutputController@getKontrak');
+    Route::get('/output/kontrak/{kegiatan_id}/{mitra_id}','OutputController@getSpk');
     Route::get('/output/spj/{kegiatan_id}/{mitra_id}','OutputController@getSpj');
 
     });

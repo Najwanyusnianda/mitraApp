@@ -1,7 +1,7 @@
 <div class="footer">
   <div class="container">
     <div class="row">
-      <!--<div class="col-lg-8">
+      <div class="col-lg-8">
         <div class="row">
           <div class="col-6 col-md-3">
             <ul class="list-unstyled mb-0">
@@ -31,7 +31,7 @@
       </div>
       <div class="col-lg-4 mt-4 mt-lg-0">
         Premium and Open Source dashboard template with responsive and high quality UI. For Free!
-      </div>-->
+      </div>
     </div>
   </div>
 </div>

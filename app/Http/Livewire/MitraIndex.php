@@ -17,7 +17,7 @@ class MitraIndex extends Component
     public $kegiatan_id;
 
     public $tabs;
-
+    //public $kec=['Simpang Kiri','Penanggalan','Rundeng','Sultan Daulat','Longkib'];
     protected $listeners=[
         'mitraStored'=>'handleStored',
         'mitraUpdated'=>'handleUpdated',

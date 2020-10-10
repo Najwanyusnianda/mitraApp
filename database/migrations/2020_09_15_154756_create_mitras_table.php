@@ -24,6 +24,8 @@ class CreateMitrasTable extends Migration
             $table->text('pekerjaan');
             $table->string('pendidikan')->nullable();
             $table->text('alamat')->nullable();
+            $table->string('kecamatan')->nullable();
+            $table->string('desa')->nullable();
             $table->string('jenis_kelamin')->nullable();
             $table->string('agama')->nullable();
             $table->string('is_kawin')->nullable();

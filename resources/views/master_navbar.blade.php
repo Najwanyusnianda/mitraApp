@@ -97,6 +97,20 @@
             <li class="nav-item">
               <a href="{{ url('/') }}" class="nav-link {{ Request::is('/') ? 'active' : ''  }}"><i class="fe fe-home"></i> Dashboard </a>
             </li>
+            <li class="nav-item">
+              <a href="./docs/index.html" class="nav-link {{ Request::is('mitra/*') ? 'active' : '' }}" data-toggle="dropdown"><i class="fe fe-database"></i> Kelola Mitra</a>
+              <div class="dropdown-menu dropdown-menu-arrow">
+                <a href="{{ url('/mitra/kegiatan') }}" class="dropdown-item ">Kelola Mitra</a>
+                <a href="{{  url('/mitra/db')}}" class="dropdown-item ">Daftar Mitra</a>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a href="#" class="nav-link {{ Request::is('kegiatan/*') ? 'active' : ''  }} " data-toggle="dropdown"><i class="fe fe-calendar"></i>Kelola Kegiatan Survei/Sensus</a>
+              <div class="dropdown-menu dropdown-menu-arrow">
+                <a href="{{ url('/kegiatan/index') }}" class="dropdown-item ">Daftar Kegiatan</a>
+                <a href="{{ url('/kegiatan/create') }}" class="dropdown-item ">Tambah Kegiatan</a>
+              </div>
+            </li>
             @if (auth()->user()->role==1)
             <li class="nav-item">
               <a href="#" class="nav-link {{ Request::is('user/*') ? 'active' : ''  }}" data-toggle="dropdown"><i class="fe fe-user"></i>Kelola Pengguna</a>
@@ -106,21 +120,9 @@
             </li>
             @endif
 
-            <li class="nav-item dropdown">
-              <a href="#" class="nav-link {{ Request::is('kegiatan/*') ? 'active' : ''  }} " data-toggle="dropdown"><i class="fe fe-calendar"></i>Kelola Kegiatan Survei/Sensus</a>
-              <div class="dropdown-menu dropdown-menu-arrow">
-                <a href="{{ url('/kegiatan/index') }}" class="dropdown-item ">Daftar Kegiatan</a>
-                <a href="{{ url('/kegiatan/create') }}" class="dropdown-item ">Tambah Kegiatan</a>
-              </div>
-            </li>
 
-            <li class="nav-item">
-              <a href="./docs/index.html" class="nav-link {{ Request::is('mitra/*') ? 'active' : '' }}" data-toggle="dropdown"><i class="fe fe-database"></i> Kelola Mitra</a>
-              <div class="dropdown-menu dropdown-menu-arrow">
-                <a href="{{ url('/mitra/kegiatan') }}" class="dropdown-item ">Kelola Mitra</a>
-                <a href="{{  url('/mitra/db')}}" class="dropdown-item ">Daftar Mitra</a>
-              </div>
-            </li>
+
+
           </ul>
         </div>
       </div>

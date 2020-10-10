@@ -15,6 +15,7 @@ class MitraCreate extends Component
 
     public $name;
     public $phone; 
+    public $npwp;
     public $bulan_lahir;
     public $tahun_lahir;
     public $hari_lahir;
@@ -23,18 +24,28 @@ class MitraCreate extends Component
     public $email;
     public $pengalaman;
     public $pekerjaan;
+    public $agama;
+    public $jenis_kelamin;
+    public $is_kawin;
+    public $pendidikan;
+    public $alamat;
+
     public $is_gadget;
     public $is_kendaraan;
     public $rekening;
-    public $npwp;
+    public $kecamatans;
+    public $kecamatan;
+    
 
 
 
     public function mount($kegiatan){
         $this->users=[];
+        $this->kecamatans=['Simpang Kiri','Penanggalan','Rundeng','Sultan Daulat','Longkib'];
         $this->kegiatan_id=$kegiatan->id;
-  
+      
         $this->nama_kegiatan=$kegiatan->nama_kegiatan;
+        //dd($this->kecamatans);
     }
     public function render()
     {
@@ -42,17 +53,16 @@ class MitraCreate extends Component
     }
 
     public function store(){
-        
+        /*
         $this->validate([
             'name'=>'required|min:3',
             'phone'=>'required|min:4',
-            'bulan_lahir'=>'required',
-            'tahun_lahir'=>'required|digits:4',
-            'hari_lahir'=>'required',
             'nik'=>'required',
             'pekerjaan'=>'required',
             
-        ]);
+            
+        ]);*/
+
 
         $is_mitra_already=Mitra::where('nik',$this->nik)->first();
         
@@ -60,31 +70,47 @@ class MitraCreate extends Component
         if (!empty($is_mitra_already)) {
             $mitra=$is_mitra_already;
             $mitra->update([
-            'name'=>$this->name,
-            'phone'=>$this->phone,
-            'tanggal_lahir'=>$this->tanggal_lahir,
-            'nik'=>$this->nik,
-            'pekerjaan'=>$this->pekerjaan,
-            'pengalaman'=>$this->pengalaman,
-            'is_gadget'=>$this->is_gadget,
-            'is_kendaraan'=>$this->is_kendaraan,
-            'email'=>$this->email
+                'name'=>$this->name,
+                'phone'=>$this->phone,
+                'tanggal_lahir'=>$this->tanggal_lahir,
+                'nik'=>$this->nik,
+                'pekerjaan'=>$this->pekerjaan,
+                'pengalaman'=>$this->pengalaman,
+                'is_gadget'=>$this->is_gadget,
+                'is_kendaraan'=>$this->is_kendaraan,
+                'email'=>$this->email,
+                'jenis_kelamin'=>$this->jenis_kelamin,
+                'is_kawin'=>$this->is_kawin,
+                'alamat'=>$this->alamat,
+                'pendidikan'=>$this->pendidikan,
+                'npwp'=>$this->npwp,
+                'nomor_rekening'=>$this->rekening,
+                'agama'=>$this->agama
             ]);
 
     
         }else{
-            $this->tanggal_lahir=$this->tahun_lahir.'-'.$this->bulan_lahir.'-'.$this->hari_lahir;
+            //dd($this->pendidikan);
+            #$this->tanggal_lahir=$this->tahun_lahir.'-'.$this->bulan_lahir.'-'.$this->hari_lahir;
             $mitra=Mitra::create([
-            'name'=>$this->name,
-            'phone'=>$this->phone,
-            'tanggal_lahir'=>$this->tanggal_lahir,
-            'nik'=>$this->nik,
-            'pekerjaan'=>$this->pekerjaan,
-            'pengalaman'=>$this->pengalaman,
-            'is_gadget'=>$this->is_gadget,
-            'is_kendaraan'=>$this->is_kendaraan,
-            'email'=>$this->email
+                'name'=>$this->name,
+                'phone'=>$this->phone,
+                'tanggal_lahir'=>$this->tanggal_lahir,
+                'nik'=>$this->nik,
+                'pekerjaan'=>$this->pekerjaan,
+                'pengalaman'=>$this->pengalaman,
+                'is_gadget'=>$this->is_gadget ?? '1',
+                'is_kendaraan'=>$this->is_kendaraan ?? '1',
+                'email'=>$this->email,
+                'jenis_kelamin'=>$this->jenis_kelamin,
+                'is_kawin'=>$this->is_kawin,
+                'alamat'=>$this->alamat,
+                'pendidikan'=>$this->pendidikan,
+                'npwp'=>$this->npwp,
+                'nomor_rekening'=>$this->rekening,
+                'agama'=>$this->agama
             ]);
+          
         }
 
         $mitra_check=KegiatanMitra::where('kegiatan_id',$this->kegiatan_id)
@@ -129,6 +155,11 @@ class MitraCreate extends Component
         $this->is_kendaraan=null;
         $this->rekening=null;
         $this->npwp=null;
+        $this->jenis_kelamin = null;
+        $this->is_kawin =null;
+        $this->alamat =null;
+        $this->pendidikan =null;
+        $this->agama =null;
         $this->users=null;
     }
 
@@ -161,7 +192,13 @@ class MitraCreate extends Component
         $this->pekerjaan=$mitra['pekerjaan'];
         $this->is_gadget=$mitra['is_gadget'];
         $this->is_kendaraan=$mitra['is_kendaraan'];
-
+        $this->rekening=$mitra['nomor_rekening'];
+        $this->npwp=$mitra['npwp'];
+        $this->jenis_kelamin = $mitra['jenis_kelamin'];
+        $this->is_kawin =$mitra['is_kawin'];
+        $this->alamat =$mitra['alamat'];
+        $this->pendidikan =$mitra['pendidikan'];
+        $this->agama =$mitra['agama'];
         $this->users=null;
     }
 }

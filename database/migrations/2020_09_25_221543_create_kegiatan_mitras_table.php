@@ -29,6 +29,7 @@ class CreateKegiatanMitrasTable extends Migration
             $table->unsignedInteger('nilai_evaluasi2')->nullable();
             $table->unsignedInteger('nilai_evaluasi3')->nullable();
             $table->float('avg_evaluasi',8,2)->nullable();
+            $table->float('total_nilai',8,2)->nullable();
             $table->timestamps();
         });
     }

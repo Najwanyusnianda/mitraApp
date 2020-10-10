@@ -11,8 +11,8 @@
         <div class="container">
             @foreach ($kegiatans as $kegiatan)
 
-            <div class="row-12">
-                <div class="card col-sm-6">
+            <div class="row-12  ">
+                <div class="card col-sm-6 mx-auto ">
                   <div class="card-header">
                     <span class="mr-2 badge {{$kegiatan->is_active ? 'badge-success' : 'badge-danger' }} badge-sm"> {{$kegiatan->is_active ? 'aktif' : 'selesai' }} </span>
                     <h3 class="card-title">
@@ -21,7 +21,8 @@
                    
                     <div class="card-options">
                       <a href="#" class="btn btn-secondary btn-sm">Detail</a>
-                      @if ($kegiatan->is_active)
+                      
+                      @if ($kegiatan->is_active && auth()->user()->role==1)
                       <a href="#" class="btn btn-outline-danger btn-sm ml-2" wire:click="confirmation({{ $kegiatan->id }})"> Tutup</a>
                       @else
                           

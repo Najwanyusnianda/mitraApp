@@ -16,7 +16,108 @@
   </p>
   <hr>
   <form wire:submit.prevent="store" class="mx-auto text-center">
-    <div class="form-group">
+    <div class="row align-items-center">
+      <div class="col-sm-6">
+        <label class="form-label"><span class="mr-4"></span> Nilai Disiplin
+        </label>
+      </div>
+      <div class="col-sm 6">
+        <div class="form-group mb-2 ml-5">
+          <div class="selectgroup selectgroup-pills">
+            <label class="selectgroup-item">
+              <input type="radio" name="" wire:model="disiplin_val" value="1" class="selectgroup-input" checked="">
+              <span class="selectgroup-button selectgroup-button-icon">1</span>
+            </label>
+            <label class="selectgroup-item">
+              <input type="radio" name="" wire:model="disiplin_val" value="2" class="selectgroup-input">
+              <span class="selectgroup-button selectgroup-button-icon">2</span>
+            </label>
+            <label class="selectgroup-item">
+              <input type="radio" name="" wire:model="disiplin_val" value="3" class="selectgroup-input">
+              <span class="selectgroup-button selectgroup-button-icon">3</span>
+            </label>
+            <label class="selectgroup-item">
+              <input type="radio" name="" wire:model="disiplin_val" value="4" class="selectgroup-input">
+              <span class="selectgroup-button selectgroup-button-icon">4</span>
+            </label>
+            <label class="selectgroup-item">
+              <input type="radio" name="" wire:model="disiplin_val" value="5" class="selectgroup-input">
+              <span class="selectgroup-button selectgroup-button-icon">5</span>
+            </label>
+        </div>
+        </div>
+      </div>
+    </div>
+    <hr class="mt-0 mb-2">
+    <div class="row align-items-center">
+      <div class="col-sm-6">
+        <label class="form-label"><span class="mr-4"></span>Nilai Kerjasama
+        </label>
+      </div>
+      <div class="col-sm 6">
+        <div class="form-group mb-2 ml-5">
+          <div class="selectgroup selectgroup-pills">
+            <label class="selectgroup-item">
+              <input type="radio" name="" wire:model="kerjasama_val" value="1" class="selectgroup-input" checked="">
+              <span class="selectgroup-button selectgroup-button-icon">1</span>
+            </label>
+            <label class="selectgroup-item">
+              <input type="radio" name="" wire:model="kerjasama_val" value="2" class="selectgroup-input">
+              <span class="selectgroup-button selectgroup-button-icon">2</span>
+            </label>
+            <label class="selectgroup-item">
+              <input type="radio" name="" wire:model="kerjasama_val" value="3" class="selectgroup-input">
+              <span class="selectgroup-button selectgroup-button-icon">3</span>
+            </label>
+            <label class="selectgroup-item">
+              <input type="radio" name="" wire:model="kerjasama_val" value="4" class="selectgroup-input">
+              <span class="selectgroup-button selectgroup-button-icon">4</span>
+            </label>
+            <label class="selectgroup-item">
+              <input type="radio" name="" wire:model="kerjasama_val" value="5" class="selectgroup-input">
+              <span class="selectgroup-button selectgroup-button-icon">5</span>
+            </label>
+        </div>
+        </div>
+      </div>
+    </div>
+    <hr class="mt-0 mb-2">
+    <div class="row align-items-center">
+      <div class="col-sm-6">
+        <label class="form-label"><span class="mr-4"></span>Nilai Kualitas
+        </label>
+      </div>
+      <div class="col-sm 6">
+        <div class="form-group mb-2 ml-5">
+          <div class="selectgroup selectgroup-pills">
+            <label class="selectgroup-item">
+              <input type="radio" name="" wire:model="kualitas_val" value="1" class="selectgroup-input" checked="">
+              <span class="selectgroup-button selectgroup-button-icon">1</span>
+            </label>
+            <label class="selectgroup-item">
+              <input type="radio" name="" wire:model="kualitas_val" value="2" class="selectgroup-input">
+              <span class="selectgroup-button selectgroup-button-icon">2</span>
+            </label>
+            <label class="selectgroup-item">
+              <input type="radio" name="" wire:model="kualitas_val" value="3" class="selectgroup-input">
+              <span class="selectgroup-button selectgroup-button-icon">3</span>
+            </label>
+            <label class="selectgroup-item">
+              <input type="radio" name="" wire:model="kualitas_val" value="4" class="selectgroup-input">
+              <span class="selectgroup-button selectgroup-button-icon">4</span>
+            </label>
+            <label class="selectgroup-item">
+              <input type="radio" name="" wire:model="kualitas_val" value="5" class="selectgroup-input">
+              <span class="selectgroup-button selectgroup-button-icon">5</span>
+            </label>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <hr class="mt-0 mb-2">
+
+    <!--<div class="form-group">
         <table class="table table-borderless">
             <tbody>
                 <tr>
@@ -117,6 +218,12 @@
             <button wire:click="closeModal()" class="btn btn-secondary" >Batal</button>
           </div>
 
+    </div>-->
+    <br>
+    <div class="btn-list text-center">
+      <button type="submit" class="btn btn-primary ">Simpan Penilaian</button>
+
+      <button wire:click="closeModal()" type="button" class="btn btn-secondary" >Batal</button>
     </div>
   </form>
   @else

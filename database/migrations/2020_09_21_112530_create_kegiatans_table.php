@@ -18,7 +18,11 @@ class CreateKegiatansTable extends Migration
             $table->string('nama_kegiatan');
             $table->year('tahun');
             $table->text('deskripsi');
-            $table->boolean('is_active')->default(true);
+            $table->date('date_mulai')->nullable();
+            $table->date('date_selesai')->nullable();
+            $table->text('template_sertifikat_path')->nullable();
+            $table->text('template_spk_path')->nullable();
+            $table->boolean('is_active')->default(true)->nullable();
             $table->timestamps();
         });
     }

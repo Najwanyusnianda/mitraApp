@@ -42,17 +42,19 @@
 <body>
     <div class="page">
         <div class="flex-fill">
-@include('master_navbar')
+          @include('master_navbar')
           <div class="my-3 my-md-5">
             <div class="container">
               @yield('content')
             </div>
           </div>
         </div>
-@include('master_footer')
+
       </div>
+      @include('master_footer')
       @livewireScripts
       <script type="text/javascript" src="{{ asset('assets/flatpickr/flatpickr.js') }}" ></script>
+
 </body>
 
 </html>

@@ -1,6 +1,7 @@
 <div>
     {{-- Knowing others is intelligence; knowing yourself is true wisdom. --}}
 <div class="card row-12">
+    <div class="card-status bg-blue"></div>
     <div class="card-header">
         Pilih Kegiatan
     </div>
