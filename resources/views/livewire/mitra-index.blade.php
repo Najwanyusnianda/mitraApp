@@ -134,7 +134,7 @@
                 <?php $no++; ?>
                 <tr>
                 <th scope="row">{{$no}}</th>
-                    <td>{{$mitra->name}}</td>
+                    <td><strong>{{$mitra->name}}</strong></td>
                     <td>{{$mitra->nik}}</td>
                     <td>{{$mitra->phone}}</td>
                     <td>

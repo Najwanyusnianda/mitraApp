@@ -29,7 +29,9 @@
         </div>
         <div class="card-body mt-5">
           @if ($mitras->isEmpty())
-              <h4>kosong</h4>
+          <div class="alert alert-primary mt-5 mb-6">
+            <div>Tidak ada mitra yang tersedia</div>
+          </div>
           @else
           <table class="table table-condensed">
             <thead>
@@ -51,7 +53,7 @@
                 <?php $no++; ?>
                 <tr>
                 <th scope="row">{{$no}}</th>
-                    <td>{{$mitra->name}}</td>
+                    <td><strong>{{$mitra->name}}</strong></td>
                     <td>{{$mitra->nik ?? 'tidak ada'}}</td>
                     <td style="text-align: center">
                       @if ($mitra->avg_pelatihan)
@@ -100,7 +102,7 @@
                         
                         </button>
                       @else
-                          <button disabled="disabled" class="btn btn-success btn-sm"> Sudah diberi nilai</button>
+                          <button disabled="disabled" class="btn btn-success btn-sm"><strong class="h5">{{ $mitra->total_nilai }}</strong></button>
                       @endif
 
     
@@ -133,7 +135,7 @@
       
     @if (!empty($kegiatan))
    
-    <div class="modal fade" id="addPenilaian" tabindex="-1" role="dialog" aria-labelledby="penilaianLabel" aria-hidden="true">
+    <div class="modal fade" id="addPenilaian" tabindex="-1" role="dialog" aria-labelledby="penilaianLabel" aria-hidden="true"  data-backdrop="static">
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header">

@@ -15,6 +15,9 @@
                     </div>
                   </div>-->
              <div class="card-options">
+                <a href="{{ url('/output/bulk-sertifikat/'.$kegiatan_id) }}" class="btn btn-sm success" type="button">
+                    Generate Sertifikat
+                </a> 
                 <form action="">
                     <div class="input-group">
                         <input type="text" class="form-control form-control-sm ml-3" placeholder="Cari Mitra" name="s">
@@ -29,9 +32,11 @@
 
         </div>
         <div class="card-body ">
-          @if($mitras->isEmpty())
-              <h4>kosong</h4>
-          @else
+            @if ($mitras->isEmpty())
+            <div class="alert alert-primary mt-5 mb-6">
+              <div>Tidak ada mitra yang tersedia</div>
+            </div>
+            @else
               <table class="table table-condensed">
                   <thead>
                       <tr>
@@ -67,7 +72,7 @@
                                           </div>
                                       </div>
                                   @else
-                                      <button disabled="disabled" class="btn btn-warning btn-sm"> Belum dilakukan
+                                      <button disabled="disabled" class="btn btn-danger btn-sm"> Belum dilakukan
                                           penilaian</button>
                                   @endif
   

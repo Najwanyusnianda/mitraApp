@@ -22,6 +22,7 @@ class MitraPenilaianCreate extends Component
     public $kegiatan_mitra_id;
     public $mitra_name;
     public $mitra_kegiatan;
+    public $mitra_nik;
 
 
 
@@ -62,12 +63,20 @@ class MitraPenilaianCreate extends Component
         }elseif (empty($this->avg_evaluasi)) {
             $sum_val=(int)$this->disiplin_val+(int)$this->kualitas_val+(int)$this->kerjasama_val;
             $avg_val=(float)$sum_val/3.0;
+            
+            $pelatihan_val=$kegiatan_mitra->avg_pelatihan;
+            $pelaksanaan_val=$kegiatan_mitra->avg_pelaksanaan;
+            $evaluasi_val=$kegiatan_mitra->avg_pelatihan;
+            $total_nilai=($pelatihan_val+$pelaksanaan_val+$evaluasi_val)/3;
+
             $kegiatan_mitra->update([
                'nilai_evaluasi1'=> $this->disiplin_val,
                'nilai_evaluasi2'=>$this->kualitas_val,
                'nilai_evaluasi3'=>$this->kerjasama_val,
-               'avg_evaluasi'=>round($avg_val,2)
+               'avg_evaluasi'=>round($avg_val,2),
+               'total_nilai'=>round($total_nilai,2)
             ]);
+
         }
         $this->emit('nilaiUpdated',$kegiatan_mitra);
         $this->resetInput();
@@ -79,6 +88,7 @@ class MitraPenilaianCreate extends Component
 
         $this->mitra_id=$mitra['id'];
         $this->mitra_name=$mitra['name'];
+        $this->mitra_nik=$mitra['nik'];
         $kegiatan_mitra=KegiatanMitra::where('kegiatan_id',$this->kegiatan_id)
         ->where('mitra_id',$this->mitra_id)->first();
         

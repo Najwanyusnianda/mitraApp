@@ -36,7 +36,9 @@ class MitraCreate extends Component
     public $kecamatans;
     public $kecamatan;
     
+    public $step;
 
+    protected $listeners = ['refreshComponent' => '$refresh'];
 
 
     public function mount($kegiatan){
@@ -45,23 +47,19 @@ class MitraCreate extends Component
         $this->kegiatan_id=$kegiatan->id;
       
         $this->nama_kegiatan=$kegiatan->nama_kegiatan;
+        $this->step=1;
+        
         //dd($this->kecamatans);
     }
     public function render()
     {
+        
         return view('livewire.mitra-create');
     }
 
     public function store(){
-        /*
-        $this->validate([
-            'name'=>'required|min:3',
-            'phone'=>'required|min:4',
-            'nik'=>'required',
-            'pekerjaan'=>'required',
-            
-            
-        ]);*/
+        
+      
 
 
         $is_mitra_already=Mitra::where('nik',$this->nik)->first();
@@ -85,7 +83,8 @@ class MitraCreate extends Component
                 'pendidikan'=>$this->pendidikan,
                 'npwp'=>$this->npwp,
                 'nomor_rekening'=>$this->rekening,
-                'agama'=>$this->agama
+                'agama'=>$this->agama,
+                'kecamatan'=>$this->kecamatan
             ]);
 
     
@@ -108,7 +107,8 @@ class MitraCreate extends Component
                 'pendidikan'=>$this->pendidikan,
                 'npwp'=>$this->npwp,
                 'nomor_rekening'=>$this->rekening,
-                'agama'=>$this->agama
+                'agama'=>$this->agama,
+                'kecamatan'=>$this->kecamatan
             ]);
           
         }
@@ -125,12 +125,14 @@ class MitraCreate extends Component
             $this->resetInput();
             $this->emit('mitraStored',$mitra);
             $this->dispatchBrowserEvent('closeModal');
+            $this->step=1;
         }else{
             $this->resetInput();
             $this->emit('mitraAlreadyStored',$mitra);
             $this->dispatchBrowserEvent('closeModal');
+            $this->step=1;
         }
-
+        
 
     }
 
@@ -138,6 +140,7 @@ class MitraCreate extends Component
     public function closeModal(){
         $this->resetInput();
         $this->dispatchBrowserEvent('closeModal');
+        $this->step=1;
     }
 
     private function resetInput(){
@@ -174,6 +177,14 @@ class MitraCreate extends Component
 
     }
 
+
+    public function updatedAgama($agama)
+    {
+        //
+        $this->agama=$agama;
+        $this->emit('refreshComponent');
+    }
+
     public function fillUserForm($mitra_id){
         $mitra=Mitra::find($mitra_id);
 
@@ -199,6 +210,25 @@ class MitraCreate extends Component
         $this->alamat =$mitra['alamat'];
         $this->pendidikan =$mitra['pendidikan'];
         $this->agama =$mitra['agama'];
+        $this->kecamatan=$mitra['kecamatan'];
+
         $this->users=null;
     }
+
+    public function nextStep($step){
+        if($this->step==1){
+            $this->validate([
+            'name'=>'required|min:3',
+            'phone'=>'required|min:4',
+            'nik'=>'required',
+            'pekerjaan'=>'required',          
+            
+        ]);
+        }
+        $this->step=$step;
+
+
+
+    }
+
 }

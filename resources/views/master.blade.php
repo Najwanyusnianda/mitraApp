@@ -36,6 +36,7 @@
     <script type="text/javascript"  src="{{ asset('assets/tabler/js/vendors/bootstrap.bundle.min.js') }}"></script>
     <script type="text/javascript"  src="{{ asset('assets/tabler/js/core.js') }}"></script>
 
+
     @livewireStyles
 </head>
 

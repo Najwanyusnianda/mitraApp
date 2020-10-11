@@ -16,8 +16,14 @@
                   <input type="text" wire:model="nama_kegiatan" class="form-control form-control-lg" placeholder="Isikan Nama Kegiatan">
                 </div>
                 <div class="form-group">
-                  <label class="form-label">Tahun </label>
-                <input type="text" class="form-control" placeholder="Isikan Tahun Pelaksanaan" wire:model="tahun" value="{{\Carbon\Carbon::now()->year}}">
+                     <label class="form-label">Tahun </label>
+                    <!-- <input type="text" class="form-control" placeholder="Isikan Tahun Pelaksanaan" wire:model="tahun" value="{{\Carbon\Carbon::now()->year}}">-->
+                       <select name="" class="form-control custom-select" wire:model="tahun">
+                      <option value="" selected="selected">Tahun</option>
+                    @for($i = (int)\Carbon\carbon::now()->year-5; $i < (int)\Carbon\carbon::now()->year+3; $i++)
+                    <option value="{{ $i }}">{{ $i }}</option>
+                    @endfor
+                       </select>
                 </div>
                 <div class="form-group">
                   <label class="form-label">Deskripsi</label>
@@ -27,10 +33,10 @@
                   <label class="form-label">Tanggal Pelatihan</label>
                   <div class="row gutters-xs">
                     <div class="col-6">
-                        <input wire:model="mulai_pelatihan" type="text" name="mulai_pelatihan"
+                        <input wire:model="mulai_pelatihan" type="date" name="mulai_pelatihan"
                         id="mulai_pelatihan" 
                         class="form-control @error('mulai_pelatihan') is-invalid @enderror" 
-                        placeholder="Waktu Selesai Pelatihan">
+                        placeholder="Waktu Mulai Pelatihan" >
                         @error('tanggal_lahir')
                         <div class="invalid-feedback d-block" >
                          <strong>{{ $message }}</strong>
@@ -40,10 +46,10 @@
                     </div>
 
                     <div class="col-6">
-                      <input wire:model="selesai_pelatihan" type="text" name="selesai_pelatihan"
+                      <input wire:model="selesai_pelatihan" type="date" name="selesai_pelatihan"
                       id="selesai_pelatihan" 
                       class="form-control @error('selesai_pelatihan') is-invalid @enderror" 
-                      placeholder="Waktu Mulai Pelatihan">
+                      placeholder="Waktu Selesai Pelatihan" >
                       @error('tanggal_lahir')
                       <div class="invalid-feedback d-block" >
                        <strong>{{ $message }}</strong>
@@ -56,10 +62,10 @@
                   <label class="form-label">Tanggal Pelaksanaan Lapangan</label>
                   <div class="row gutters-xs">
                       <div class="col-6">
-                        <input wire:model="mulai_pelaksanaan" type="text" name="mulai_pelaksanaan"
+                        <input wire:model="mulai_pelaksanaan" type="date" name="mulai_pelaksanaan"
                         id="mulai_pelaksanaan" 
                         class="form-control @error('mulai_pelaksanaan') is-invalid @enderror" 
-                        placeholder="Waktu Mulai Kegiatan Lapangan">
+                        placeholder="Waktu Mulai Kegiatan Lapangan" >
                         @error('mulai_pelaksanaan')
                         <div class="invalid-feedback d-block" >
                          <strong>{{ $message }}</strong>
@@ -69,10 +75,10 @@
                       </div>
 
                     <div class="col-6">
-                      <input wire:model="selesai_pelaksanaan" type="text" name="selesai_pelaksanaan"
+                      <input wire:model="selesai_pelaksanaan" type="date" name="selesai_pelaksanaan"
                       id="selesai_pelaksanaan" 
                       class="form-control @error('selesai_pelatihan') is-invalid @enderror" 
-                      placeholder="Waktu Selesai Kegiatan Lapangan">
+                      placeholder="Waktu Selesai Kegiatan Lapangan" >
                       @error('tanggal_lahir')
                       <div class="invalid-feedback d-block" >
                        <strong>{{ $message }}</strong>
@@ -83,17 +89,19 @@
                 </div>
                 <div class="form-group">
                   <div class="form-label">Template Sertifikat</div>
-                  <div class="custom-file">
-                    <input type="file" class="custom-file-input" name="sertifikat_template">
-                    <label class="custom-file-label">Pilih File</label>
-                  </div>
+                 <!-- <div class="custom-file">
+                    <input type="file" class="custom-file-input" name="template_sertifikat" id="template_sertifikat" wire:model="template_sertifikat">
+                    <label class="custom-file-label text-truncate">Pilih File</label>
+                  </div>-->
+                  <input type="file" class="form-control-file text-truncate" name="template_sertifikat" id="template_sertifikat" wire:model="template_sertifikat">
                 </div>
 
                 <div class="form-label">Template SPK</div>
-                <div class="custom-file">
-                  <input type="file" class="custom-file-input" name="spk_template">
-                  <label class="custom-file-label">Pilih File</label>
-                </div>
+               <!-- <div class="custom-file">
+                  <input type="file" class="custom-file-input" name="template_spk" wire:model="template_spk">
+                  <label class="custom-file-label text-truncate">Pilih File</label>
+                </div>-->
+                <input type="file" class="form-control-file text-truncate" name="template_spk" wire:model="template_spk">
               </div>
                 
                 <div class="form-footer m-4">
@@ -108,8 +116,14 @@
     <script type="text/javascript" src="{{ asset('assets/flatpickr/flatpickr.js') }}" ></script>
     <script>
  
- 
-      $("#mulai_pelatihan").flatpickr({
+ $(document).ready(function(){
+  $('.custom-file-input').on('change', function() { 
+   let fileName = $(this).val().split('\\').pop(); 
+   $(this).next('.custom-file-label').addClass("selected").html(fileName); 
+});
+
+   /*
+  $("#mulai_pelatihan").flatpickr({
         altInput: true,
         altFormat: "d-m-Y",
         dateFormat: "Y/m/d",
@@ -128,7 +142,9 @@
           altInput: true,
           altFormat: "d-m-Y",
           dateFormat: "Y/m/d",
-       });
+       });*/
+ });
+
      </script>
 
 </div>

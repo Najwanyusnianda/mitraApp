@@ -2,8 +2,16 @@
 
   @if (!empty($kegiatan_mitra_id))
   
-  <p>Nama: {{ $mitra_name }} </p>
-  <p>Indikator: 
+  <p> </p>
+ 
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item " aria-current="page">
+      <strong>Nama: {{ $mitra_name }}  (NIK: {{ $mitra_nik }})</strong>
+    </li>
+  </ol>
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item " aria-current="page">
+      Indikator Penilaian: 
     @if (empty($avg_pelatihan))
         Pelatihan
     @else
@@ -13,7 +21,8 @@
         Evaluasi Lapangan    
         @endif
     @endif
-  </p>
+    </li>
+  </ol>
   <hr>
   <form wire:submit.prevent="store" class="mx-auto text-center">
     <div class="row align-items-center">
@@ -220,7 +229,11 @@
 
     </div>-->
     <br>
-    <div class="btn-list text-center">
+    <div class="alert alert-warning" role="alert">
+      Nilai tidak dapat diubah setelah diberikan
+    </div>
+    <br>
+    <div class="btn-list text-center mt-2">
       <button type="submit" class="btn btn-primary ">Simpan Penilaian</button>
 
       <button wire:click="closeModal()" type="button" class="btn btn-secondary" >Batal</button>
