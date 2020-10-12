@@ -83,24 +83,30 @@
         <div class="card-header">
         
          
-              <h3 class="card-title">Daftar Mitra {{ $kegiatan->nama_kegiatan }} {{ $kegiatan->tahun }}</h3>
+              <h3 class="card-title">
+                <strong>Daftar Mitra {{ $kegiatan->nama_kegiatan }} {{ $kegiatan->tahun }}</strong> 
+              </h3>
   
               <div class="card-options">
                 <button type="button" class="btn btn-primary btn-sm"  wire:click="createMitra()">
+                  <i class="fa fa-user-plus" aria-hidden="true"></i>
                   Tambah Mitra Baru
                 </button>
      
-    
+
          
 
                 <form action="">
                   <div class="input-group">
-                    <input type="text" class="form-control form-control-sm ml-3" placeholder="Cari Mitra" name="s">
-                    <span class="input-group-btn ml-2">
-                      <button class="btn btn-sm btn-default" type="submit">
-                        <span class="fe fe-search"></span>
-                      </button>
-                    </span>
+                   
+                    <!--<select name="" class="form-control custom-select ml-3" >
+                      <option value="" selected>Pilih Kecamatan</option>
+                      @if(!empty($kecamatans))
+                          @foreach($kecamatans as $key => $kec)
+                              <option value="{{ $kec }}">{{ $key+1 }}. {{ $kec }}</option>
+                          @endforeach
+                      @endif
+                  </select>-->
                   </div>
                 </form>
               </div>
@@ -120,6 +126,7 @@
                     <th scope="col">Nama</th>
                     <th scope="col">NIK</th>
                     <th scope="col">No. HP</th>
+                    <th scope="col">Kecamatan</th>
                     <th scope="col">Kualifikasi Gadget</th>
                     <th scope="col">Kepemilikan Kendaran</th>
                     <th scope="col"></th>
@@ -137,6 +144,7 @@
                     <td><strong>{{$mitra->name}}</strong></td>
                     <td>{{$mitra->nik}}</td>
                     <td>{{$mitra->phone}}</td>
+                    <td>{{$mitra->kecamatan}}</td>
                     <td>
                       <span class="status-icon bg-{{ $mitra->is_gadget ? 'success' : 'danger' }}"></span>
                       {{$mitra->is_gadget ? 'Terpenuhi' : 'Tidak Terpenuhi'}}

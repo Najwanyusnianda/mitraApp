@@ -56,7 +56,9 @@ class MitraCreate extends Component
         
         return view('livewire.mitra-create');
     }
-
+    public function updatedTanggalLahir(){
+        $this->dispatchBrowserEvent('updateInput');
+    }
     public function store(){
         
       

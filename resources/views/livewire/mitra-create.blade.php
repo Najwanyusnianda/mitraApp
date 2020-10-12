@@ -110,10 +110,11 @@
                 <label class="form-label"><span class="mr-4">5.</span>Tanggal Lahir
                 </label>
             </div>
-            <div class="col-sm 6">
+            <div class="col-sm 6" wire:ignore>
                 <div class="form-group mb-2 ml-5">
                     <input wire:model="tanggal_lahir" type="date" name="tanggal_lahir" id="tanggal_lahir"
-                        class="form-control @error('nik') is-invalid @enderror" placeholder="Tanggal Lahir">
+                        class="form-control @error('tanggal_lahir') is-invalid @enderror" placeholder="Tanggal Lahir"
+                        value="{{ !empty($tanggal_lahir) ? $tanggal_lahir : '' }}">
                     @error('tanggal_lahir')
                         <div class="invalid-feedback d-block">
                             <strong>{{ $message }}</strong>
@@ -155,20 +156,20 @@
 
         <div class="row align-items-center">
             <div class="col-sm-6">
-                <label class="form-label"><span class="mr-4">7.</span>Agama
+                <label class="form-label"><span class="mr-4">7.</span>Agama: {{ $agama }}
                 </label>
             </div>
-            <div class="col-sm 6">
+            <div class="col-sm 6" wire:ignore>
                 <div class="form-group mb-2 ml-5">
-                    <select name="agama"  class="form-control custom-select" wire:model="agama"  placeholder="Pilih Agama?">
+                    <select name="agama" id="agama" class="form-control custom-select" wire:model="agama"  placeholder="Pilih Agama?">
                         <option value=""  {{ empty($agama) ? 'selected' : '' }} disabled hidden >Pilih Agama</option>
                         <option value="islam"  {{ $agama=="islam" ? 'selected' : '' }}>Islam</option>
                         <option value="kristen"  {{ $agama=="kristen" ? 'selected' : '' }}>Kristen</option>
                         <option value="katholik" {{ $agama=="katholik" ? 'selected' : '' }}>Katholik</option>
-                        <option value="hindu">Hindu</option>
-                        <option value="budha">Budha</option>
-                        <option value="konghucu">Konghucu</option>
-                        <option value="lainnya">Lainnya</option>
+                        <option value="hindu" {{ $agama=="hindu" ? 'selected' : '' }}>Hindu</option>
+                        <option value="budha" {{ $agama=="budha" ? 'selected' : '' }}>Budha</option>
+                        <option value="konghucu" {{ $agama=="konghucu" ? 'selected' : '' }}>Konghucu</option>
+                        <option value="lainnya" {{ $agama=="lainnya" ? 'selected' : '' }}>Lainnya</option>
                     </select>
                 </div>
 
@@ -180,15 +181,14 @@
                 <label class="form-label"><span class="mr-4">8.</span>Status Perkawinan 
                 </label>
             </div>
-            <div class="col-sm 6">
+            <div class="col-sm 6" wire:ignore>
                 <div class="form-group mb-2 ml-5">
-                    <select name="" class="form-control custom-select" wire:model="is_kawin">
-                        <option value="" {{ empty($is_kawin) ? 'selected' : '' }} disabled>Pilih Status Perkawinan</option>
+                    <select name="" class="form-control custom-select" wire:model="is_kawin" id="is_kawin">
+                        <option value="" {{ empty($is_kawin) ? 'selected' : '' }} disabled hidden>Pilih Status Perkawinan</option>
                         <option value="Belum Kawin" {{ $is_kawin=="Belum Kawin" ? 'selected' : '' }}>Belum Kawin</option>
                         <option value="Kawin" {{ $is_kawin=="Kawin" ? 'selected' : '' }}>Kawin</option>
                         <option value="Cerai Hidup" {{ $is_kawin=="Cerai Hidup" ? 'selected' : '' }}>Cerai Hidup</option>
                         <option value="Cerai Mati" {{ $is_kawin=="Cerai Mati" ? 'selected' : '' }}>Cerai Mati</option>
-
                     </select>
                 </div>
             </div>
@@ -196,21 +196,21 @@
         <hr class="mt-0 mb-2">
 
         <div class="row align-items-center">
-            <div class="col-sm-6">
+            <div class="col-sm-6" wire:ignore>
                 <label class="form-label"><span class="mr-4">10.</span>Ijazah Tertinggi
                 </label>
             </div>
-            <div class="col-sm 6">
+            <div class="col-sm 6" wire:ignore>
                 <div class="form-group mb-2 ml-5">
-                    <select name="pendidikan" class="form-control custom-select" wire:model="pendidikan">
-                        <option value="">Pilih Ijazah Tertinggi</option>
-                        <option value="SD / Sederajat ke bawah">SD / Sederajat ke bawah</option>
-                        <option value="Tamat SMP / Sederajat">Tamat SMP / Sederajat</option>
-                        <option value="Tamat SMA / Sederajat">Tamat SMA / Sederajat</option>
-                        <option value="Tamat D1 / D2 / D3">Tamat D1 / D2 / D3</option>
-                        <option value="Tamat D4 / S1">Tamat D4 / S1</option>
-                        <option value="Tamat S2">Tamat S2</option>
-                        <option value="Tamat S3">Tamat S3</option>
+                    <select name="pendidikan" class="form-control custom-select" wire:model="pendidikan" id="pendidikan">
+                        <option value="" {{ empty($pendidikan) ? 'selected' : '' }} disabled hidden >Pilih Ijazah Tertinggi</option>
+                        <option value="SD / Sederajat ke bawah" {{ $pendidikan=="SD / Sederajat ke bawah" ? 'selected' : '' }}>SD / Sederajat ke bawah</option>
+                        <option value="Tamat SMP / Sederajat" {{ $pendidikan=="Tamat SMP / Sederajat" ? 'selected' : '' }}>Tamat SMP / Sederajat</option>
+                        <option value="Tamat SMA / Sederajat" {{ $pendidikan=="Tamat SMA / Sederajat" ? 'selected' : '' }}>Tamat SMA / Sederajat</option>
+                        <option value="Tamat D1 / D2 / D3" {{ $pendidikan=="Tamat D1 / D2 / D3" ? 'selected' : '' }}>Tamat D1 / D2 / D3</option>
+                        <option value="Tamat D4 / S1" {{ $pendidikan=="Tamat D4 / S1" ? 'selected' : '' }}>Tamat D4 / S1</option>
+                        <option value="Tamat S2" {{ $pendidikan=="Tamat S2" ? 'selected' : '' }}>Tamat S2</option>
+                        <option value="Tamat S3" {{ $pendidikan=="Tamat S3" ? 'selected' : '' }}>Tamat S3</option>
                     </select>
                 </div>
             </div>
@@ -389,7 +389,7 @@
 
     <script type="text/javascript" src="{{ asset('assets/flatpickr/flatpickr.js') }}"></script>
     <script>
-        /* $( "#name" ).blur(function() {
+    $( "#name" ).blur(function() {
   
       setTimeout(function() {
         $('#user-list').html('');
@@ -402,6 +402,26 @@
       altInput: true,
       altFormat: "d-m-Y",
       dateFormat: "Y/m/d",
-    });*/
+    });
+
+    $('#tanggal_lahir').on('change', function (e) {
+       @this.set('tanggal_lahir', e.target.value);
+    });
+
+    $('#agama').on('change', function (e) {
+       @this.set('agama', e.target.value);
+        });
+
+    $('#is_kawin').on('change', function (e) {
+       @this.set('is_kawin', e.target.value);
+    });
+
+    $('#pendidikan').on('change', function (e) {
+       @this.set('pendidikan', e.target.value);
+    });
+
+    window.addEventListener('updateInput',event=>{
+          $('#tanggal_lahir').value({{ $tanggal_lahir }}) 
+        });
     </script>
 </div>

@@ -17,6 +17,7 @@ class MitraIndex extends Component
     public $kegiatan_id;
 
     public $tabs;
+    public $kecamatan;
     //public $kec=['Simpang Kiri','Penanggalan','Rundeng','Sultan Daulat','Longkib'];
     protected $listeners=[
         'mitraStored'=>'handleStored',
@@ -26,12 +27,14 @@ class MitraIndex extends Component
         'nilaiUpdated'
     ];
 
+
     /*public function mount($kegiatan_id){       
         $this->kegiatan_id=$kegiatan_id;       
     }*/
 
     public function render()
     {
+        $kecamatans=['Simpang Kiri','Penanggalan','Rundeng','Sultan Daulat','Longkib'];
         $kegiatan_id=$this->kegiatan_id;
         $kegiatan=Kegiatan::find($kegiatan_id);
         $mitras=KegiatanMitra::where('kegiatan_id',$kegiatan_id)
@@ -40,11 +43,16 @@ class MitraIndex extends Component
         ->select('kegiatans.nama_kegiatan AS nama_kegiatan',
         'mitras.id AS id','mitras.name AS name','mitras.phone AS phone',
         'mitras.nik AS nik',
-        'mitras.is_gadget AS is_gadget','mitras.is_kendaraan AS is_kendaraan')
+        'mitras.is_gadget AS is_gadget','mitras.is_kendaraan AS is_kendaraan',
+        'mitras.kecamatan AS kecamatan'
+        )
         ->paginate(10);
 
-        return view('livewire.mitra-index',['mitras'=>$mitras,'kegiatan'=>$kegiatan]);
+        return view('livewire.mitra-index',['mitras'=>$mitras,'kegiatan'=>$kegiatan,'kecamatans'=>$kecamatans]);
     }
+
+
+
 
 
 
