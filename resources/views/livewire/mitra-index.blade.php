@@ -116,7 +116,7 @@
    
           @if ($mitras->isEmpty())
           <div class="alert alert-primary mt-5 mb-6">
-            <div>Tidak ada mitra yang tersedia</div>
+            <div>Tidak ada mitra yang tersedia pada kegiatan ini</div>
           </div>
           @else
           <table class="table card-table table-vcenter text-nowrap" style="vertical-align: middle;">
