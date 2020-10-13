@@ -29,7 +29,7 @@
                   <label class="form-label">Deskripsi</label>
                   <textarea class="form-control" id="deskripsi" wire:model="deskripsi" rows="3"></textarea>
                 </div>
-                <div class="form-group">
+                <div class="form-group" wire:ignore>
                   <label class="form-label">Tanggal Pelatihan</label>
                   <div class="row gutters-xs">
                     <div class="col-6">
@@ -58,8 +58,9 @@
                     </div>
                   </div>
                 </div>
-                <div class="form-group">
-                  <label class="form-label">Tanggal Pelaksanaan Lapangan</label>
+                
+                <div class="form-group" wire:ignore >
+                  <label class="form-label">Tanggal Pelaksanaan Lapangan:</label>
                   <div class="row gutters-xs">
                       <div class="col-6">
                         <input wire:model="mulai_pelaksanaan" type="date" name="mulai_pelaksanaan"
@@ -114,7 +115,7 @@
         </div>
     </div>
     <script type="text/javascript" src="{{ asset('assets/flatpickr/flatpickr.js') }}" ></script>
-    <script>
+<script>
  
  $(document).ready(function(){
   $('.custom-file-input').on('change', function() { 
@@ -122,7 +123,7 @@
    $(this).next('.custom-file-label').addClass("selected").html(fileName); 
 });
 
-   /*
+
   $("#mulai_pelatihan").flatpickr({
         altInput: true,
         altFormat: "d-m-Y",
@@ -142,7 +143,25 @@
           altInput: true,
           altFormat: "d-m-Y",
           dateFormat: "Y/m/d",
-       });*/
+       });
+       
+    $('#mulai_pelaksanaan').on('change', function (e) {
+       @this.set('mulai_pelaksanaan', e.target.value);
+    });
+    $('#selesai_pelaksanaan').on('change', function (e) {
+       @this.set('selesai_pelaksanaan', e.target.value);
+    });
+
+    $('#mulai_pelatihan').on('change', function (e) {
+       @this.set('mulai_pelatihan', e.target.value);
+    });
+    $('#selesai_pelatihan').on('change', function (e) {
+       @this.set('selesai_pelatihan', e.target.value);
+    });
+
+
+   
+
  });
 
      </script>

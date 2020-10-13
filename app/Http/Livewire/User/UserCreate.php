@@ -54,8 +54,9 @@ class UserCreate extends Component
                 'role'=>2,
                 'is_active'=>1
             ]);
-            $this->emit('userCreated');
             $this->resetInput();
+           $this->emit('userCreated');
+            
         }else{
             $user_check->update([
                 'name'=>$this->name,
@@ -64,8 +65,9 @@ class UserCreate extends Component
                 'role'=>$this->role,
                 'is_active'=>$this->is_active
             ]);
-            $this->emit('userUpdated');
             $this->resetInput();
+           $this->emit('userUpdated');
+            
         }
 
 

@@ -38,11 +38,13 @@ class UserIndex extends Component
     }
 
     public function handleUserCreated(){
-        session()->flash('message','Pengguna berhasil ditambahkan');
+       session()->flash('message','Pengguna berhasil ditambahkan');
+       
     }
 
     public function handleUserUpdated(){
         session()->flash('info','Pengguna telah berhasil diperbarui');
+ 
     }
 
     public function confirmation($user_id){
@@ -50,9 +52,9 @@ class UserIndex extends Component
         $this->dispatchBrowserEvent('showConfirmationModal');
     }
 
-    public function deletePengguna($user_id){
+    public function deletePengguna(){
         $this->dispatchBrowserEvent('closeConfirmationModal');
-        $user=User::find($user_id);
+        $user=User::find($this->user_id);
         $user->delete();
         $this->emit('refreshComponent');
     }

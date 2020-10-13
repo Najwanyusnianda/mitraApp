@@ -4,23 +4,29 @@
       Kelola Pengguna
     </h1>
   </div>
-    @if (session()->has('message'))
-    <div class="alert alert-success" role="alert">
-      <h4 class="alert-heading"></h4>
-     
-      <p class="mb-0">{{session('message')}}</p>
-    </div>
-        
-    @endif
+    <div class="row">
+      <div class="col-12">
+        @if (session()->has('message'))
+        <div class="alert alert-success" role="alert">
+          <h4 class="alert-heading"></h4>
+         
+          <p class="mb-0">{{session('message')}}</p>
+        </div>
+            
+        @endif
+        @if (session()->has('info'))
+        <div class="alert alert-info" role="alert">
+          <h4 class="alert-heading"></h4>
+         
+          <p class="mb-0">{{session('info')}}</p>
+        </div>
+            
+        @endif
+      </div>
 
-    @if (session()->has('info'))
-    <div class="alert alert-info" role="alert">
-      <h4 class="alert-heading"></h4>
-     
-      <p class="mb-0">{{session('info')}}</p>
+  
+
     </div>
-        
-    @endif
     <div class="row">
         <div class="col-sm-4">
             @livewire('user.user-create')
@@ -100,11 +106,11 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
-             <button type="button" class="btn btn-primary" wire:click="deletePengguna({{$user_id ? $user_id : ''}})">Ya</button>
+             <button type="button" class="btn btn-primary" wire:click="deletePengguna()">Ya</button>
             </div>
           </div>
         </div>
-      </div>
+    </div>
 
       <script>
         window.addEventListener('closeConfirmationModal',event=>{
@@ -114,5 +120,6 @@
         window.addEventListener('showConfirmationModal',event=>{
           $('#deleteUser').modal('show');  
         });
+
     </script>
 </div>

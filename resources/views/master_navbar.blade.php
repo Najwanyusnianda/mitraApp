@@ -51,6 +51,7 @@
               </span>
             </a>
             <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+
               <a class="dropdown-item" href="#">
                 <i class="dropdown-icon fe fe-user"></i> Profile
               </a>
@@ -68,9 +69,13 @@
               <a class="dropdown-item" href="#">
                 <i class="dropdown-icon fe fe-help-circle"></i> Need help?
               </a>
-              <a class="dropdown-item" href="#">
-                <i class="dropdown-icon fe fe-log-out"></i> Sign out
-              </a>
+              <form action="{{ route('logout') }}" method="post">
+                {{ csrf_field() }}
+                <button class="dropdown-item" type="submit">
+                  <i class="dropdown-icon fe fe-log-out"></i> Sign out
+                </button>
+              </form>
+
             </div>
           </div>
         </div>

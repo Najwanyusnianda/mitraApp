@@ -5,7 +5,7 @@
         Daftar Kegiatan 
       </h1>
     </div>
-
+ 
   </section>
     <section>
         <div class="container">
@@ -78,6 +78,8 @@
         window.addEventListener('showConfirmationModal',event=>{
           $('#closeKegiatan').modal('show');  
         });
+
+        
     </script>
 
 </div>
