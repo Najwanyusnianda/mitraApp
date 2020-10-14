@@ -40,6 +40,7 @@ Route::group(['middleware' => ['auth']], function () {
    //output
     Route::get('/output/sertifikat/{kegiatan_id}/{mitra_id}','OutputController@getSertifikat');
     Route::get('/output/bulk-sertifikat/{kegiatan_id}','OutputController@getBulk');
+    Route::get('/output/bulk-spk/{kegiatan_id}','OutputController@getBulkSPK');
     Route::get('/output/kontrak/{kegiatan_id}/{mitra_id}','OutputController@getSpk');
     Route::get('/output/spj/{kegiatan_id}/{mitra_id}','OutputController@getSpj');
 

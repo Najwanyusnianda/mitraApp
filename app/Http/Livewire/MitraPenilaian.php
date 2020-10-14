@@ -31,7 +31,7 @@ class MitraPenilaian extends Component
         'mitras.nik AS nik','kegiatan_mitras.avg_pelatihan AS avg_pelatihan',
         'kegiatan_mitras.avg_pelaksanaan AS avg_pelaksanaan',
         'kegiatan_mitras.avg_evaluasi AS avg_evaluasi',
-        'kegiatan_mitras.total_nilai AS total_nilai' )
+        'kegiatan_mitras.total_nilai AS total_nilai', 'mitras.kecamatan AS kecamatan' )
         ->paginate(10);
         return view('livewire.mitra-penilaian',['mitras'=>$mitras,'kegiatan'=>$kegiatan]);
     }

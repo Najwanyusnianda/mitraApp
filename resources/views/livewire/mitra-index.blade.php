@@ -119,7 +119,7 @@
             <div>Tidak ada mitra yang tersedia pada kegiatan ini</div>
           </div>
           @else
-          <table class="table card-table table-vcenter text-nowrap" style="vertical-align: middle;">
+          <table class="table card-table table-vcenter text-nowrap table-hover" style="vertical-align: middle;">
             <thead>
                 <tr style="">
                     <th scope="col">#</th>
@@ -144,7 +144,7 @@
                     <td><strong>{{$mitra->name}}</strong></td>
                     <td>{{$mitra->nik}}</td>
                     <td>{{$mitra->phone}}</td>
-                    <td>{{$mitra->kecamatan}}</td>
+                    <td><strong>{{$mitra->kecamatan}}</strong> </td>
                     <td>
                       <span class="status-icon bg-{{ $mitra->is_gadget ? 'success' : 'danger' }}"></span>
                       {{$mitra->is_gadget ? 'Terpenuhi' : 'Tidak Terpenuhi'}}

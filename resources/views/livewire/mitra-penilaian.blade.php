@@ -39,6 +39,7 @@
                     <th>#</th>
                     <th>Nama</th>
                     <th>NIK</th>
+                    <th>Kecamatan</th>
                     <th>Pelatihan</th>
                     <th>Pelaksanaan Lapangan</th>
                     <th>Evaluasi Lapangan</th>
@@ -55,6 +56,7 @@
                 <th scope="row">{{$no}}</th>
                     <td><strong>{{$mitra->name}}</strong></td>
                     <td>{{$mitra->nik ?? 'tidak ada'}}</td>
+                    <td>{{$mitra->kecamatan}}</td>
                     <td style="text-align: center">
                       @if ($mitra->avg_pelatihan)
                         {{ $mitra->avg_pelatihan }}

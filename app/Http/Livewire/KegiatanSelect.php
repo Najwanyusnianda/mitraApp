@@ -11,7 +11,7 @@ class KegiatanSelect extends Component
 
     public function render()
     {
-        $kegiatan=Kegiatan::where('is_active','=',1)->get();
+        $kegiatan=Kegiatan::where('is_active','=',1)->latest()->get();
         return view('livewire.kegiatan-select',['kegiatans'=>$kegiatan]);
     }
 

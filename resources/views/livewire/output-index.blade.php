@@ -15,10 +15,15 @@
                     </div>
                   </div>-->
              <div class="card-options">
-                <a href="{{ url('/output/bulk-sertifikat/'.$kegiatan_id) }}" class="btn btn-sm success" type="button">
+                <a href="{{ url('/output/bulk-sertifikat/'.$kegiatan_id) }}" class="btn btn-sm btn-secondary mr-3">
+                    <i class="fa fa-file-archive" ></i>
                     Generate Sertifikat
                 </a> 
-                <form action="">
+                <a href="{{ url('/output/bulk-spk/'.$kegiatan_id) }}" class="btn btn-sm btn-secondary">
+                    <i class="fa fa-file-archive" ></i>
+                    Generate SPK
+                </a> 
+                <!--<form action="">
                     <div class="input-group">
                         <input type="text" class="form-control form-control-sm ml-3" placeholder="Cari Mitra" name="s">
                         <span class="input-group-btn ml-2">
@@ -27,7 +32,7 @@
                             </button>
                         </span>
                     </div>
-                </form>
+                </form>-->
              </div>     
 
         </div>
