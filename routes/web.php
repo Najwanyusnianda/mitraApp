@@ -24,6 +24,10 @@ Route::group(['middleware' => ['auth']], function () {
     
     
     Route::livewire('/', 'dashboard-index');
+    Route::get('home', function () {
+        return redirect('/');
+        
+    });
     //kegiatan
     Route::livewire('/kegiatan/index','kegiatan-index');
     Route::livewire('/kegiatan/create','kegiatan-create');

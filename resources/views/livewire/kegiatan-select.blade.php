@@ -3,7 +3,10 @@
 <div class="card row-12">
     <div class="card-status bg-blue"></div>
     <div class="card-header">
-        Pilih Kegiatan: {{ $kegiatan_id }}
+        Pilih Kegiatan: 
+         <span class="spinner-grow spinner-grow-sm text-primary" role="status" aria-hidden="true" wire:loading></span>
+         <span class="spinner-grow spinner-grow-sm text-primary" role="status" aria-hidden="true" wire:loading></span>
+         <span class="spinner-grow spinner-grow-sm text-primary" role="status" aria-hidden="true" wire:loading></span>
     </div>
     <div class="card-body">
     
