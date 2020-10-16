@@ -1,8 +1,10 @@
 <div>
     <div class="row">
-        <div class="card">
+        @if(!empty($kegiatan))
+         <div class="card">
             <div class="card-header">
-                Kinerja Mitra Pada Kegiatan {{$kegiatan->nama_kegiatan}}
+                Kinerja Mitra Pada Kegiatan 
+                <span class="ml-1 font-weight-bold"> {{$kegiatan->nama_kegiatan ? $kegiatan->nama_kegiatan : ''}}</span> 
             </div>
             <div class="card-body">
                     <div class="table-responsiive">
@@ -18,7 +20,7 @@
                                     @forelse ($avg_kecamatans as $kecamatan)
                                     <tr>
                                         <th scope="row"><strong> {{$kecamatan->kecamatan}}</strong></th>
-                                    <td>{{ round($kecamatan->avg,2) }}</td>
+                                    <td>{{ round($kecamatan->avg,2)==0 ? 'belum dinilai' : round($kecamatan->avg,2) }}</td>
                                     </tr>
                                     @empty
                                         <p>Tidak ada penilaian</p>
@@ -36,5 +38,12 @@
             </div>
 
         </div>
+        
+        @else
+        <div class="alert alert-primary mt-5 mb-6">
+            <div>Tidak ada kegiatan yang ditemukan<strong><a href="{{ url('/kegiatan/create') }}"> Buat Kegiatan Baru?</a></strong></div>
+        </div>
+        @endif
+       
     </div>
 </div>

@@ -250,6 +250,10 @@
         window.addEventListener('showModalDetail',event=>{
           $('#detailMitra').modal('show');  
         });
+
+        window.addEventListener('closeModalDetail',event=>{
+          $('#detailMitra').modal('hide');  
+        });
     </script>
   </div>
     @endif

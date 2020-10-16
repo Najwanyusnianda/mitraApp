@@ -31,7 +31,7 @@ class KegiatanCreate extends Component
     }
 
     public function store(){
-       
+      
         $this->validate([
             'nama_kegiatan'=>'required|min:3',
             'tahun'=>'required|digits:4|integer|min:1900',
@@ -44,7 +44,7 @@ class KegiatanCreate extends Component
         Storage::makeDirectory($path_sertifikat);
         Storage::makeDirectory($path_spk);
         Storage::makeDirectory($path_template);
-
+    
         $ext=$this->template_sertifikat->getClientOriginalExtension();
         $ext2=$this->template_spk->getClientOriginalExtension();
         $path_sertifikat=$this->template_sertifikat->storeAs($path_template,'template_sertifikat_'.$this->nama_kegiatan.'-'.$this->tahun.'.'.$ext);

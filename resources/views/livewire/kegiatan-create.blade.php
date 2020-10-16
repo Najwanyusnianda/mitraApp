@@ -3,7 +3,7 @@
     <div class="container mt-4">
         <div class="row-sm-12">
           <div class="col-sm-8 mx-auto">
-            <form class="card" wire:submit.prevent="store">
+            <form class="card" wire:submit.prevent="store" enctype="multipart/form-data">
               <div class="card-header text-center">
                 <div class="card-title">
                   <strong>Buat Kegiatan Baru </strong>
@@ -94,7 +94,7 @@
                     <input type="file" class="custom-file-input" name="template_sertifikat" id="template_sertifikat" wire:model="template_sertifikat">
                     <label class="custom-file-label text-truncate">Pilih File</label>
                   </div>-->
-                  <input type="file" class="form-control-file text-truncate" name="template_sertifikat" id="template_sertifikat" wire:model="template_sertifikat">
+                  <input type="file" class="form-control-file text-truncate"  id="template_sertifikat" wire:model="template_sertifikat">
                 </div>
 
                 <div class="form-label">Template SPK</div>
@@ -118,13 +118,13 @@
 <script>
  
  $(document).ready(function(){
-  $('.custom-file-input').on('change', function() { 
+  /*$('.custom-file-input').on('change', function() { 
    let fileName = $(this).val().split('\\').pop(); 
    $(this).next('.custom-file-label').addClass("selected").html(fileName); 
-});
+});*/
 
 
-  $("#mulai_pelatihan").flatpickr({
+    $("#mulai_pelatihan").flatpickr({
         altInput: true,
         altFormat: "d-m-Y",
         dateFormat: "Y/m/d",

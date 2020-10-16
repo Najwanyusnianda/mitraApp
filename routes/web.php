@@ -10,9 +10,11 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
-
-
+//URL::forceRootUrl('https://webapps.bps.go.id/subulussalamkota/');
+//URL::forceScheme('https');
 
 
 
@@ -23,11 +25,17 @@ Route::group(['middleware' => ['auth']], function () {
     //Route::livewire('/dashboard','dashboard-index');
     
     
-    Route::livewire('/', 'dashboard-index');
+    Route::livewire('/dashboard', 'dashboard-index');
     Route::get('home', function () {
-        return redirect('/');
+        return redirect('/dashboard');
         
     });
+        Route::get('/', function () {
+        return redirect('/dashboard');
+        
+    });
+
+    
     //kegiatan
     Route::livewire('/kegiatan/index','kegiatan-index');
     Route::livewire('/kegiatan/create','kegiatan-create');
@@ -54,3 +62,35 @@ Route::group(['middleware' => ['auth']], function () {
 Auth::routes();
 
 #Route::get('/home', 'HomeController@index')->name('home');
+//Clear configurations:
+Route::get('/config-clear', function() {
+    $status = Artisan::call('config:clear');
+    return '<h1>Configurations cleared</h1>';
+});
+
+//Clear cache:
+Route::get('/cache-clear', function() {
+    $status = Artisan::call('cache:clear');
+    return '<h1>Cache cleared</h1>';
+});
+
+//Clear configuration cache:
+Route::get('/config-cache', function() {
+    $status = Artisan::call('config:Cache');
+    return '<h1>Configurations cache cleared</h1>';
+});
+
+Route::get('/storage-link', function() {
+    $status = Artisan::call('storage:link');
+    return '<h1>storage:link</h1>';
+});
+
+Route::get('/migrate', function() {
+    $status = Artisan::call('migrate:fresh --seed');
+    return '<h1>migrate</h1>';
+});
+Route::get('/flare', function() {
+    $status = Artisan::call('vendor:publish --tag=flare-config');
+    return '<h1>migrateflare</h1>';
+});
+

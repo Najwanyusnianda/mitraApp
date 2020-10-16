@@ -1,5 +1,15 @@
 <div>
-    {{-- Because she competes with no one, no one can compete with her. --}}
- 
-    @livewire('dashboard-penilaian');
+    <section>
+        <div class="page-header">
+          <h1 class="page-title">
+            Dashboard
+          </h1>
+        </div>
+     
+      </section>
+
+      <section>
+        @livewire('dashboard-penilaian')
+      </section>
+    
 </div>

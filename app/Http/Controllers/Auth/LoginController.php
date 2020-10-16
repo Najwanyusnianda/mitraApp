@@ -52,7 +52,7 @@ class LoginController extends Controller
         if (Auth::attempt($credentials)) {
             if ($user->is_active) {
                 // Authentication passed...
-                return redirect()->intended('/');
+                return redirect('home');
             }else {
                 return redirect()->back();
             }

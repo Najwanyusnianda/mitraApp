@@ -24,7 +24,7 @@
                 <div class="form-group">
                   <label class="form-label">
                     Password
-                    <a href="#" class="float-right small">Lupa Password?</a>
+                   <!-- <a href="#" class="float-right small">Lupa Password?</a>-->
                   </label>
                   <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
                 </div>
@@ -40,7 +40,7 @@
               </div>
             </form>
             <div class="text-center text-muted">
-              Don't have account yet? <a href="./register.html">Sign up</a>
+              Tidak Punya Akun? <a href="https://wa.me/6282261044800">Hubungi Admin</a>
             </div>
           </div>
         </div>

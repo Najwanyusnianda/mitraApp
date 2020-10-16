@@ -25,7 +25,7 @@
             <h3 class="card-title"></h3>
             <div class="card-options">
                 <div class="dropdown">
-                <button class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false"> <i class="fas fa-filter"></i>{{$kecamatan ==null ? 'Filter Kecamatan' : $kecamatan=="semua" ? 'Filter Kecamatan' : $kecamatan}}</button>
+                <button class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false"> <i class="fas fa-filter"></i>{{$kecamatan ==null ? 'Filter Kecamatan' :( $kecamatan=="semua" ? 'Filter Kecamatan' : $kecamatan)}}</button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                       <a class="dropdown-item" href="#" wire:click="filterKecamatan('semua')">Semua Mitra</a>
                         @foreach ($kecamatans as $key =>$kec)
@@ -56,6 +56,7 @@
                         <th>Jenis Kelamin</th>
                     
                         <th>Kecamatan</th>
+                        <th></th>
 
                     </tr>
                 </thead>
@@ -70,6 +71,9 @@
                             </td>
                             
                             <td> {{$mitra->kecamatan}}  </td>
+                            <td>
+                              <button class="btn btn-secondary btn-sm" wire:click="getMitraDetail({{$mitra->id}})">Detail</button>
+                            </td>
                         </tr>
                      @endforeach
                     @endif
@@ -81,8 +85,31 @@
             {{$mitras->links()}}
         </div>
     </div>
-    <script>
 
+    <div class="modal fade" id="detailMitra" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"  data-backdrop="static">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel"></h5>
+            <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>-->
+          </div>
+          <div class="modal-body">
+              @livewire('mitra-detail')
+          </div>
+  
+        </div>
+      </div>
+    </div>
+    <script>
+        window.addEventListener('showModalDetail',event=>{
+          $('#detailMitra').modal('show');  
+        });
+
+        window.addEventListener('closeModalDetail',event=>{
+          $('#detailMitra').modal('hide');  
+        });
 
     </script>
 </div>

@@ -16,6 +16,7 @@ class CreateKegiatansTable extends Migration
         Schema::create('kegiatans', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nama_kegiatan');
+            $table->unsignedInteger('master_kegiatan_id')->nullable();
             $table->year('tahun');
             $table->text('deskripsi');
             $table->date('pelatihan_mulai')->nullable();

@@ -52,5 +52,11 @@ class MitraList extends Component
        
     }
 
+    public function getMitraDetail($id){
+        $mitra = Mitra::find($id);
+        $this->emit('getMitraDetail',$mitra);
+        $this->dispatchBrowserEvent('showModalDetail');
+    }
+
 
 }

@@ -120,9 +120,9 @@ class OutputController extends Controller
         $path=storage_path($save_path);
         
         $template->saveAs($path);
-        $temp= \PhpOffice\PhpWord\IOFactory::load($path);
-        $xmlWriter= \PhpOffice\PhpWord\IOFactory::createWriter($temp,'PDF');
-        $xmlWriter->save(storage_path($save_path_pdf),TRUE);
+        //$temp= \PhpOffice\PhpWord\IOFactory::load($path);
+       // $xmlWriter= \PhpOffice\PhpWord\IOFactory::createWriter($temp,'PDF');
+       // $xmlWriter->save(storage_path($save_path_pdf),TRUE);
 
         return response()->download(storage_path($save_path));
     }
@@ -164,10 +164,10 @@ class OutputController extends Controller
 
              $template->saveAs($path);
                 
-             $temp= \PhpOffice\PhpWord\IOFactory::load($path);
+            // $temp= \PhpOffice\PhpWord\IOFactory::load($path);
                 
-             $xmlWriter= \PhpOffice\PhpWord\IOFactory::createWriter($temp,'PDF');
-             $xmlWriter->save(storage_path($save_path_pdf),TRUE);
+            // $xmlWriter= \PhpOffice\PhpWord\IOFactory::createWriter($temp,'PDF');
+            // $xmlWriter->save(storage_path($save_path_pdf),TRUE);
              }
             
              $zip = new ZipArchive;
@@ -229,10 +229,10 @@ class OutputController extends Controller
 
         $template->saveAs($path);
         
-        $temp= \PhpOffice\PhpWord\IOFactory::load($path);
+       // $temp= \PhpOffice\PhpWord\IOFactory::load($path);
 
-        $xmlWriter= \PhpOffice\PhpWord\IOFactory::createWriter($temp,'PDF');
-        $xmlWriter->save(storage_path($save_path_pdf),TRUE);
+        //$xmlWriter= \PhpOffice\PhpWord\IOFactory::createWriter($temp,'PDF');
+        //$xmlWriter->save(storage_path($save_path_pdf),TRUE);
         }
 
 
