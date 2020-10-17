@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Exports\KegiatanMitraExport;
 use Maatwebsite\Excel\Facades\Excel;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use App\KegiatanMitra;
 use App\Mitra;
 use App\Kegiatan;
@@ -275,7 +277,21 @@ class OutputController extends Controller
 
 
     public function getSpj($kegiatan_id){
-        return Excel::download(new KegiatanMitraExport($kegiatan_id), 'siswa.xlsx');
+        $mitras=KegiatanMitra::where('kegiatan_id',$kegiatan_id)
+        ->join('mitras','kegiatan_mitras.mitra_id','=','mitras.id')
+        ->select('mitras.name')
+        ->get();
+       
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        $sheet->setCellValue('A1', 'Hello World !');
+
+        $writer = new Xlsx($spreadsheet);
+        $writer->save('hello_world.xlsx');  
+        
+        return response()->download('hello_world.xlsx');
+
+        //return Excel::download(new KegiatanMitraExport($kegiatan_id), 'siswa.xlsx');
     }
 
 
