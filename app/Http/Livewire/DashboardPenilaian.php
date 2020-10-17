@@ -20,7 +20,7 @@ class DashboardPenilaian extends Component
         $avg_kecamatan=DB::table('kegiatan_mitras')
         ->where('kegiatan_mitras.kegiatan_id',$kegiatan->id)
         ->join('mitras','kegiatan_mitras.mitra_id','=','mitras.id')
-        ->groupBy('mitras.kecamatan')
+    ->groupBy('mitras.kecamatan')
         ->select('mitras.kecamatan', DB::raw('AVG(kegiatan_mitras.total_nilai) as avg'))
         //->selectRaw('mitras.kecamatan AS mitraz','sum(kegiatan_mitras.total_nilai)')
         ->get();

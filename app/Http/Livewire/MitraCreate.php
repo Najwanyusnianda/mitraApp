@@ -43,7 +43,7 @@ class MitraCreate extends Component
 
     public function mount($kegiatan){
         $this->users=[];
-        $this->kecamatans=['Simpang Kiri','Penanggalan','Rundeng','Sultan Daulat','Longkib'];
+        $this->kecamatans=['010','020','030','040','050'];
         $this->kegiatan_id=$kegiatan->id;
       
         $this->nama_kegiatan=$kegiatan->nama_kegiatan;

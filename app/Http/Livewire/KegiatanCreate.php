@@ -26,6 +26,7 @@ class KegiatanCreate extends Component
     public $template_spk;
 
     public $kegiatans;
+    public $kegiatan_error;
 
     public function mount()
     {
@@ -47,10 +48,10 @@ class KegiatanCreate extends Component
         $this->validate([
             'nama_kegiatan'=>'required|min:3',
             'tahun'=>'required|digits:4|integer|min:1900',
-            'deskripsi'=>'required',
+            //'deskripsi'=>'required',
             'master_kegiatan_id'=>'required',
         ]);
-        if(!empty($master_kegiatan)){
+        if(!empty($this->master_kegiatan_id)){
             $path_sertifikat='Data/'.$this->nama_kegiatan.'/sertifikat';
         $path_spk='Data/'.$this->nama_kegiatan.'/spk';
         $path_template='Data/'.$this->nama_kegiatan.'/template';
@@ -89,6 +90,15 @@ class KegiatanCreate extends Component
 
     public function updatedNamaKegiatan(){
         $this->kegiatans=MasterKegiatan::where('nama_kegiatan','like','%'.$this->nama_kegiatan.'%')->take(5)->get()->toArray();
+        $check_kegiatan=MasterKegiatan::find($this->nama_kegiatan);
+        if($check_kegiatan!=null){
+            $this->master_kegiatan_id=$check_kegiatan->id;
+            $this->kegiatan_error=false;
+        }else{
+            $this->kegiatan_error=true;
+            $this->master_kegiatan_id=null;
+        }
+        
         if($this->nama_kegiatan==''){
             $this->kegiatans=null;
         }
@@ -99,6 +109,7 @@ class KegiatanCreate extends Component
 
         $this->nama_kegiatan=$kegiatan['nama_kegiatan'];
         $this->master_kegiatan_id=$kegiatan['id'];
+        $this->kegiatan_error=false;
         $this->kegiatans=null;
     }
 
@@ -106,5 +117,6 @@ class KegiatanCreate extends Component
         $this->nama_kegiatan=null;
         $this->tahun=null;
         $this->deskripsi=null;
+        $this->kegiatan_error=false;
     }
 }

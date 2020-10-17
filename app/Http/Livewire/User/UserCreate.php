@@ -49,6 +49,7 @@ class UserCreate extends Component
     }
 
     public function store(){
+
         $user_check=User::where('email',$this->email)->first();
         if(empty($user_check)){
             $user=User::create([

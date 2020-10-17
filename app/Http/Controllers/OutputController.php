@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use App\Exports\KegiatanMitraExport;
+use Maatwebsite\Excel\Facades\Excel;
 use App\KegiatanMitra;
 use App\Mitra;
 use App\Kegiatan;
@@ -272,8 +274,8 @@ class OutputController extends Controller
     }
 
 
-    public function getZip(){
-
+    public function getSpj($kegiatan_id){
+        return Excel::download(new KegiatanMitraExport($kegiatan_id), 'siswa.xlsx');
     }
 
 

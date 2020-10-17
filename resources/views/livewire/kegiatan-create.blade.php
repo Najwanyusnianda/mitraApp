@@ -1,4 +1,12 @@
 <div>
+  @if (session()->has('info'))
+  <div class="alert alert-info" role="alert">
+    <h4 class="alert-heading"></h4>
+   
+    <p class="mb-0">{{session('info')}}</p>
+  </div>
+      
+  @endif
 
     <div class="container mt-4">
         <div class="row-sm-12">
@@ -6,7 +14,7 @@
             <form class="card" wire:submit.prevent="store" enctype="multipart/form-data">
               <div class="card-header text-center">
                 <div class="card-title">
-                  <strong>Buat Kegiatan Baru </strong>
+                  <strong>Buat Kegiatan Baru :{{ $master_kegiatan_id }}</strong>
                   
                 </div>
               </div>
@@ -22,7 +30,17 @@
                               wire:click="fillKegiatanForm({{ $kegiatan['id'] }})">{{ $kegiatan['nama_kegiatan'] }}</button>
                       @endforeach
                   </div>
-              @endif
+
+                  @endif
+                  @if ($kegiatan_error ==true)
+                  <div class="alert alert-danger mt-1" role="alert">
+                    <h4 class="alert-heading"></h4>
+                   
+                    <p class="mb-0">Nama Kegiatan Tidak terdapat dalam master</p>
+                  </div>
+                  @endif
+
+
               @error('nama_kegiatan')
                   <div class="invalid-feedback d-block">
                       <strong>{{ $message }}</strong>

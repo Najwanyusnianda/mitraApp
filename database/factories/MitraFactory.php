@@ -23,6 +23,6 @@ $factory->define(Mitra::class, function (Faker $faker) {
         'npwp'=>$faker->unique()->numerify('#-####-####-########'),
         'nomor_rekening'=>$faker->creditCardNumber,
         'agama'=>'islam',
-        'kecamatan'=>$faker->randomElement($array = array ('Simpang Kiri','Penanggalan','Rundeng','Sultan Daulat','Longkib'))       
+        'kecamatan'=>$faker->randomElement($array = array ('010','020','030','040','050'))       
     ];
 });

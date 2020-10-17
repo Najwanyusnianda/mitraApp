@@ -10,7 +10,7 @@
                 </div>
                 <div class="card-body p-6">
                   <div class="form-group">
-                    <label class="form-label">Nama Lengkap Pengguna</label>
+                    <label class="form-label">Nama Lengkap Pengguna {{ $seksi }}</label>
                     <input type="text" wire:model="name" name="name" id="name" class="form-control form-control-lg" placeholder="Isikan Nama Lengkap">
                   </div>
                   <div class="form-group">
@@ -24,8 +24,9 @@
                   <div class="form-group" wire:ignore>
                     <label class="form-label">Seksi</label>
                       <select class="form-control" name="" id="seksi" wire:model='seksi'>
+                        <option value="" selected hidden>Pilih Seksi</option>
                         @foreach ($master_seksi as $seksis)
-                        <option value="{{ $seksis }}" {{ $seksi == $seksis ? 'sele' }}>Seksi {{ $seksis }}</option>
+                        <option value="{{ $seksis }}" {{ $seksi == $seksis ? 'select' :  ''}}>Seksi {{ $seksis }}</option>
                         @endforeach
                         
 

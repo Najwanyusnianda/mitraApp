@@ -21,7 +21,7 @@ class MitraList extends Component
 
     public function render()
     {
-        $kecamatans=['Simpang Kiri','Penanggalan','Rundeng','Sultan Daulat','Longkib'];
+        $kecamatans=['010','020','030','040','050'];
         if($this->kecamatan !==null && $this->search !== null ){
             $mitras=Mitra::where('kecamatan',$this->kecamatan)
             ->where('name', 'like', '%' . $this->search . '%')

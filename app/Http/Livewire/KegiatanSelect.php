@@ -11,8 +11,21 @@ class KegiatanSelect extends Component
 
     public function render()
     {
-        $kegiatan=Kegiatan::where('is_active','=',1)->latest()->get();
+        if(auth()->user()->role==1){
+            $kegiatan=Kegiatan::where('is_active','=',1)->latest()->get();
+            return view('livewire.kegiatan-select',['kegiatans'=>$kegiatan]);
+        
+        }else{
+        $kegiatan=Kegiatan::
+        join('master_kegiatans','kegiatans.master_kegiatan_id','=','master_kegiatans.id')
+        ->where('master_kegiatans.seksi',auth()->user()->seksi)
+        ->where('is_active','=',1)
+        ->select('kegiatans.nama_kegiatan AS nama_kegiatan','kegiatans.id AS id')
+        ->latest('kegiatans.created_at')->get();
+
+        }
         return view('livewire.kegiatan-select',['kegiatans'=>$kegiatan]);
+
     }
 
     public function updated($kegiatan_id){

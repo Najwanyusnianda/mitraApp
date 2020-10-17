@@ -23,6 +23,10 @@
                     <i class="fa fa-file-archive" ></i>
                     Generate SPK
                 </a> 
+                <a href="{{ url('/output/spj/'.$kegiatan_id) }}" class="btn btn-sm btn-secondary">
+                    <i class="fa fa-file-archive" ></i>
+                    Generate SPJ
+                </a> 
                 <!--<form action="">
                     <div class="input-group">
                         <input type="text" class="form-control form-control-sm ml-3" placeholder="Cari Mitra" name="s">
