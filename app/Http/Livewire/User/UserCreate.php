@@ -6,6 +6,7 @@ use Livewire\Component;
 use Illuminate\Support\Facades\Hash;
 use App\User;
 
+
 class UserCreate extends Component
 {
     public $name;
@@ -15,7 +16,7 @@ class UserCreate extends Component
     public $is_active;
 
     public $user_id;
-    
+    public $seksi;
 
     protected $listeners=[
         'getUser'=>'handleUser',
@@ -24,7 +25,8 @@ class UserCreate extends Component
 
     public function render()
     {
-        return view('livewire.user.user-create');
+        $master_seksi=['sosial','ipds','produksi','distribusi','neraca'];
+        return view('livewire.user.user-create',['master_seksi'=>$master_seksi]);
     }
 
     public function handleUser($user){
@@ -34,6 +36,7 @@ class UserCreate extends Component
        // $this->password=$user['password'];
         $this->role=$user['role'];
         $this->is_active=$user['is_active'];
+        $this->seksi=$user['seksi'];
     }
 
     private function resetInput(){
@@ -42,6 +45,7 @@ class UserCreate extends Component
         $this->password=null;
         $this->role=null;
         $this->is_active=null;
+        $this->seksi=null;
     }
 
     public function store(){
@@ -52,7 +56,8 @@ class UserCreate extends Component
                 'email'=>$this->email,
                 'password'=>Hash::make($this->password),
                 'role'=>2,
-                'is_active'=>1
+                'is_active'=>1,
+                'seksi'=>$this->seksi
             ]);
             $this->resetInput();
            $this->emit('userCreated');
@@ -63,7 +68,8 @@ class UserCreate extends Component
                 'email'=>$this->email,
                 'password'=>Hash::make($this->password),
                 'role'=>$this->role,
-                'is_active'=>$this->is_active
+                'is_active'=>$this->is_active,
+                'seksi'=>$this->seksi
             ]);
             $this->resetInput();
            $this->emit('userUpdated');
@@ -81,7 +87,8 @@ class UserCreate extends Component
             'email'=>$this->email,
             'password'=>Hash::make($this->password),
             'role'=>$this->role,
-            'is_active'=>$this->is_active
+            'is_active'=>$this->is_active,
+            'seksi'=>$this->seksi
         ]);
         $this->emit('userUpdated');
         $this->resetInput();

@@ -21,6 +21,16 @@
                     <label class="form-label">Password</label>
                     <input type="password" wire:model="password" id="password" class="form-control form-control-lg" placeholder="Isikan Password akun">
                   </div>
+                  <div class="form-group" wire:ignore>
+                    <label class="form-label">Seksi</label>
+                      <select class="form-control" name="" id="seksi" wire:model='seksi'>
+                        @foreach ($master_seksi as $seksis)
+                        <option value="{{ $seksis }}" {{ $seksi == $seksis ? 'sele' }}>Seksi {{ $seksis }}</option>
+                        @endforeach
+                        
+
+                      </select>
+                  </div>
                   
 
 
@@ -32,5 +42,12 @@
                   </div>
                 </div>
               </form>
+
+
+              <script>
+                    $('#seksi').on('change', function (e) {
+                     @this.set('seksi', e.target.value);
+                    });
+              </script>
     
 </div>

@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->unsignedInteger('role')->default(2);
             $table->boolean('is_active')->default(false);
+            $table->string('seksi');
             $table->rememberToken();
             $table->timestamps();
         });

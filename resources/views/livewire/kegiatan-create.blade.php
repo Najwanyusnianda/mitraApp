@@ -13,7 +13,21 @@
               <div class="card-body p-6">
                 <div class="form-group">
                   <label class="form-label">Nama Kegiatan</label>
-                  <input type="text" wire:model="nama_kegiatan" class="form-control form-control-lg" placeholder="Isikan Nama Kegiatan">
+                  <input type="text" id="nama_kegiatan" wire:model="nama_kegiatan" class="form-control form-control-lg" placeholder="Isikan Nama Kegiatan">
+                  @if(!empty($kegiatans))
+                  <div class="position-absolute  w-100 list-group bg-white shadow-lg row" id="kegiatan-list"
+                      style="z-index: 1000">
+                      @foreach($kegiatans as $kegiatan)
+                          <button type="button" class="list-group-item list-group-item-action"
+                              wire:click="fillKegiatanForm({{ $kegiatan['id'] }})">{{ $kegiatan['nama_kegiatan'] }}</button>
+                      @endforeach
+                  </div>
+              @endif
+              @error('nama_kegiatan')
+                  <div class="invalid-feedback d-block">
+                      <strong>{{ $message }}</strong>
+                  </div>
+              @enderror
                 </div>
                 <div class="form-group">
                      <label class="form-label">Tahun </label>
@@ -122,7 +136,13 @@
    let fileName = $(this).val().split('\\').pop(); 
    $(this).next('.custom-file-label').addClass("selected").html(fileName); 
 });*/
-
+$( "#nama_kegiatan" ).blur(function() {
+  
+  setTimeout(function() {
+    $('#kegiatan-list').html('');
+}, 1500);
+  //
+});
 
     $("#mulai_pelatihan").flatpickr({
         altInput: true,

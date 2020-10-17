@@ -56,9 +56,10 @@ class MitraCreate extends Component
         
         return view('livewire.mitra-create');
     }
+    /*
     public function updatedTanggalLahir(){
         $this->dispatchBrowserEvent('updateInput');
-    }
+    }*/
     public function store(){
         
       
@@ -179,13 +180,13 @@ class MitraCreate extends Component
 
     }
 
-
+/*
     public function updatedAgama($agama)
     {
         //
         $this->agama=$agama;
         $this->emit('refreshComponent');
-    }
+    }*/
 
     public function fillUserForm($mitra_id){
         $mitra=Mitra::find($mitra_id);

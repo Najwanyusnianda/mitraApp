@@ -17,7 +17,7 @@ class CreateMasterKegiatansTable extends Migration
             $table->bigIncrements('id');
             $table->string('nama_kegiatan');
             $table->string('seksi');
-            $table->string('periode');
+            $table->string('periode')->nullable();
             $table->text('deskripsi')->nullable();
             $table->timestamps();
         });

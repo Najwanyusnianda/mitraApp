@@ -20,7 +20,8 @@ class UserTableSeeder extends Seeder
             'email' => 'admin'.'@gmail.com',
             'password' => Hash::make('admin'),
             'role'=>1,
-            'is_active'=>1
+            'is_active'=>1,
+            'seksi'=>'admin'
         ]);
     }
 }

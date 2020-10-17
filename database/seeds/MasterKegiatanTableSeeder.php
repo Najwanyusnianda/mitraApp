@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\MasterKegiatan;
 
 class MasterKegiatanTableSeeder extends Seeder
 {
@@ -34,6 +35,58 @@ class MasterKegiatanTableSeeder extends Seeder
             'Survei Peternakan RPH/TPH','IBS Bulanan','IBS Tahunan','IMK Tahunan','Survei PE dan CP',
             'Survei Konstruksi','Survei Ubinan','Survei Hortikultura','Survei KSA Padi - Jagung'
         ];
+
+        foreach ($neraca as $key => $ner) {
+            # code...
+
+            DB::table('master_kegiatans')->insert([
+            'nama_kegiatan' => $ner,
+            'seksi'=>'neraca',         
+            
+            ]);
+        }
+
+        foreach ($sosial as $key => $sos) {
+            # code...
+
+            DB::table('master_kegiatans')->insert([
+            'nama_kegiatan' => $sos,
+            'seksi'=>'sosial',         
+            
+            ]);
+        }
+
+        foreach ($ipds as $key => $ipd) {
+            # code...
+            
+            DB::table('master_kegiatans')->insert([
+            'nama_kegiatan' => $ipd,
+            'seksi'=>'ipds',         
+            
+            ]);
+        }
+
+        foreach ($distribusi as $key => $dist) {
+            # code...
+            
+            DB::table('master_kegiatans')->insert([
+            'nama_kegiatan' => $dist,
+            'seksi'=>'distribusi',         
+            
+            ]);
+        }
+
+        foreach ($produksi as $key => $prod) {
+            # code...
+            
+            DB::table('master_kegiatans')->insert([
+            'nama_kegiatan' => $prod,
+            'seksi'=>'produksi',         
+            
+            ]);
+        }
+
+        
 
     }
 }
