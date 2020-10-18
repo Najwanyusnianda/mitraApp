@@ -47,9 +47,7 @@ class MitraIndex extends Component
         'mitras.kecamatan AS kecamatan')->paginate(10);
 
         if(!empty($kegiatan)){
-            $check_kegiatan_mitras=KegiatanMitra::
-            //where('kegiatan_id',$this->kegiatan_id)
-            join('mitras','mitras.id','=','kegiatan_mitras.mitra_id')
+            $check_kegiatan_mitras=KegiatanMitra::join('mitras','mitras.id','=','kegiatan_mitras.mitra_id')
             ->join('kegiatans','kegiatans.id','=','kegiatan_mitras.kegiatan_id')
             ->where('kegiatans.id','!=',$this->kegiatan_id)
             //->where('mitras.nik',$this->nik)
@@ -61,8 +59,15 @@ class MitraIndex extends Component
             })
             ->select('mitras.id AS id','mitras.name AS nama','kegiatans.nama_kegiatan AS nama_kegiatan','kegiatans.pelaksanaan_mulai AS mulai','kegiatans.pelaksanaan_selesai AS selesai')
             ->get()->toArray();
-
-            //dd($check_kegiatan_mitras[0])["id"];
+            
+            $temp=[];
+            foreach ($check_kegiatan_mitras as $key => $check) {
+                $temp[]=$check['id'];
+            }
+            $check_kegiatan_mitras=[];
+            $check_kegiatan_mitras=$temp;
+           // dd($check_kegiatan_mitras);
+          
         }else{
             $check_kegiatan_mitras=[];
         }

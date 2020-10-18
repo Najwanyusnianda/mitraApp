@@ -4,17 +4,15 @@
 <h4 class="text-center">Tambah Mitra Baru </h4>
     <hr>
     <!--form tambah mitra baru-->
-
+    @if (!empty($check_mitra_exist ))
+    <div class="alert alert-warning" role="alert">
+        Mitra telah ikut kegiatan <strong> {{$check_mitra_exist['nama_kegiatan']}}  </strong>
+        pada tanggal {{ \Carbon\Carbon::parse($check_mitra_exist['mulai'])->translatedFormat('d F Y')}} hingga {{ \Carbon\Carbon::parse($check_mitra_exist['selesai'])->translatedFormat('d F Y')}}
+    </div>
+    @endif
+    
     <form wire:submit.prevent="store" autocomplete="off">
-        @if ($check_mitra_exist!=null)
-        <div class="alert alert-warning" role="alert">
-            Mitra telah ikut kegiatan 
-            <strong> 
-                {{$check_mitra_exist->nama_kegiatan}} 
-            </strong>
-            pada tanggal {{ \Carbon\Carbon::parse($check_mitra_exist->mulai)->translatedFormat('d F Y')}} hingga {{ \Carbon\Carbon::parse($check_mitra_exist->selesai)->translatedFormat('d F Y')}}
-        </div>
-        @endif
+
 
       @if ($step==1)
       <section>
@@ -397,8 +395,9 @@
 
     </form>
 
-    <script type="text/javascript" src="{{ asset('assets/flatpickr/flatpickr.js') }}"></script>
+    
     <script>
+        'use strict'
     $( "#name" ).blur(function() {
   
       setTimeout(function() {
@@ -430,8 +429,6 @@
        @this.set('pendidikan', e.target.value);
     });
 
-    window.addEventListener('updateInput',event=>{
-          $('#tanggal_lahir').value({{ $tanggal_lahir }}) 
-        });
+
     </script>
 </div>

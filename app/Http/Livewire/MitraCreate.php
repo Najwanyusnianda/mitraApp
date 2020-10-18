@@ -45,9 +45,10 @@ class MitraCreate extends Component
 
 
     public function mount($kegiatan){
-
+        
 
         $this->users=[];
+        $this->check_mitra_exist=[];
         $this->kecamatans=['010','020','030','040','050'];
         $this->kegiatan_id=$kegiatan->id;
       
@@ -58,8 +59,27 @@ class MitraCreate extends Component
     }
     public function render()
     {
+        if($this->nik != null){
+            $kegiatan=Kegiatan::find($this->kegiatan_id);
+            $check_kegiatan_mitras=KegiatanMitra::query()->join('mitras','mitras.id','=','kegiatan_mitras.mitra_id')
+            ->join('kegiatans','kegiatans.id','=','kegiatan_mitras.kegiatan_id')
+            ->where('kegiatans.id','!=',$this->kegiatan_id)
+            ->where('mitras.nik',$this->nik)
+            ->where(function($query) use ($kegiatan){
+                $query->whereBetween('kegiatans.pelaksanaan_mulai', [$kegiatan->pelaksanaan_mulai, $kegiatan->pelaksanaan_selesai])
+                ->orWhereBetween('kegiatans.pelaksanaan_selesai',[$kegiatan->pelaksanaan_mulai, $kegiatan->pelaksanaan_selesai])
+                ->orWhereRaw('? BETWEEN kegiatans.pelaksanaan_mulai and pelaksanaan_selesai', [$kegiatan->pelaksanaan_mulai]) 
+                ->orWhereRaw('? BETWEEN kegiatans.pelaksanaan_mulai and pelaksanaan_selesai', [$kegiatan->pelaksanaan_selesai]);
+            })
+            ->select('kegiatans.nama_kegiatan AS nama_kegiatan','kegiatans.pelaksanaan_mulai AS mulai','kegiatans.pelaksanaan_selesai AS selesai')
+            ->first()->toArray();
+      
+            $this->check_mitra_exist=$check_kegiatan_mitras;
+        }else{
+            //$check_kegiatan_mitras=null;
+            $this->check_mitra_exist=[];
+        }
 
-        
         return view('livewire.mitra-create');
     }
     /*
@@ -186,15 +206,9 @@ class MitraCreate extends Component
 
     }
 
-    public function scopeByBusy($query,$start_date,$end_date) 
-    { 
-    return $query->whereBetween('start_date', [$start_date, $end_date]) 
-        ->orWhereBetween('end_date', [$start_date, $end_date]) 
-        ->orWhereRaw('? BETWEEN start_date and end_date', [$start_date]) 
-        ->orWhereRaw('? BETWEEN start_date and end_date', [$end_date]); 
-    }
 
-    public function updatedNik(){
+
+   /* public function updatedNik(){
         $kegiatan=Kegiatan::find($this->kegiatan_id);
         $check_kegiatan_mitras=KegiatanMitra::
         //where('kegiatan_id',$this->kegiatan_id)
@@ -213,7 +227,7 @@ class MitraCreate extends Component
 
         $this->check_mitra_exist=$check_kegiatan_mitras;
        
-    }
+    }*/
 
 /*
     public function updatedAgama($agama)
@@ -251,27 +265,15 @@ class MitraCreate extends Component
         $this->kecamatan=$mitra['kecamatan'];
 
         $this->users=null;
-        $kegiatan=Kegiatan::find($this->kegiatan_id);
-        $check_kegiatan_mitras=KegiatanMitra::
-        //where('kegiatan_id',$this->kegiatan_id)
-        join('mitras','mitras.id','=','kegiatan_mitras.mitra_id')
-        ->join('kegiatans','kegiatans.id','=','kegiatan_mitras.kegiatan_id')
-        ->where('kegiatans.id','!=',$this->kegiatan_id)
-        ->where('mitras.nik',$this->nik)
-        ->where(function($query) use ($kegiatan){
-            $query->whereBetween('kegiatans.pelaksanaan_mulai', [$kegiatan->pelaksanaan_mulai, $kegiatan->pelaksanaan_selesai])
-            ->orWhereBetween('kegiatans.pelaksanaan_selesai',[$kegiatan->pelaksanaan_mulai, $kegiatan->pelaksanaan_selesai])
-            ->orWhereRaw('? BETWEEN kegiatans.pelaksanaan_mulai and pelaksanaan_selesai', [$kegiatan->pelaksanaan_mulai]) 
-            ->orWhereRaw('? BETWEEN kegiatans.pelaksanaan_mulai and pelaksanaan_selesai', [$kegiatan->pelaksanaan_selesai]);
-        })
-        ->select('kegiatans.nama_kegiatan AS nama_kegiatan','kegiatans.pelaksanaan_mulai AS mulai','kegiatans.pelaksanaan_selesai AS selesai')
-        ->first();
 
-        $this->check_mitra_exist=$check_kegiatan_mitras;
+
+
     }
 
     public function nextStep($step){
+
         if($this->step==1){
+         
             $this->validate([
             'name'=>'required|min:3',
             'phone'=>'required|min:4',

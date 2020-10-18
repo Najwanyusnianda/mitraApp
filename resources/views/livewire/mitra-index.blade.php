@@ -127,8 +127,8 @@
                     <th scope="col">NIK</th>
                     <th scope="col">No. HP</th>
                     <th scope="col">Kecamatan</th>
-                    <th scope="col">Kualifikasi Gadget</th>
-                    <th scope="col">Kepemilikan Kendaran</th>
+                    <!--<th scope="col">Kualifikasi Gadget</th>
+                    <th scope="col">Kepemilikan Kendaran</th>-->
                     <th scope="col">Keterangan</th>
                     <th scope="col"></th>
                 
@@ -146,13 +146,22 @@
                     <td>{{$mitra->nik}}</td>
                     <td>{{$mitra->phone}}</td>
                     <td><strong>{{$mitra->kecamatan}}</strong> </td>
-                    <td>
+                <!--    <td>
                       <span class="status-icon bg-{{ $mitra->is_gadget ? 'success' : 'danger' }}"></span>
                       {{$mitra->is_gadget ? 'Terpenuhi' : 'Tidak Terpenuhi'}}
                     </td>
                     <td>
                       <span class="status-icon bg-{{ $mitra->is_kendaraan ? 'success' : 'danger' }}"></span>
                       {{$mitra->is_kendaraan ? 'Terpenuhi' : 'Tidak Terpenuhi'}}
+                    </td>-->
+
+                    <td>
+
+                      @if (in_array($mitra->id, $check_kegiatan_mitras))
+                        <span class="text text-warning"> mengikuti kegiatan survei lainnya </span>
+                      @else  
+                      -  
+                      @endif
                     </td>
 
                     <td class="text-right">
