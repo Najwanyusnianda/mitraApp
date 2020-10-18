@@ -44,11 +44,31 @@ class MitraIndex extends Component
         'mitras.id AS id','mitras.name AS name','mitras.phone AS phone',
         'mitras.nik AS nik',
         'mitras.is_gadget AS is_gadget','mitras.is_kendaraan AS is_kendaraan',
-        'mitras.kecamatan AS kecamatan'
-        )
-        ->paginate(10);
+        'mitras.kecamatan AS kecamatan')->paginate(10);
 
-        return view('livewire.mitra-index',['mitras'=>$mitras,'kegiatan'=>$kegiatan,'kecamatans'=>$kecamatans]);
+        if(!empty($kegiatan)){
+            $check_kegiatan_mitras=KegiatanMitra::
+            //where('kegiatan_id',$this->kegiatan_id)
+            join('mitras','mitras.id','=','kegiatan_mitras.mitra_id')
+            ->join('kegiatans','kegiatans.id','=','kegiatan_mitras.kegiatan_id')
+            ->where('kegiatans.id','!=',$this->kegiatan_id)
+            //->where('mitras.nik',$this->nik)
+            ->where(function($query) use ($kegiatan){
+                $query->whereBetween('kegiatans.pelaksanaan_mulai', [$kegiatan->pelaksanaan_mulai, $kegiatan->pelaksanaan_selesai])
+                ->orWhereBetween('kegiatans.pelaksanaan_selesai',[$kegiatan->pelaksanaan_mulai, $kegiatan->pelaksanaan_selesai])
+                ->orWhereRaw('? BETWEEN kegiatans.pelaksanaan_mulai and pelaksanaan_selesai', [$kegiatan->pelaksanaan_mulai]) 
+                ->orWhereRaw('? BETWEEN kegiatans.pelaksanaan_mulai and pelaksanaan_selesai', [$kegiatan->pelaksanaan_selesai]);
+            })
+            ->select('mitras.id AS id','mitras.name AS nama','kegiatans.nama_kegiatan AS nama_kegiatan','kegiatans.pelaksanaan_mulai AS mulai','kegiatans.pelaksanaan_selesai AS selesai')
+            ->get()->toArray();
+
+            //dd($check_kegiatan_mitras[0])["id"];
+        }else{
+            $check_kegiatan_mitras=[];
+        }
+
+
+        return view('livewire.mitra-index',['mitras'=>$mitras,'kegiatan'=>$kegiatan,'kecamatans'=>$kecamatans,'check_kegiatan_mitras'=>$check_kegiatan_mitras]);
     }
 
 

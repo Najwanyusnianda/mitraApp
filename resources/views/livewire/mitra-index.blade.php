@@ -129,6 +129,7 @@
                     <th scope="col">Kecamatan</th>
                     <th scope="col">Kualifikasi Gadget</th>
                     <th scope="col">Kepemilikan Kendaran</th>
+                    <th scope="col">Keterangan</th>
                     <th scope="col"></th>
                 
   
@@ -137,7 +138,7 @@
             </thead>
             <tbody>
                 <?php $no=0; ?>
-                @foreach ($mitras as $mitra)
+                @foreach ($mitras as $key=>$mitra)
                 <?php $no++; ?>
                 <tr>
                 <th scope="row">{{$no}}</th>

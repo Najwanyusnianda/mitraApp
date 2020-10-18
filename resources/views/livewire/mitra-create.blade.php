@@ -1,11 +1,21 @@
 <div>
 
 
-    <h4 class="text-center">Tambah Mitra Baru : {{ $kegiatan_id }}</h4>
+<h4 class="text-center">Tambah Mitra Baru </h4>
     <hr>
     <!--form tambah mitra baru-->
 
     <form wire:submit.prevent="store" autocomplete="off">
+        @if ($check_mitra_exist!=null)
+        <div class="alert alert-warning" role="alert">
+            Mitra telah ikut kegiatan 
+            <strong> 
+                {{$check_mitra_exist->nama_kegiatan}} 
+            </strong>
+            pada tanggal {{ \Carbon\Carbon::parse($check_mitra_exist->mulai)->translatedFormat('d F Y')}} hingga {{ \Carbon\Carbon::parse($check_mitra_exist->selesai)->translatedFormat('d F Y')}}
+        </div>
+        @endif
+
       @if ($step==1)
       <section>
         <div class="row">
