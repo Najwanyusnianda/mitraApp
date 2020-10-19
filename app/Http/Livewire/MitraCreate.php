@@ -72,7 +72,21 @@ class MitraCreate extends Component
                 ->orWhereRaw('? BETWEEN kegiatans.pelaksanaan_mulai and pelaksanaan_selesai', [$kegiatan->pelaksanaan_selesai]);
             })
             ->select('kegiatans.nama_kegiatan AS nama_kegiatan','kegiatans.pelaksanaan_mulai AS mulai','kegiatans.pelaksanaan_selesai AS selesai')
-            ->first()->toArray();
+            ->first();
+            if(!empty($check_kegiatan_mitras)){
+                $check_kegiatan_mitras=KegiatanMitra::query()->join('mitras','mitras.id','=','kegiatan_mitras.mitra_id')
+                ->join('kegiatans','kegiatans.id','=','kegiatan_mitras.kegiatan_id')
+                ->where('kegiatans.id','!=',$this->kegiatan_id)
+                ->where('mitras.nik',$this->nik)
+                ->where(function($query) use ($kegiatan){
+                    $query->whereBetween('kegiatans.pelaksanaan_mulai', [$kegiatan->pelaksanaan_mulai, $kegiatan->pelaksanaan_selesai])
+                    ->orWhereBetween('kegiatans.pelaksanaan_selesai',[$kegiatan->pelaksanaan_mulai, $kegiatan->pelaksanaan_selesai])
+                    ->orWhereRaw('? BETWEEN kegiatans.pelaksanaan_mulai and pelaksanaan_selesai', [$kegiatan->pelaksanaan_mulai]) 
+                    ->orWhereRaw('? BETWEEN kegiatans.pelaksanaan_mulai and pelaksanaan_selesai', [$kegiatan->pelaksanaan_selesai]);
+                })
+                ->select('kegiatans.nama_kegiatan AS nama_kegiatan','kegiatans.pelaksanaan_mulai AS mulai','kegiatans.pelaksanaan_selesai AS selesai')
+                ->first()->toArray();
+            }
       
             $this->check_mitra_exist=$check_kegiatan_mitras;
         }else{

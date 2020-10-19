@@ -8,6 +8,9 @@ use App\Exports\KegiatanMitraExport;
 use Maatwebsite\Excel\Facades\Excel;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use PhpOffice\PhpSpreadsheet\Reader\IReader;
+use PhpOffice\PhpSpreadsheet\Writer\IWriter;
+use PhpOffice\PhpSpreadsheet\IOFactory;
 use App\KegiatanMitra;
 use App\Mitra;
 use App\Kegiatan;
@@ -282,16 +285,33 @@ class OutputController extends Controller
         ->select('mitras.name')
         ->get();
        
-        $spreadsheet = new Spreadsheet();
-        $sheet = $spreadsheet->getActiveSheet();
-        $sheet->setCellValue('A1', 'Hello World !');
-
-        $writer = new Xlsx($spreadsheet);
-        $writer->save('hello_world.xlsx');  
+        $count_mitra=count($mitras);
         
-        return response()->download('hello_world.xlsx');
+        $temp_path='app/spj/spj_temp.xlsx';
+        $load_path=storage_path($temp_path);
+        $spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load($load_path);
+        $worksheet = $spreadsheet->getActiveSheet();
 
-        //return Excel::download(new KegiatanMitraExport($kegiatan_id), 'siswa.xlsx');
+        //insert new row;
+        $worksheet->insertNewRowBefore(13, $count_mitra);
+        $worksheet->setCellValue('J9', 12345.6789);
+
+        foreach ($mitras as $key => $mitra) {
+            $worksheet->setCellValueByColumnAndRow(1,12+$key,$key+1);
+            $worksheet->setCellValueByColumnAndRow(2,12+$key,$mitra->name);
+            $worksheet->setCellValueByColumnAndRow(3,12+$key,'-');
+            if(($key+1)%2 == 0){
+                $worksheet->setCellValueByColumnAndRow(11,12+$key,($key+1).'………………');
+            }else{
+                $worksheet->setCellValueByColumnAndRow(10,12+$key,($key+1).'………………');
+            }
+            
+        }
+        
+        $writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, "Xlsx");
+        $writer->save('hello world.xlsx');
+        return response()->download('hello world.xlsx')->deleteFileAfterSend(true);;
+
     }
 
 

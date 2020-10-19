@@ -3,7 +3,7 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-
+use App\KegiatanMitra;
 class MitraDetail extends Component
 {
 
@@ -27,13 +27,46 @@ class MitraDetail extends Component
     public $is_kawin;
     public $pendidikan;
     public $alamat;
+    public $check_mitra_exist;
+    public $check_mitra_old_exist;
 
     protected $listeners=[
         'getMitraDetail'=>'showMitra'
     ];
 
+    public function mount(){
+        $this->check_mitra_exist=[];
+        $this->check_mitra_old_exist=[];
+    }
+
     public function render()
     {
+        if($this->nik != null){
+            $now_time=\Carbon\Carbon::now();
+            $check_kegiatan_mitras=KegiatanMitra::query()->join('mitras','mitras.id','=','kegiatan_mitras.mitra_id')
+            ->join('kegiatans','kegiatans.id','=','kegiatan_mitras.kegiatan_id')
+            ->where('mitras.nik',$this->nik)
+            ->WhereRaw('? BETWEEN kegiatans.pelaksanaan_mulai and pelaksanaan_selesai', [$now_time])
+            ->select('kegiatans.nama_kegiatan AS nama_kegiatan','kegiatans.pelaksanaan_mulai AS mulai','kegiatans.pelaksanaan_selesai AS selesai')
+            ->get()->toArray();
+            
+       
+
+
+            $check_kegiatan_mitras_old=KegiatanMitra::query()->join('mitras','mitras.id','=','kegiatan_mitras.mitra_id')
+            ->join('kegiatans','kegiatans.id','=','kegiatan_mitras.kegiatan_id')
+            ->where('mitras.nik',$this->nik)
+            ->WhereRaw('? NOT BETWEEN kegiatans.pelaksanaan_mulai and pelaksanaan_selesai', [$now_time])
+            ->select('kegiatans.nama_kegiatan AS nama_kegiatan','kegiatans.pelaksanaan_mulai AS mulai','kegiatans.pelaksanaan_selesai AS selesai')
+            ->get()->toArray();
+
+            $this->check_mitra_exist=$check_kegiatan_mitras;
+            $this->check_mitra_old_exist=$check_kegiatan_mitras_old;
+        
+        }else{
+            //$check_kegiatan_mitras=null;
+            $this->check_mitra_exist=[];
+        }
         return view('livewire.mitra-detail');
     }
 

@@ -129,7 +129,7 @@
                     <th scope="col">Kecamatan</th>
                     <!--<th scope="col">Kualifikasi Gadget</th>
                     <th scope="col">Kepemilikan Kendaran</th>-->
-                    <th scope="col">Keterangan</th>
+                    <th scope="col" style="width:25%">Keterangan</th>
                     <th scope="col"></th>
                 
   
@@ -158,7 +158,7 @@
                     <td>
 
                       @if (in_array($mitra->id, $check_kegiatan_mitras))
-                        <span class="text text-warning"> mengikuti kegiatan survei lainnya </span>
+                        <span class="tag tag-yellow"> Mengikuti kegiatan survei lainnya dalam waktu yang sama </span>
                       @else  
                       -  
                       @endif

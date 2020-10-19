@@ -29,7 +29,32 @@
         </div>
         @endif
         
+        @if ($kegiatan_id != null)
+        <div class="row align-items-center">
 
+            <div class="col-sm-6">
+                <span class="text-muted"> Pelatihan</span>
+            </div>
+            <div class="col-sm 6">
+
+              : {{ \Carbon\Carbon::parse($pelatihan_mulai)->translatedFormat('d F Y')}} - {{ \Carbon\Carbon::parse($pelatihan_selesai)->translatedFormat('d F Y')}}
+            </div>
+          </div>
+          <hr class="mt-0 mb-2">
+          <div class="row align-items-center">
+
+            <div class="col-sm-6">
+                <span class="text-muted"> Pelaksanaan Lapangan</span>
+            </div>
+            <div class="col-sm 6">
+
+              : {{ \Carbon\Carbon::parse($pelaksanaan_mulai)->translatedFormat('d F Y')}} - {{ \Carbon\Carbon::parse($pelaksanaan_selesai)->translatedFormat('d F Y')}}
+            </div>
+          </div>
+          <hr class="mt-0 mb-2">
+        @else
+            
+        @endif
     </div>
 </div>
 </div>
