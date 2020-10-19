@@ -31,14 +31,14 @@
     <link href="{{ asset('assets/flatpickr/flatpickr.min.css') }}" rel="stylesheet" />
 
     <link href="{{ asset('assets/tabler/css/dashboard.css') }}" rel="stylesheet" />
-    <link href="{{ asset('assets/datatables/datatables.min.css') }}" rel="stylesheet" />
+    <!--<link href="{{ asset('assets/datatables/datatables.min.css') }}" rel="stylesheet" />-->
     <script src="{{ asset('assets/tabler/js/dashboard.js') }}"></script>
 
     <script type="text/javascript"  src="{{ asset('assets/tabler/js/vendors/jquery-3.2.1.min.js') }}"></script>
     <script type="text/javascript"  src="{{ asset('assets/tabler/js/vendors/bootstrap.bundle.min.js') }}"></script>
     <script type="text/javascript"  src="{{ asset('assets/tabler/js/core.js') }}"></script>
-    <script src="{{ asset('assets/datatables/datatables.min.js') }}"></script>
-    <script src="{{ asset('assets/datatables/dataTables.bootstrap4.min.js') }}"></script>
+    <!--<script src="{{ asset('assets/datatables/datatables.min.js') }}"></script>
+    <script src="{{ asset('assets/datatables/dataTables.bootstrap4.min.js') }}"></script>-->
 
     @livewireStyles
 </head>
