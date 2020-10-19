@@ -286,6 +286,10 @@ class OutputController extends Controller
         $sheet = $spreadsheet->getActiveSheet();
         $sheet->setCellValue('A1', 'Hello World !');
 
+        foreach ($mitras as $key => $mitra) {
+            # code...
+        }
+
         $writer = new Xlsx($spreadsheet);
         $writer->save('hello_world.xlsx');  
         
