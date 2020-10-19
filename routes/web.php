@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Auth;
 //URL::forceScheme('https');
 
 
+Route::get('/sert','SertifikatController@index');
+
 
 Route::group(['middleware' => ['auth']], function () {
     Route::group(['layout' => 'master', 'section' => 'content'], function () {
