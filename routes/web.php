@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Artisan;
 //Route::get('/sert','SertifikatController@index');
 
 
-Route::get('dashboard-temp','DashboardController@index');
+Route::get('dashboard','DashboardController@index');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::group(['layout' => 'master', 'section' => 'content'], function () {
@@ -30,7 +30,7 @@ Route::group(['middleware' => ['auth']], function () {
     //Route::livewire('/dashboard','dashboard-index');
     
     
-    Route::livewire('/dashboard', 'dashboard-index');
+    //Route::livewire('/dashboard', 'dashboard-index');
     Route::get('home', function () {
         return redirect('/dashboard');
         

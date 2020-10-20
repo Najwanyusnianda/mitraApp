@@ -15,7 +15,7 @@
                     </div>
                   </div>-->
              <div class="card-options">
-                <a href="{{ url('/output/bulk-sertifikat/'.$kegiatan_id) }}" class="btn btn-sm btn-secondary mr-3">
+                <!--<a href="{{ url('/output/bulk-sertifikat/'.$kegiatan_id) }}" class="btn btn-sm btn-secondary mr-3">
                     <i class="fa fa-file-archive" ></i>
                     Generate Sertifikat
                 </a> 
@@ -26,7 +26,28 @@
                 <a href="{{ url('/output/spj/'.$kegiatan_id) }}" class="btn btn-sm btn-secondary">
                     <i class="fa fa-file-archive" ></i>
                     Generate SPJ
-                </a> 
+                </a>--> 
+
+                <div class="dropdown">
+                  <button class="btn btn-secondary btn-lg dropdown-toggle" data-toggle="dropdown" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-file-archive" ></i>  
+                    Generate Bulk</button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a href="{{ url('/output/bulk-sertifikat/'.$kegiatan_id) }}" class="dropdown-item">
+                       
+                        Generate Sertifikat
+                    </a> 
+                    <a href="{{ url('/output/bulk-spk/'.$kegiatan_id) }}" class="dropdown-item" >
+                       
+                        Generate SPK
+                    </a> 
+                    <a href="{{ url('/output/spj/'.$kegiatan_id) }}" class="dropdown-item">
+                        
+                        Generate SPJ
+                    </a> 
+
+                  </div>
+                </div>
                 <!--<form action="">
                     <div class="input-group">
                         <input type="text" class="form-control form-control-sm ml-3" placeholder="Cari Mitra" name="s">

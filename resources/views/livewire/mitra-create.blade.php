@@ -102,7 +102,29 @@
                         <option value="" selected>Pilih Kecamatan</option>
                         @if(!empty($kecamatans))
                             @foreach($kecamatans as $key => $kec)
-                                <option value="{{ $kec }}">{{ $key+1 }}. {{ $kec }}</option>
+                                <option value="{{ $kec }}"> {{ $kec }}
+                                    @if ($kec=='010')
+                                    Simpang Kiri
+                                @else
+                                    @if ($kec=='020')
+                                        Penanggalan
+                                    @else
+                                        @if ($kec=='030')
+                                           Rundeng 
+                                        @else
+                                            @if ($kec=='040')
+                                                Sultan Daulat
+                                            @else
+                                                @if ($kec=='050')
+                                                    Longkib
+                                                @else
+                                                    -
+                                                @endif
+                                            @endif
+                                        @endif
+                                    @endif
+                                @endif
+                                </option>
                             @endforeach
                         @endif
                     </select>

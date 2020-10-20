@@ -40,8 +40,80 @@
     <div class="row-sm-12">
         <div class="col-sm-6">
             <div class="card">
+                <div class="card-header">
+                    Jumlah Mitra Per Kecamatan
+                </div>
                 <canvas id="barChart"></canvas>
             </div>
+        </div>
+
+        <div class="col-sm-6 affix">
+            <div class="card ">
+                <div class="card-body mt-5">
+                    @if ($mitras->isEmpty())
+                    <div class="alert alert-primary mt-5 mb-6">
+                      <div>Tidak ada mitra yang tersedia pada kegiatan ini</div>
+                    </div>
+                    @else
+                    <table class="table table-condensed">
+                      <thead>
+                          <tr>
+                              <th>#</th>
+                              <th>Nama</th>
+                              <th>NIK</th>
+                              <th>Kecamatan</th>
+    
+                              <th></th>
+            
+            
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <?php $no=0; ?>
+                          @foreach ($mitras as $mitra)
+                          <?php $no++; ?>
+                          <tr>
+                          <th scope="row">{{$no}}</th>
+                              <td><strong>{{$mitra->name}}</strong></td>
+                              <td>{{$mitra->nik ?? 'tidak ada'}}</td>
+                              <td>{{$mitra->kecamatan}}</td>
+        
+                              <td class="text-right">
+                         
+                                @if (empty($mitra->avg_evaluasi))
+                                <button class="btn btn-secondary btn-sm" disabled="disabled">
+                                  @if (empty($mitra->avg_pelatihan))
+                                    Belum dinilai
+                                  @else
+                                    @if (empty($mitra->avg_pelaksanaan))
+                                      Pelatihan:  {{$mitra->avg_pelatihan}}
+                                    @else
+                                      Pelaksanaan Lapangan: {{$mitra->avg_pelaksanaan}}
+                                    @endif
+                                  @endif
+                                  
+                                  </button>
+                                @else
+                                    <button disabled="disabled" class="btn btn-success btn-sm"><strong class="h5"> Nilai Rata - Rata :{{ $mitra->total_nilai }}</strong></button>
+                                @endif
+          
+              
+                              </td>
+    
+                            
+                          </tr> 
+                          @endforeach
+              
+                          
+                      </tbody>
+                    
+                    </table>
+                    <!--{{$mitras->links()}}-->
+                    @endif
+            
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
@@ -91,14 +163,8 @@
 
 
     var canvas = document.getElementById('barChart');
-canvas.onclick = function (evt) {
-    var activePoints = bar_chart.getElementsAtEvent(evt);
-    var cdata = activePoints[0]['_chart'].config.data;
-    var idx = activePoints[0]['_index'];
-    var label = cdata.datasets[idx].label;
-    var value = cdata.datasets[0].data[idx];
-
-    console.log(label);
+canvas.onclick = function (evt,element) {
+    console.log(element);
 }
 </script>
 @endsection

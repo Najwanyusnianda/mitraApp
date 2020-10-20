@@ -42,7 +42,7 @@
                     <th>Kecamatan</th>
                     <th>Pelatihan</th>
                     <th>Pelaksanaan Lapangan</th>
-                    <th>Evaluasi Lapangan</th>
+                    <th>Pasca Kegiatan Lapangan</th>
                     <th></th>
   
   
@@ -98,7 +98,7 @@
                           @if (empty($mitra->avg_pelaksanaan))
                           Beri nilai Pelaksaaan Lapangan
                           @else
-                          Beri nilai Evaluasi Lapangan    
+                          Beri nilai Pasca Kegiatan Lapangan    
                           @endif
                         @endif
                         

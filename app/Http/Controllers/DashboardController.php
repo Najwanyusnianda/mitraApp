@@ -36,6 +36,8 @@ class DashboardController extends Controller
        
        
        $kecamatans=['010','020','030','040','050'];
+
+       $nama_kecamatan=['Simpang Kiri','Penanggalan','Rundeng','Sultan Daulat','Longkib'];
        
        foreach ($kecamatans as $key => $data) {
            if(is_array($kecamatan_bar)){
@@ -47,11 +49,37 @@ class DashboardController extends Controller
 
        }
 
+       $nama_kec=[];
+       foreach ($kecamatan_bar as $key => $kec) {
+           if($kec=='010'){
+            $nama_kec[]='Simpang Kiri';
+           }elseif($kec=='020'){
+            $nama_kec[]='Penanggalan';
+           }elseif($kec=='030'){
+            $nama_kec[]='Rundeng';
+           }elseif($kec=='040'){
+            $nama_kec[]='Sultan Daulat';
+           }else{
+            $nama_kec[]='longkib';
+           }
+       }
+       $kecamatan_bar=$nama_kec;
+       $mitras=KegiatanMitra::where('kegiatan_id',$kegiatan->id)
+       ->join('mitras','mitras.id','=','kegiatan_mitras.mitra_id')
+       ->join('kegiatans','kegiatans.id','=','kegiatan_mitras.kegiatan_id')
+       ->select('kegiatans.nama_kegiatan AS nama_kegiatan',
+       'mitras.id AS id','mitras.name AS name','mitras.phone AS phone',
+       'mitras.nik AS nik','kegiatan_mitras.avg_pelatihan AS avg_pelatihan',
+       'kegiatan_mitras.avg_pelaksanaan AS avg_pelaksanaan',
+       'kegiatan_mitras.avg_evaluasi AS avg_evaluasi',
+       'kegiatan_mitras.total_nilai AS total_nilai', 'mitras.kecamatan AS kecamatan' )
+       ->paginate(5);
        
 
         
         return view('dashboard.dashboard')
         ->with('kegiatan',$kegiatan)
+        ->with('mitras',$mitras)
         ->with('kecamatan_bar',$kecamatan_bar)
         ->with('count_bar',$count_bar);
        // ->with('kecamatan',$kecamatans);

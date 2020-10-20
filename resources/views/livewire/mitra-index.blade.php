@@ -145,7 +145,30 @@
                     <td><strong>{{$mitra->name}}</strong></td>
                     <td>{{$mitra->nik}}</td>
                     <td>{{$mitra->phone}}</td>
-                    <td><strong>{{$mitra->kecamatan}}</strong> </td>
+                    <td>
+                      @if ($mitra->kecamatan=='010')
+                          Simpang Kiri
+                      @else
+                          @if ($mitra->kecamatan=='020')
+                              Penanggalan
+                          @else
+                              @if ($mitra->kecamatan=='030')
+                                 Rundeng 
+                              @else
+                                  @if ($mitra->kecamatan=='040')
+                                      Sultan Daulat
+                                  @else
+                                      @if ($mitra->kecamatan=='050')
+                                          Longkib
+                                      @else
+                                          -
+                                      @endif
+                                  @endif
+                              @endif
+                          @endif
+                      @endif
+                     <!-- <strong>{{$mitra->kecamatan}}</strong>--> 
+                    </td>
                 <!--    <td>
                       <span class="status-icon bg-{{ $mitra->is_gadget ? 'success' : 'danger' }}"></span>
                       {{$mitra->is_gadget ? 'Terpenuhi' : 'Tidak Terpenuhi'}}
