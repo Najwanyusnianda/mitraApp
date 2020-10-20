@@ -31,12 +31,15 @@
     <link href="{{ asset('assets/flatpickr/flatpickr.min.css') }}" rel="stylesheet" />
 
     <link href="{{ asset('assets/tabler/css/dashboard.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/chartjs/Chart.min.css') }}" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('assets/leafletJS/leaflet.css') }}">
     <!--<link href="{{ asset('assets/datatables/datatables.min.css') }}" rel="stylesheet" />-->
     <script src="{{ asset('assets/tabler/js/dashboard.js') }}"></script>
 
     <script type="text/javascript"  src="{{ asset('assets/tabler/js/vendors/jquery-3.2.1.min.js') }}"></script>
     <script type="text/javascript"  src="{{ asset('assets/tabler/js/vendors/bootstrap.bundle.min.js') }}"></script>
     <script type="text/javascript"  src="{{ asset('assets/tabler/js/core.js') }}"></script>
+    <script type="text/javascript"  src="{{ asset('assets/chartjs/Chart.bundle.min.js') }}"></script>
     <!--<script src="{{ asset('assets/datatables/datatables.min.js') }}"></script>
     <script src="{{ asset('assets/datatables/dataTables.bootstrap4.min.js') }}"></script>-->
 
@@ -58,7 +61,7 @@
       @include('master_footer')
       @livewireScripts
       <script type="text/javascript" src="{{ asset('assets/flatpickr/flatpickr.js') }}" ></script>
-
+      @yield('script')
 </body>
 
 </html>

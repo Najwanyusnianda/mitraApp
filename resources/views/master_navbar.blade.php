@@ -1,10 +1,11 @@
 <div class="header py-4">
     <div class="container">
       <div class="d-flex">
-        <a class="header-brand" href="./index.html">
+        <a class="header-brand" href="#">
           <img src="{{ asset('assets/img_core/logo_bps.png') }}" class="header-brand-img" alt="Aplikasi Mitra - BPS Kota Subulussalam">
           SIBERAS - Database Mitra BPS Kota Subulussalam
         </a>
+        @if ($user = Auth::user())
         <div class="d-flex order-lg-2 ml-auto">
           <!--<div class="nav-item d-none d-md-flex">
             <a href="https://github.com/tabler/tabler" class="btn btn-sm btn-outline-primary" target="_blank">Source code</a>
@@ -79,6 +80,12 @@
             </div>
           </div>
         </div>
+        @else
+          <div class="d-flex order-lg-2 ml-auto">
+          <a href="{{route('login')}}">Login</a>
+          </div>  
+        @endif
+
         
         <a href="#" class="header-toggler d-lg-none ml-3 ml-lg-0" data-toggle="collapse" data-target="#headerMenuCollapse">
           <span class="header-toggler-icon"></span>
@@ -97,6 +104,8 @@
             <li class="nav-item">
               <a href="{{ url('/dashboard') }}" class="nav-link {{ Request::is('/dashboard') ? 'active' : ''  }}"><i class="fe fe-home"></i> Dashboard </a>
             </li>
+
+            @if ($user = Auth::user())
             <li class="nav-item">
               <a href="./docs/index.html" class="nav-link {{ Request::is('mitra/*') ? 'active' : '' }}" data-toggle="dropdown"><i class="fe fe-database"></i> Kelola Mitra</a>
               <div class="dropdown-menu dropdown-menu-arrow">
@@ -118,7 +127,9 @@
                 <a href="{{ url('/user/index') }}" class="dropdown-item ">Kelola Pengguna</a>
               </div>
             </li>
+            @endif  
             @endif
+
 
 
 

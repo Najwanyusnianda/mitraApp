@@ -12,13 +12,16 @@
 */
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Artisan;
 
 //URL::forceRootUrl('https://webapps.bps.go.id/subulussalamkota/');
 //URL::forceScheme('https');
 
 
-Route::get('/sert','SertifikatController@index');
+//Route::get('/sert','SertifikatController@index');
 
+
+Route::get('dashboard-temp','DashboardController@index');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::group(['layout' => 'master', 'section' => 'content'], function () {

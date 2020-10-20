@@ -7,7 +7,10 @@
         </div>
      
       </section>
-
+      
+      <section>
+        @livewire('dashboard-kegiatan')
+      </section>
       <section>
         @livewire('dashboard-penilaian')
       </section>
