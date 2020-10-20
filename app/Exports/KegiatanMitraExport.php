@@ -26,7 +26,7 @@ class KegiatanMitraExport implements FromQuery
         $mitras=KegiatanMitra::query()
         ->join('mitras','kegiatan_mitras.mitra_id','=','mitras.id')
         ->where('kegiatan_id',$this->id);
-        dd($mitras);
+        
         return $mitras;
     }
 }

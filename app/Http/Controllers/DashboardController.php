@@ -19,15 +19,20 @@ class DashboardController extends Controller
         $count_kecamatan=DB::table('kegiatan_mitras')
         ->where('kegiatan_mitras.kegiatan_id',$kegiatan->id)
         ->join('mitras','kegiatan_mitras.mitra_id','=','mitras.id')
+        ->whereNotNull('kegiatan_mitras.total_nilai')
         ->join('kecamatans','mitras.kecamatan','=','kecamatans.id')
         ->groupBy('mitras.kecamatan')
-        ->select('mitras.kecamatan', DB::raw('COUNT(kegiatan_mitras.mitra_id) as count'))
+        ->select('mitras.kecamatan', DB::raw('AVG(kegiatan_mitras.total_nilai) as count'))
         
         //->selectRaw('mitras.kecamatan AS mitraz','sum(kegiatan_mitras.total_nilai)')
         ->get();
 
 
-       $kecamatan_bar=[];
+    if($count_kecamatan->isEmpty()){
+        $kecamatan_bar=['Simpang Kiri','Penanggalan','Rundeng','Sultan Daulat','Longkib'];
+        $count_bar=[0,0,0,0,0];
+    }else{
+        $kecamatan_bar=[];
        $count_bar=[];
        foreach ($count_kecamatan as $key => $kec) {
            $kecamatan_bar[]=$kec->kecamatan;
@@ -60,10 +65,74 @@ class DashboardController extends Controller
            }elseif($kec=='040'){
             $nama_kec[]='Sultan Daulat';
            }else{
-            $nama_kec[]='longkib';
+            $nama_kec[]='Longkib';
            }
        }
        $kecamatan_bar=$nama_kec;
+
+    }
+
+
+
+       ///////////////////////////////////////////////////////
+       $counts_kecamatan=DB::table('kegiatan_mitras')
+        ->where('kegiatan_mitras.kegiatan_id',$kegiatan->id)
+        ->join('mitras','kegiatan_mitras.mitra_id','=','mitras.id')
+        ->join('kecamatans','mitras.kecamatan','=','kecamatans.id')
+        ->groupBy('mitras.kecamatan')
+        ->select('mitras.kecamatan', DB::raw('COUNT(kegiatan_mitras.mitra_id) as count'))
+        
+        //->selectRaw('mitras.kecamatan AS mitra','sum(kegiatan_mitras.total_nilai)')
+        ->get();
+
+      if ($counts_kecamatan->isEmpty()) {
+        $kecamatanx_bar=['Simpang Kiri','Penanggalan','Rundeng','Sultan Daulat','Longkib'];
+        $countx_bar=[0,0,0,0,0];
+      }else{
+        $kecamatanx_bar=[];
+       $countx_bar=[];
+       foreach ($counts_kecamatan as $key => $kec) {
+           $kecamatanx_bar[]=$kec->kecamatan;
+           $countx_bar[]=$kec->count;
+       }
+       
+       
+       $kecamatans=['010','020','030','040','050'];
+
+       $nama_kecamatan=['Simpang Kiri','Penanggalan','Rundeng','Sultan Daulat','Longkib'];
+       
+       foreach ($kecamatans as $key => $data) {
+           if(is_array($kecamatanx_bar)){
+            if(in_array($data,$kecamatanx_bar)==false){
+                array_push($kecamatanx_bar,$data);
+                array_push($countx_bar,0); 
+             }
+           }
+
+       }
+
+     
+
+       $nama_kec=[];
+       foreach ($kecamatanx_bar as $key => $kec) {
+           if($kec=='010'){
+            $nama_kec[]='Simpang Kiri';
+           }elseif($kec=='020'){
+            $nama_kec[]='Penanggalan';
+           }elseif($kec=='030'){
+            $nama_kec[]='Rundeng';
+           }elseif($kec=='040'){
+            $nama_kec[]='Sultan Daulat';
+           }else{
+            $nama_kec[]='Longkib';
+           }
+       }
+       $kecamatanx_bar=$nama_kec;
+      }
+ 
+
+
+       //////////////////////////////////////////////////////
        $mitras=KegiatanMitra::where('kegiatan_id',$kegiatan->id)
        ->join('mitras','mitras.id','=','kegiatan_mitras.mitra_id')
        ->join('kegiatans','kegiatans.id','=','kegiatan_mitras.kegiatan_id')
@@ -74,14 +143,56 @@ class DashboardController extends Controller
        'kegiatan_mitras.avg_evaluasi AS avg_evaluasi',
        'kegiatan_mitras.total_nilai AS total_nilai', 'mitras.kecamatan AS kecamatan' )
        ->paginate(5);
-       
+
+       $mitras_count=KegiatanMitra::where('kegiatan_id',$kegiatan->id)->count();
+       $mitras_count_nilai=KegiatanMitra::where('kegiatan_id',$kegiatan->id)
+       ->join('mitras','mitras.id','=','kegiatan_mitras.mitra_id')
+       ->join('kegiatans','kegiatans.id','=','kegiatan_mitras.kegiatan_id')
+       ->whereNotNull('kegiatan_mitras.total_nilai')
+       ->count();
 
         
         return view('dashboard.dashboard')
         ->with('kegiatan',$kegiatan)
         ->with('mitras',$mitras)
         ->with('kecamatan_bar',$kecamatan_bar)
-        ->with('count_bar',$count_bar);
+        ->with('mitra_count',$mitras_count)
+        ->with('mitra_count_nilai',$mitras_count_nilai)
+        ->with('count_bar',$count_bar)
+        ->with('kecamatanx_bar',$kecamatanx_bar)
+        ->with('countx_bar',$countx_bar);
        // ->with('kecamatan',$kecamatans);
+    }
+
+//-----------------------------------------------
+    public function MitraDetail($kegiatan_id){
+        $mitras=KegiatanMitra::where('kegiatan_id',$kegiatan_id)
+        ->join('mitras','mitras.id','=','kegiatan_mitras.mitra_id')
+        ->join('kegiatans','kegiatans.id','=','kegiatan_mitras.kegiatan_id')
+        ->select('kegiatans.nama_kegiatan AS nama_kegiatan',
+        'mitras.id AS id','mitras.name AS name','mitras.phone AS phone',
+        'mitras.nik AS nik',
+        'mitras.is_gadget AS is_gadget','mitras.is_kendaraan AS is_kendaraan',
+        'mitras.kecamatan AS kecamatan')
+        ->orderBy('kecamatan')
+        ->paginate(10);
+
+        return view('mitra_detail',compact('mitras'));
+    }
+    //---------------------------------------------------------
+
+    public function MitraDetailNilai($kegiatan_id){
+        $mitras=KegiatanMitra::where('kegiatan_id',$kegiatan_id)
+        ->join('mitras','mitras.id','=','kegiatan_mitras.mitra_id')
+        ->join('kegiatans','kegiatans.id','=','kegiatan_mitras.kegiatan_id')
+        ->select('kegiatans.nama_kegiatan AS nama_kegiatan',
+        'mitras.id AS id','mitras.name AS name','mitras.phone AS phone',
+        'mitras.nik AS nik','kegiatan_mitras.avg_pelatihan AS avg_pelatihan',
+        'kegiatan_mitras.avg_pelaksanaan AS avg_pelaksanaan',
+        'kegiatan_mitras.avg_evaluasi AS avg_evaluasi',
+        'kegiatan_mitras.total_nilai AS total_nilai', 'mitras.kecamatan AS kecamatan' )
+        ->paginate(10);
+
+        return view('mitra_detail_nilai',compact('mitras'));
     }
 }

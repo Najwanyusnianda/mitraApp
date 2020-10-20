@@ -161,7 +161,7 @@
                                       @if ($mitra->kecamatan=='050')
                                           Longkib
                                       @else
-                                          -
+                                          {{ $mitra->kecamatan }}
                                       @endif
                                   @endif
                               @endif
