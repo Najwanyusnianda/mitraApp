@@ -45,7 +45,15 @@
                       </div>
                       <div class="col-sm 6">
 
-                        : {{$kegiatan->count ?? '0'}}
+                        :                         @forelse ($count_mitra as $count)
+                        @if ($count->kegiatan_id==$kegiatan->id)
+                            {{ $count->count }}
+                        @else    
+                        
+                        @endif
+                    @empty
+                       <span class="badge badge-warning">tidak tersedia</span>
+                    @endforelse
   
                       </div>
                     </div>

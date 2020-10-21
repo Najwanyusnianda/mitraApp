@@ -22,8 +22,13 @@ use Illuminate\Support\Facades\Artisan;
 
 
 Route::get('dashboard','DashboardController@index');
+Route::post('dashboard','DashboardController@postDashboard')->name('post.dashboard');
 Route::get('get_mitra/{kegiatan_id}','DashboardController@MitraDetail')->name('get_mitra');
 Route::get('get_mitraNilai/{kegiatan_id}','DashboardController@MitraDetailNilai')->name('get_mitra_nilai');
+Route::get('/', function () {
+        return redirect('/dashboard');
+        
+    });
 Route::group(['middleware' => ['auth']], function () {
     Route::group(['layout' => 'master', 'section' => 'content'], function () {
     
@@ -36,10 +41,7 @@ Route::group(['middleware' => ['auth']], function () {
         return redirect('/dashboard');
         
     });
-        Route::get('/', function () {
-        return redirect('/dashboard');
-        
-    });
+
 
     
     //kegiatan

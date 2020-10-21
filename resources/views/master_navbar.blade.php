@@ -102,12 +102,12 @@
         <div class="col-lg order-lg-first">
           <ul class="nav nav-tabs border-0 flex-column flex-lg-row">
             <li class="nav-item">
-              <a href="{{ url('/dashboard') }}" class="nav-link {{ Request::is('/dashboard') ? 'active' : ''  }}"><i class="fe fe-home"></i> Dashboard </a>
+              <a href="{{ url('/dashboard') }}" class="nav-link {{ Request::is('dashboard') ? 'active' : ''  }}"><i class="fe fe-home"></i> Dashboard </a>
             </li>
 
             @if ($user = Auth::user())
             <li class="nav-item">
-              <a href="./docs/index.html" class="nav-link {{ Request::is('mitra/*') ? 'active' : '' }}" data-toggle="dropdown"><i class="fe fe-database"></i> Kelola Mitra</a>
+              <a href="#" class="nav-link {{ Request::is('mitra/*') ? 'active' : '' }}" data-toggle="dropdown"><i class="fe fe-database"></i> Kelola Mitra</a>
               <div class="dropdown-menu dropdown-menu-arrow">
                 <a href="{{ url('/mitra/kegiatan') }}" class="dropdown-item ">Kelola Mitra</a>
                 <a href="{{  url('/mitra/db')}}" class="dropdown-item ">Daftar Mitra</a>

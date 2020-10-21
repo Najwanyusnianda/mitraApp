@@ -14,7 +14,7 @@
             <form class="card" wire:submit.prevent="store" enctype="multipart/form-data">
               <div class="card-header text-center">
                 <div class="card-title">
-                  <strong>Buat Kegiatan Baru :{{ $master_kegiatan_id }}</strong>
+                  <strong>Buat Kegiatan Baru </strong>
                   
                 </div>
               </div>
@@ -110,7 +110,7 @@
                     <div class="col-6">
                       <input wire:model="selesai_pelaksanaan" type="date" name="selesai_pelaksanaan"
                       id="selesai_pelaksanaan" 
-                      class="form-control @error('selesai_pelatihan') is-invalid @enderror" 
+                      class="form-control @error('selesai_pelaksanaan') is-invalid @enderror" 
                       placeholder="Waktu Selesai Kegiatan Lapangan" >
                       @error('tanggal_lahir')
                       <div class="invalid-feedback d-block" >
@@ -127,6 +127,7 @@
                     <label class="custom-file-label text-truncate">Pilih File</label>
                   </div>-->
                   <input type="file" class="form-control-file text-truncate"  id="template_sertifikat" wire:model="template_sertifikat">
+                  <small> Contoh template Sertifikat: <a href="{{ asset('template/template_sertifikat.docx') }}" target="_blank">disini</a> </small>
                 </div>
 
                 <div class="form-label">Template SPK</div>
@@ -135,7 +136,9 @@
                   <label class="custom-file-label text-truncate">Pilih File</label>
                 </div>-->
                 <input type="file" class="form-control-file text-truncate" name="template_spk" wire:model="template_spk">
+                <small> Contoh template SPK: <a href="{{ asset('template/spk_template.docx') }}" target="_blank">disini</a> </small>
               </div>
+              
                 
                 <div class="form-footer m-4">
                   <button type="submit" class="btn btn-primary btn-block ">Tambah Kegiatan Baru</button>
@@ -161,41 +164,95 @@ $( "#nama_kegiatan" ).blur(function() {
 }, 1500);
   //
 });
+//
+    $('#mulai_pelaksanaan').on('change', function (e) {
+       @this.set('mulai_pelaksanaan', e.target.value);
+       var value=$(this).val();
+       $("#selesai_pelaksanaan").flatpickr({
+          altInput: true,
+          altFormat: "d-m-Y",
+          dateFormat: "Y/m/d",
+          minDate:value,
+       });
+    });
+    $('#selesai_pelaksanaan').on('change', function (e) {
+       @this.set('selesai_pelaksanaan', e.target.value);
+    });
+//
+    $('#mulai_pelatihan').on('change', function (e) {
+       @this.set('mulai_pelatihan', e.target.value);
 
-    $("#mulai_pelatihan").flatpickr({
-        altInput: true,
-        altFormat: "d-m-Y",
-        dateFormat: "Y/m/d",
+       var value=$(this).val();
+ 
+       $("#selesai_pelatihan").flatpickr({
+          altInput: true,
+          altFormat: "d-m-Y",
+          dateFormat: "Y/m/d",
+          minDate:value,
        });
        $("#mulai_pelaksanaan").flatpickr({
           altInput: true,
           altFormat: "d-m-Y",
           dateFormat: "Y/m/d",
+          minDate:value,
+         
+       });
+     
+       $("#selesai_pelaksanaan").flatpickr({
+          altInput: true,
+          altFormat: "d-m-Y",
+          dateFormat: "Y/m/d",
+          minDate:value,
+       });
+    });
+
+//
+    $('#selesai_pelatihan').on('change', function (e) {
+       @this.set('selesai_pelatihan', e.target.value);
+       var value=$(this).val();
+  
+       $("#mulai_pelaksanaan").flatpickr({
+          altInput: true,
+          altFormat: "d-m-Y",
+          dateFormat: "Y/m/d",
+          minDate:value,
+         
+       });
+     
+       $("#selesai_pelaksanaan").flatpickr({
+          altInput: true,
+          altFormat: "d-m-Y",
+          dateFormat: "Y/m/d",
+          minDate:value,
+       });
+    });
+//---------------------
+    $("#mulai_pelatihan").flatpickr({
+        altInput: true,
+        altFormat: "d-m-Y",
+        dateFormat: "Y/m/d",
+      
+       });
+       $("#mulai_pelaksanaan").flatpickr({
+          altInput: true,
+          altFormat: "d-m-Y",
+          dateFormat: "Y/m/d",
+         
        });
        $("#selesai_pelatihan").flatpickr({
           altInput: true,
           altFormat: "d-m-Y",
           dateFormat: "Y/m/d",
+        
        });
+     
        $("#selesai_pelaksanaan").flatpickr({
           altInput: true,
           altFormat: "d-m-Y",
           dateFormat: "Y/m/d",
        });
        
-    $('#mulai_pelaksanaan').on('change', function (e) {
-       @this.set('mulai_pelaksanaan', e.target.value);
-    });
-    $('#selesai_pelaksanaan').on('change', function (e) {
-       @this.set('selesai_pelaksanaan', e.target.value);
-    });
 
-    $('#mulai_pelatihan').on('change', function (e) {
-       @this.set('mulai_pelatihan', e.target.value);
-    });
-    $('#selesai_pelatihan').on('change', function (e) {
-       @this.set('selesai_pelatihan', e.target.value);
-    });
 
 
    

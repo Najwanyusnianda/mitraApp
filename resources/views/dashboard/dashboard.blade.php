@@ -1,6 +1,8 @@
 @extends('master') 
 
 @section('content')
+
+@if (!empty($kegiatan))
 <div class="container">
     <div class="row-sm-12">
         <div class="card ">
@@ -28,25 +30,31 @@
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th>Kegiatan</th>
-                                        <th>Seksi</th>
-                                        <th>Pelatihan</th>
-                                        <th>Pelaksanaan</th>
-                                        <th>Jumlah Mitra</th>
+                                        <th style="vertical-align: middle">Kegiatan</th>
+                                        <th style="vertical-align: middle">Seksi</th>
+                                        <th style="vertical-align: middle">Pelatihan</th>
+                                        <th style="vertical-align: middle">Pelaksanaan</th>
+                                        <th style="vertical-align: middle">Jumlah Mitra</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($check_kegiatan_mitras as $check)
                                         <tr>
-                                        <td>{{$check->nama_kegiatan}}</td>
-                                        <td>{{$check->seksi}}</td>
-                                        <td>
+                                        <td  style="vertical-align: middle">
+                                            <form action="{{ route('post.dashboard') }}" method="post">
+                                                {{ csrf_field() }}
+                                                <input type="hidden" name="kegiatan_id" value={{ $check->id  }}>
+                                                <button type="submit" class="btn btn-link">{{$check->nama_kegiatan}} {{ $check->tahun }}</button>
+                                            </form>
+                                            </td>
+                                        <td style="vertical-align: middle">{{$check->seksi}}</td>
+                                        <td style="vertical-align: middle">
                                             {{ \Carbon\Carbon::parse($check->pelatihan_mulai)->translatedFormat('d F')}} - {{ \Carbon\Carbon::parse($check->pelatihan_selesai)->translatedFormat('d F Y')}}
-                                        </td>
-                                        <td>
+                                        </td  style="vertical-align: middle">
+                                        <td style="vertical-align: middle">
                                             {{ \Carbon\Carbon::parse($check->pelaksanaan_mulai)->translatedFormat('d F')}} - {{ \Carbon\Carbon::parse($check->pelaksanaan_selesai)->translatedFormat('d F Y')}}
                                         </td>
-                                        <td>
+                                        <td  style="vertical-align: middle">
                                             {{$check->count}}
                                         </td>
                                         </tr>
@@ -61,25 +69,31 @@
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th>Kegiatan</th>
-                                        <th>Seksi</th>
-                                        <th>Pelatihan</th>
-                                        <th>Pelaksanaan</th>
-                                        <th>Jumlah Mitra</th>
+                                        <th style="vertical-align: middle">Kegiatan</th>
+                                        <th style="vertical-align: middle">Seksi</th>
+                                        <th style="vertical-align: middle">Pelatihan</th>
+                                        <th style="vertical-align: middle">Pelaksanaan</th>
+                                        <th style="vertical-align: middle">Jumlah Mitra</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($check_kegiatan_mitras_before as $check)
                                         <tr>
-                                        <td>{{$check->nama_kegiatan}}</td>
-                                        <td>{{$check->seksi}}</td>
-                                        <td>
+                                        <td style="vertical-align: middle">
+                                            <form action="{{ route('post.dashboard') }}" method="post">
+                                                {{ csrf_field() }}
+                                                <input type="hidden" name="kegiatan_id" value={{ $check->id  }}>
+                                                <button type="submit" class="btn btn-link">{{$check->nama_kegiatan}} {{ $check->tahun }}</button>
+                                            </form>
+                                        </td>
+                                        <td style="vertical-align: middle">{{$check->seksi}}</td>
+                                        <td style="vertical-align: middle">
                                             {{ \Carbon\Carbon::parse($check->pelatihan_mulai)->translatedFormat('d F')}} - {{ \Carbon\Carbon::parse($check->pelatihan_selesai)->translatedFormat('d F Y')}}
                                         </td>
-                                        <td>
+                                        <td style="vertical-align: middle">
                                             {{ \Carbon\Carbon::parse($check->pelaksanaan_mulai)->translatedFormat('d F')}} - {{ \Carbon\Carbon::parse($check->pelaksanaan_selesai)->translatedFormat('d F Y')}}
                                         </td>
-                                        <td>
+                                        <td style="vertical-align: middle">
                                             {{$check->count}}
                                         </td>
                                         </tr>
@@ -94,25 +108,31 @@
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th>Kegiatan</th>
-                                        <th>Seksi</th>
-                                        <th>Pelatihan</th>
-                                        <th>Pelaksanaan</th>
-                                        <th>Jumlah Mitra</th>
+                                        <th style="vertical-align: middle">Kegiatan</th>
+                                        <th style="vertical-align: middle">Seksi</th>
+                                        <th style="vertical-align: middle">Pelatihan</th>
+                                        <th style="vertical-align: middle">Pelaksanaan</th>
+                                        <th style="vertical-align: middle">Jumlah Mitra</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($check_kegiatan_mitras_after as $check)
                                         <tr>
-                                        <td>{{$check->nama_kegiatan}}</td>
-                                        <td>{{$check->seksi}}</td>
-                                        <td>
+                                        <td style="vertical-align: middle">
+                                            <form action="{{ route('post.dashboard') }}" method="post">
+                                                {{ csrf_field() }}
+                                                <input type="hidden" name="kegiatan_id" value={{ $check->id  }}>
+                                                <button type="submit" class="btn btn-link">{{$check->nama_kegiatan}} {{ $check->tahun }}</button>
+                                            </form>
+                                        </td>
+                                        <td style="vertical-align: middle">{{$check->seksi}}</td>
+                                        <td style="vertical-align: middle">
                                             {{ \Carbon\Carbon::parse($check->pelatihan_mulai)->translatedFormat('d F')}} - {{ \Carbon\Carbon::parse($check->pelatihan_selesai)->translatedFormat('d F Y')}}
                                         </td>
-                                        <td>
+                                        <td style="vertical-align: middle">
                                             {{ \Carbon\Carbon::parse($check->pelaksanaan_mulai)->translatedFormat('d F')}} - {{ \Carbon\Carbon::parse($check->pelaksanaan_selesai)->translatedFormat('d F Y')}}
                                         </td>
-                                        <td>
+                                        <td style="vertical-align: middle">
                                             {{$check->count}}
                                         </td>
                                         </tr>
@@ -134,7 +154,7 @@
 
     <div class="row-sm-12 mb-5 mt-5">
         <div class="text-center">
-        <h2>{{$kegiatan->nama_kegiatan}}</h2>
+        <h2>{{$kegiatan->nama_kegiatan}} {{ $kegiatan->tahun }}</h2>
         </div>
     </div>
     <div class="row row-cards">
@@ -362,4 +382,8 @@
        
     })
 </script>
+@else
+<div>Tidak ada kegiatan yang ditemukan<strong><a href="{{ url('/kegiatan/create') }}"> Buat Kegiatan Baru?</a></strong></div>
+@endif
+
 @endsection

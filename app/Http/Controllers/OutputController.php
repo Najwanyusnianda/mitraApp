@@ -47,9 +47,14 @@ class OutputController extends Controller
         \PhpOffice\PhpWord\Settings::setPdfRendererName('DomPDF');
         //atribut sertifikat
         $name=$mitra->name;
+        $kegiatan_write= 'Pelatihan'.' '.$mitra->nama_kegiatan;
+        $mulai=\Carbon\Carbon::parse($mitra->pelatihan_mulai)->translatedFormat('d F');
+        $selesai=\Carbon\Carbon::parse($mitra->pelatihan_selesai)->translatedFormat('d F Y');
+        $tanggal_pelatihan=$mulai.' - '.$selesai; 
         $template= new \PhpOffice\PhpWord\TemplateProcessor(storage_path('app/'.$mitra->template_sertifikat));
         $template->setValue('nama_lengkap',$name);
-
+        $template->setValue('kegiatan',$kegiatan_write);
+        $template->setValue('tanggal_pelatihan',$tanggal_pelatihan);
         //$filename=$mitra->name.'_'.$mitra->nama_kegiatan.'.docx';
         /*header('Content-Type: application/octet-stream');
         header('Content-Disposition: attachment; filename='.$filename);
@@ -70,14 +75,14 @@ class OutputController extends Controller
         $path=storage_path($save_path);
         
         $template->saveAs($path);
-        $temp= \PhpOffice\PhpWord\IOFactory::load($path);
-        $xmlWriter= \PhpOffice\PhpWord\IOFactory::createWriter($temp,'PDF');
-        $xmlWriter->save(storage_path($save_path_pdf),TRUE);
+       // $temp= \PhpOffice\PhpWord\IOFactory::load($path);
+        //$xmlWriter= \PhpOffice\PhpWord\IOFactory::createWriter($temp,'PDF');
+        //$xmlWriter->save(storage_path($save_path_pdf),TRUE);
 
         //header('Content-Type: application/pdf');
-        #header('Content-Disposition: inline; filename='.$filename_pdf);
+        //header('Content-Disposition: inline; filename='.$filename_pdf);
         return response()->download(storage_path($save_path));
-        //return response()->file(storage_path($save_path_pdf),['Content-Type: application/pdf','Content-Disposition: inline; filename=download']);
+       // return response()->file(storage_path($save_path_pdf),['Content-Type: application/pdf','Content-Disposition: inline; filename=download']);
         /*header('Content-Type: application/octet-stream');
         header('Content-Disposition: attachment; filename='.$filename);
         $template->saveAs('php://output');*/
@@ -222,8 +227,14 @@ class OutputController extends Controller
             $template= new \PhpOffice\PhpWord\TemplateProcessor(storage_path('app/'.$kegiatan->template_sertifikat_path));
             # code...
             $name=$mitra->name;
-            
-            $template->setValue('nama_lengkap',$name);
+        $kegiatan_write= 'Pelatihan'.' '.$mitra->nama_kegiatan;
+        $mulai=\Carbon\Carbon::parse($mitra->pelatihan_mulai)->translatedFormat('d F');
+        $selesai=\Carbon\Carbon::parse($mitra->pelatihan_selesai)->translatedFormat('d F Y');
+        $tanggal_pelatihan=$mulai.' - '.$selesai; 
+
+        $template->setValue('nama_lengkap',$name);
+        $template->setValue('kegiatan',$kegiatan_write);
+        $template->setValue('tanggal_pelatihan',$tanggal_pelatihan);
             $filename_doc=$mitra->name.'_'.$mitra->nama_kegiatan.'_'.$mitra->nik.'.docx';
         
             $filename_pdf=$mitra->name.'_'.$mitra->nama_kegiatan.'_'.$mitra->nik.'.pdf';

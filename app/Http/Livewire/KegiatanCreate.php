@@ -76,6 +76,8 @@ class KegiatanCreate extends Component
             'template_spk_path'=>$path_spk,
         ]);
 
+        
+
         $this->resetInput();
 
         session()->flash('success', 'Kegiatan Berhasil Ditambahkan');
