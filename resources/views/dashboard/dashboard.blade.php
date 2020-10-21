@@ -6,29 +6,128 @@
         <div class="card ">
             <div class="card-status bg-purple"></div>
 
-
-
+            <div class="card-header ">
+               <span class="text-center mx-auto"> Monitoring Kegiatan</span>
+            </div>
+            
             <div class="card-body">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                      <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Sedang Berlangsung</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Sudah Selesai</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Akan Dimulai</a>
+                    </li>
+                </ul>
+                  <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Kegiatan</th>
+                                        <th>Seksi</th>
+                                        <th>Pelatihan</th>
+                                        <th>Pelaksanaan</th>
+                                        <th>Jumlah Mitra</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($check_kegiatan_mitras as $check)
+                                        <tr>
+                                        <td>{{$check->nama_kegiatan}}</td>
+                                        <td>{{$check->seksi}}</td>
+                                        <td>
+                                            {{ \Carbon\Carbon::parse($check->pelatihan_mulai)->translatedFormat('d F')}} - {{ \Carbon\Carbon::parse($check->pelatihan_selesai)->translatedFormat('d F Y')}}
+                                        </td>
+                                        <td>
+                                            {{ \Carbon\Carbon::parse($check->pelaksanaan_mulai)->translatedFormat('d F')}} - {{ \Carbon\Carbon::parse($check->pelaksanaan_selesai)->translatedFormat('d F Y')}}
+                                        </td>
+                                        <td>
+                                            {{$check->count}}
+                                        </td>
+                                        </tr>
+                                    @endforeach
+        
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Kegiatan</th>
+                                        <th>Seksi</th>
+                                        <th>Pelatihan</th>
+                                        <th>Pelaksanaan</th>
+                                        <th>Jumlah Mitra</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($check_kegiatan_mitras_before as $check)
+                                        <tr>
+                                        <td>{{$check->nama_kegiatan}}</td>
+                                        <td>{{$check->seksi}}</td>
+                                        <td>
+                                            {{ \Carbon\Carbon::parse($check->pelatihan_mulai)->translatedFormat('d F')}} - {{ \Carbon\Carbon::parse($check->pelatihan_selesai)->translatedFormat('d F Y')}}
+                                        </td>
+                                        <td>
+                                            {{ \Carbon\Carbon::parse($check->pelaksanaan_mulai)->translatedFormat('d F')}} - {{ \Carbon\Carbon::parse($check->pelaksanaan_selesai)->translatedFormat('d F Y')}}
+                                        </td>
+                                        <td>
+                                            {{$check->count}}
+                                        </td>
+                                        </tr>
+                                    @endforeach
+        
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Kegiatan</th>
+                                        <th>Seksi</th>
+                                        <th>Pelatihan</th>
+                                        <th>Pelaksanaan</th>
+                                        <th>Jumlah Mitra</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($check_kegiatan_mitras_after as $check)
+                                        <tr>
+                                        <td>{{$check->nama_kegiatan}}</td>
+                                        <td>{{$check->seksi}}</td>
+                                        <td>
+                                            {{ \Carbon\Carbon::parse($check->pelatihan_mulai)->translatedFormat('d F')}} - {{ \Carbon\Carbon::parse($check->pelatihan_selesai)->translatedFormat('d F Y')}}
+                                        </td>
+                                        <td>
+                                            {{ \Carbon\Carbon::parse($check->pelaksanaan_mulai)->translatedFormat('d F')}} - {{ \Carbon\Carbon::parse($check->pelaksanaan_selesai)->translatedFormat('d F Y')}}
+                                        </td>
+                                        <td>
+                                            {{$check->count}}
+                                        </td>
+                                        </tr>
+                                    @endforeach
+        
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                  </div>
                 <div class="text-center">
-                    Kegiatan yang Sedang Berlangsung
+                    
                 </div>
                 <hr class="mb-4 mt-2">
-                <div class="table-responsive">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>Kegiatan</th>
-                                <th>Seksi</th>
-                                <th>Pelatihan</th>
-                                <th>Pelaksanaan</th>
-                                <th>Jumlah Mitra</th>
-                            </tr>
-                        </thead>
-                        <tbody>
 
-                        </tbody>
-                    </table>
-                </div>
             </div>
         </div>
     </div>

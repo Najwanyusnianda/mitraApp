@@ -18,21 +18,42 @@ class KegiatanIndex extends Component
     public function render()
     { 
 
-        $kegiatans=Kegiatan::latest()->paginate(5);
-        $kegiatan_arr=Kegiatan::select('id')->get()->toArray();
-        $temp=[];
-       foreach ($kegiatan_arr as $key => $keg) {
-           $temp[]=$keg['id'];
-       }
+        if(auth()->user()->role==1){
+            $kegiatans=KegiatanMitra::query()->join('mitras','mitras.id','=','kegiatan_mitras.mitra_id')
+            ->join('kegiatans','kegiatans.id','=','kegiatan_mitras.kegiatan_id')
+            ->join('master_kegiatans','kegiatans.master_kegiatan_id','=','master_kegiatans.id')
+            ->groupBy('kegiatan_mitras.kegiatan_id')
+            ->select('kegiatans.id AS id','master_kegiatans.seksi','kegiatans.nama_kegiatan',
+            'kegiatans.tahun AS tahun','kegiatans.is_active AS is_active',
+            'kegiatans.pelaksanaan_mulai','kegiatans.pelaksanaan_selesai','kegiatans.pelatihan_mulai','kegiatans.pelatihan_selesai',DB::raw('COUNT(kegiatan_mitras.mitra_id) as count'))
+            ->latest('kegiatans.created_at')
+            ->paginate(5);
 
-      // dd($temp);
-        $mitra_count=KegiatanMitra::whereIn('kegiatan_id',$temp)
-        ->groupBy('kegiatan_id')
-        ->select('kegiatan_id', DB::raw('COUNT(kegiatan_id) as count'))
-        ->get();
+
+    
+          // dd($temp);
+        }else{
+            $kegiatans=KegiatanMitra::query()->join('mitras','mitras.id','=','kegiatan_mitras.mitra_id')
+            ->join('kegiatans','kegiatans.id','=','kegiatan_mitras.kegiatan_id')
+            ->join('master_kegiatans','kegiatans.master_kegiatan_id','=','master_kegiatans.id')
+            ->where('master_kegiatans.seksi',auth()->user()->seksi)
+            ->groupBy('kegiatan_mitras.kegiatan_id')
+            ->select('kegiatans.id AS id','master_kegiatans.seksi','kegiatans.nama_kegiatan',
+            'kegiatans.tahun AS tahun','kegiatans.is_active AS is_active',
+            'kegiatans.pelaksanaan_mulai','kegiatans.pelaksanaan_selesai','kegiatans.pelatihan_mulai','kegiatans.pelatihan_selesai',DB::raw('COUNT(kegiatan_mitras.mitra_id) as count'))
+            ->latest('kegiatans.created_at')
+            ->paginate(5);
+
+    
+          
+
+
+
+        }
+
 
         return view('livewire.kegiatan-index',['kegiatans'=>$kegiatans,
-        'kegiatan_chosen'=>$this->kegiatan,'count_mitra'=>$mitra_count]);
+        'kegiatan_chosen'=>$this->kegiatan]);
     }
 
 

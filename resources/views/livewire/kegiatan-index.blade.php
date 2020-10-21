@@ -14,7 +14,7 @@
             <div class="row-12  ">
                 <div class="card col-sm-6 mx-auto shadow-lg p-3 mb-5 bg-white rounded">
                   <div class="card-header">
-                    <span class="mr-2 tag {{$kegiatan->is_active ? 'tag-green ' : '' }} badge-sm"> {{$kegiatan->is_active ? 'aktif' : 'selesai' }} </span>
+                    <span class="mr-2 tag {{$kegiatan->is_active ? 'tag-info ' : '' }} badge-sm"> {{$kegiatan->is_active ? 'aktif' : 'selesai' }} </span>
                     <h3 class="card-title">
                          {{$kegiatan->nama_kegiatan }} {{ $kegiatan->tahun }}
                     </h3>
@@ -45,16 +45,8 @@
                       </div>
                       <div class="col-sm 6">
 
-                        : 
-                        @forelse ($count_mitra as $count)
-                            @if ($count->kegiatan_id==$kegiatan->id)
-                                {{ $count->count }}
-                            @else    
-                            
-                            @endif
-                        @empty
-                           <span class="badge badge-warning">tidak tersedia</span>
-                        @endforelse
+                        : {{$kegiatan->count ?? '0'}}
+  
                       </div>
                     </div>
                     <hr class="mt-0 mb-2">
@@ -90,9 +82,9 @@
                     <hr class="mt-0 mb-2">
 
                   </div>
-                  <div class="card-footer m-0 p-0">
+                 <!-- <div class="card-footer m-0 p-0">
                     <button type="button" name="" id="" class="btn btn-primary btn-block m-0 btn-lg" btn-lg btn-block">Detail</button>
-                  </div>
+                  </div>-->
                 </div>
             </div>
             @endforeach

@@ -89,15 +89,34 @@ class KegiatanCreate extends Component
     }
 
     public function updatedNamaKegiatan(){
-        $this->kegiatans=MasterKegiatan::where('nama_kegiatan','like','%'.$this->nama_kegiatan.'%')->take(5)->get()->toArray();
-        $check_kegiatan=MasterKegiatan::find($this->nama_kegiatan);
-        if($check_kegiatan!=null){
-            $this->master_kegiatan_id=$check_kegiatan->id;
-            $this->kegiatan_error=false;
-        }else{
-            $this->kegiatan_error=true;
-            $this->master_kegiatan_id=null;
+        if (auth()->user()->role==1) {
+            $this->kegiatans=MasterKegiatan::where('nama_kegiatan','like','%'.$this->nama_kegiatan.'%')
+
+            ->take(5)->get()->toArray();
+            $check_kegiatan=MasterKegiatan::find($this->nama_kegiatan);
+            if($check_kegiatan!=null){
+                $this->master_kegiatan_id=$check_kegiatan->id;
+                $this->kegiatan_error=false;
+            }else{
+                $this->kegiatan_error=true;
+                $this->master_kegiatan_id=null;
+            }
+        } else {
+            $this->kegiatans=MasterKegiatan::where('nama_kegiatan','like','%'.$this->nama_kegiatan.'%')
+            ->join('master_kegiatans','kegiatans.master_kegiatan_id','=','master_kegiatans.id')
+            ->where('master_kegiatans.seksi',auth()->user()->seksi)
+            ->take(5)->get()->toArray();
+            $check_kegiatan=MasterKegiatan::find($this->nama_kegiatan);
+            if($check_kegiatan!=null){
+                $this->master_kegiatan_id=$check_kegiatan->id;
+                $this->kegiatan_error=false;
+            }else{
+                $this->kegiatan_error=true;
+                $this->master_kegiatan_id=null;
+            }
         }
+        
+
         
         if($this->nama_kegiatan==''){
             $this->kegiatans=null;

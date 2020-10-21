@@ -151,7 +151,36 @@ class DashboardController extends Controller
        ->whereNotNull('kegiatan_mitras.total_nilai')
        ->count();
 
-        
+       /////////////////////////////////////////////
+       $now_time=\Carbon\Carbon::now();
+       $check_kegiatan_mitras=KegiatanMitra::query()->join('mitras','mitras.id','=','kegiatan_mitras.mitra_id')
+       ->join('kegiatans','kegiatans.id','=','kegiatan_mitras.kegiatan_id')
+       ->join('master_kegiatans','kegiatans.master_kegiatan_id','=','master_kegiatans.id')
+       ->WhereRaw('? BETWEEN kegiatans.pelaksanaan_mulai and pelaksanaan_selesai', [$now_time])
+       ->groupBy('kegiatan_mitras.kegiatan_id')
+       ->select('kegiatans.id AS id','master_kegiatans.seksi','kegiatans.nama_kegiatan','kegiatans.pelaksanaan_mulai','kegiatans.pelaksanaan_selesai','kegiatans.pelatihan_mulai','kegiatans.pelatihan_selesai',DB::raw('COUNT(kegiatan_mitras.mitra_id) as count'))
+       ->latest('kegiatans.created_at')
+       ->get();
+
+
+       $check_kegiatan_mitras_before=KegiatanMitra::query()->join('mitras','mitras.id','=','kegiatan_mitras.mitra_id')
+       ->join('kegiatans','kegiatans.id','=','kegiatan_mitras.kegiatan_id')
+       ->join('master_kegiatans','kegiatans.master_kegiatan_id','=','master_kegiatans.id')
+       ->Where('kegiatans.pelaksanaan_selesai','<',$now_time)
+       ->groupBy('kegiatan_mitras.kegiatan_id')
+       ->select('kegiatans.id AS id','master_kegiatans.seksi','kegiatans.nama_kegiatan','kegiatans.pelaksanaan_mulai','kegiatans.pelaksanaan_selesai','kegiatans.pelatihan_mulai','kegiatans.pelatihan_selesai',DB::raw('COUNT(kegiatan_mitras.mitra_id) as count'))
+       ->latest('kegiatans.created_at')
+       ->get();
+
+       $check_kegiatan_mitras_after=KegiatanMitra::query()->join('mitras','mitras.id','=','kegiatan_mitras.mitra_id')
+       ->join('kegiatans','kegiatans.id','=','kegiatan_mitras.kegiatan_id')
+       ->join('master_kegiatans','kegiatans.master_kegiatan_id','=','master_kegiatans.id')
+       ->Where('kegiatans.pelaksanaan_mulai','>',$now_time)
+       ->groupBy('kegiatan_mitras.kegiatan_id')
+       ->select('kegiatans.id AS id','master_kegiatans.seksi','kegiatans.nama_kegiatan','kegiatans.pelaksanaan_mulai','kegiatans.pelaksanaan_selesai','kegiatans.pelatihan_mulai','kegiatans.pelatihan_selesai',DB::raw('COUNT(kegiatan_mitras.mitra_id) as count'))
+       ->latest('kegiatans.created_at')
+       ->get();
+
         return view('dashboard.dashboard')
         ->with('kegiatan',$kegiatan)
         ->with('mitras',$mitras)
@@ -160,6 +189,9 @@ class DashboardController extends Controller
         ->with('mitra_count_nilai',$mitras_count_nilai)
         ->with('count_bar',$count_bar)
         ->with('kecamatanx_bar',$kecamatanx_bar)
+        ->With('check_kegiatan_mitras',$check_kegiatan_mitras)
+        ->With('check_kegiatan_mitras_before',$check_kegiatan_mitras_before)
+        ->With('check_kegiatan_mitras_after',$check_kegiatan_mitras_after)
         ->with('countx_bar',$countx_bar);
        // ->with('kecamatan',$kecamatans);
     }

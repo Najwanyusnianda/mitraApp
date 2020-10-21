@@ -11,7 +11,7 @@
          
           <th>Kecamatan</th>
 
-          <th></th>
+          <th>Kinerja</th>
 
 
       </tr>
@@ -30,9 +30,31 @@
               </div>
             </td>
           
-          <td>{{$mitra->kecamatan}}</td>
+          <td>
+            @if ($mitra->kecamatan=='010')
+            Simpang Kiri
+        @else
+            @if ($mitra->kecamatan=='020')
+                Penanggalan
+            @else
+                @if ($mitra->kecamatan=='030')
+                   Rundeng 
+                @else
+                    @if ($mitra->kecamatan=='040')
+                        Sultan Daulat
+                    @else
+                        @if ($mitra->kecamatan=='050')
+                            Longkib
+                        @else
+                            {{ $mitra->kecamatan }}
+                        @endif
+                    @endif
+                @endif
+            @endif
+        @endif
+          </td>
 
-          <td class="text-right">
+          <td class="text-center">
      
             @if (empty($mitra->avg_evaluasi))
             <button class="btn btn-secondary btn-sm" disabled="disabled">
@@ -48,7 +70,12 @@
               
               </button>
             @else
-                <button disabled="disabled" class="btn btn-success btn-sm"><strong class="h5"> Nilai Rata - Rata :{{ $mitra->total_nilai }}</strong></button>
+                @if ($mitra->total_nilai > 4)
+                    <span class="tag tag-green"> Baik</span>
+                @else    
+                <span class="tag tag-lime"> Sangat Baik</span>
+                @endif
+              
             @endif
 
 
