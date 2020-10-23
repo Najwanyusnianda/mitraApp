@@ -41,7 +41,8 @@ class MitraCreate extends Component
     
     public $step;
 
-    protected $listeners = ['refreshComponent' => '$refresh'];
+    protected $listeners = ['refreshComponent' => '$refresh',
+'upKegiatanId'=>'handleKegiatanId'];
 
 
     public function mount($kegiatan){
@@ -95,6 +96,11 @@ class MitraCreate extends Component
         }
 
         return view('livewire.mitra-create');
+    }
+
+    public function handleKegiatanId($kegiatan_id){
+  
+        $this->kegiatan_id =$kegiatan_id;
     }
     /*
     public function updatedTanggalLahir(){
@@ -182,6 +188,7 @@ class MitraCreate extends Component
 
     public function closeModal(){
         $this->resetInput();
+        $this->kegiatan_id=null;
         $this->dispatchBrowserEvent('closeModal');
         $this->step=1;
     }
@@ -206,6 +213,7 @@ class MitraCreate extends Component
         $this->alamat =null;
         $this->pendidikan =null;
         $this->agama =null;
+        $this->kecamatan=null;
         $this->users=null;
     }
 

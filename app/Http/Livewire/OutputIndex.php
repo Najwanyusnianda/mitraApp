@@ -13,6 +13,7 @@ class OutputIndex extends Component
     use WithPagination;
 
     public $kegiatan_id;
+    public $mitras_check;
 
     protected $listeners=[
         'kegiatanPush',
@@ -31,6 +32,12 @@ class OutputIndex extends Component
         'kegiatan_mitras.avg_pelaksanaan AS avg_pelaksanaan',
         'kegiatan_mitras.avg_evaluasi AS avg_evaluasi')
         ->paginate(10);
+
+        $mitras_check=KegiatanMitra::where('kegiatan_id',$kegiatan_id)->whereNull('avg_pelatihan')->get();
+        //dd($mitras_check->isNotEmpty());
+        $this->mitras_check =$mitras_check;
+        
+    
         return view('livewire.output-index',['mitras'=>$mitras,'kegiatan'=>$kegiatan]);
     }
 

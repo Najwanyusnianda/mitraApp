@@ -1,7 +1,7 @@
 <div>
 
 
-<h4 class="text-center">Tambah Mitra Baru {{ $kegiatan_id }} </h4>
+<h4 class="text-center">Tambah Mitra Baru {{ $kegiatan_id ? $kegiatan_id : '0'}} </h4>
     <hr>
     <!--form tambah mitra baru-->
     @if (!empty($check_mitra_exist ))

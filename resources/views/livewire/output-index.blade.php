@@ -29,9 +29,9 @@
                 </a>--> 
 
                 <div class="dropdown">
-                  <button class="btn btn-secondary btn-lg dropdown-toggle" data-toggle="dropdown" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false">
+                  <button class="btn btn-secondary btn-sm dropdown-toggle }" data-toggle="dropdown" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false"  >
                     <i class="fa fa-file-archive" ></i>  
-                    Generate Bulk</button>
+                    Download Paket </button>
                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a href="{{ url('/output/bulk-sertifikat/'.$kegiatan_id) }}" class="dropdown-item">
                        
@@ -88,7 +88,7 @@
                               <td>{{ $mitra->name }}</td>
                               <td>{{ $mitra->nik ?? 'tidak ada' }}</td>
                               <td>
-                                  @if($mitra->avg_evaluasi)
+                                  @if($mitra->avg_pelatihan)
                                       <div class="dropdown">
                                           <button class="btn btn-secondary btn-sm btn-block dropdown-toggle" data-toggle="dropdown"
                                               id="dropdownMenuButton" aria-haspopup="true"
@@ -103,7 +103,7 @@
                                       </div>
                                   @else
                                       <button disabled="disabled" class="btn btn-danger btn-sm"> Belum dilakukan
-                                          penilaian</button>
+                                          penilaian pelatihan</button>
                                   @endif
   
                               </td>

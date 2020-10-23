@@ -291,6 +291,7 @@ class OutputController extends Controller
 
 
     public function getSpj($kegiatan_id){
+        $kegiatan=Kegiatan::find($kegiatan_id);
         $mitras=KegiatanMitra::where('kegiatan_id',$kegiatan_id)
         ->join('mitras','kegiatan_mitras.mitra_id','=','mitras.id')
         ->select('mitras.name')
@@ -298,30 +299,36 @@ class OutputController extends Controller
        
         $count_mitra=count($mitras);
         
+
+        $worksheet1->setCellValueByColumnAndRow(1,2,'Peserta Pelatihan '.$kegiatan->nama_kegiatan.' '.$kegiatan->tahun);
+
         $temp_path='app/spj/spj_temp.xlsx';
         $load_path=storage_path($temp_path);
         $spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load($load_path);
-        $worksheet = $spreadsheet->getActiveSheet();
+        $worksheet1 = $spreadsheet->getSheet(0);
 
         //insert new row;
-        $worksheet->insertNewRowBefore(13, $count_mitra);
-        $worksheet->setCellValue('J9', 12345.6789);
+        $worksheet1->insertNewRowBefore(13, $count_mitra);
+        //$worksheet1->setCellValue('J9', 12345.6789);
 
         foreach ($mitras as $key => $mitra) {
-            $worksheet->setCellValueByColumnAndRow(1,12+$key,$key+1);
-            $worksheet->setCellValueByColumnAndRow(2,12+$key,$mitra->name);
-            $worksheet->setCellValueByColumnAndRow(3,12+$key,'-');
+            $worksheet1->setCellValueByColumnAndRow(1,12+$key,$key+1);
+            $worksheet1->setCellValueByColumnAndRow(2,12+$key,$mitra->name);
+            $worksheet1->setCellValueByColumnAndRow(3,12+$key,'');
             if(($key+1)%2 == 0){
-                $worksheet->setCellValueByColumnAndRow(11,12+$key,($key+1).'………………');
+                $worksheet1->setCellValueByColumnAndRow(5,12+$key,($key+1).'.');
+                $worksheet1->setCellValueByColumnAndRow(6,12+$key,'………………');
             }else{
-                $worksheet->setCellValueByColumnAndRow(10,12+$key,($key+1).'………………');
+                $worksheet1->setCellValueByColumnAndRow(7,12+$key,($key+1).'.');
+                $worksheet1->setCellValueByColumnAndRow(8,12+$key,'………………');
             }
             
         }
         
+        $name_file=$kegiatan->nama_kegiatan.'.xlsx';
         $writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, "Xlsx");
-        $writer->save('hello world.xlsx');
-        return response()->download('hello world.xlsx')->deleteFileAfterSend(true);;
+        $writer->save($name_file);
+        return response()->download($name_file)->deleteFileAfterSend(true);
 
     }
 

@@ -15,7 +15,7 @@
               <div class="card-header text-center">
                 <div class="card-title">
                   <strong>Buat Kegiatan Baru </strong>
-                  
+                   
                 </div>
               </div>
               <div class="card-body p-6">

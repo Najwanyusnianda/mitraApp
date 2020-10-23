@@ -82,9 +82,12 @@ class MitraIndex extends Component
 
 
     ///create mitra
-    public function createMitra(){
+    public function createMitra($kegiatan_id){
+        $this->kegiatan_id=$kegiatan_id;
         $this->statusUpdate=false;
+        $this->emit('upKegiatanId',$kegiatan_id);
         $this->dispatchBrowserEvent('showModal');
+        
     }
 
 
@@ -103,7 +106,8 @@ class MitraIndex extends Component
     }
 
     public function deleteMitra($id){
-        $mitra = Mitra::find($id);
+        $mitra =KegiatanMitra::where('kegiatan_id',$this->kegiatan_id)
+        ->where('mitra_id',$id)->first();
         $mitra->delete();
         $this->handleDeleted($mitra);
     }

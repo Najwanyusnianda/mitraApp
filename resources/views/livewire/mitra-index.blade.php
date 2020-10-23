@@ -88,7 +88,7 @@
               </h3>
   
               <div class="card-options">
-                <button type="button" class="btn btn-primary btn-sm"  wire:click="createMitra()">
+                <button type="button" class="btn btn-primary btn-sm"  wire:click="createMitra({{ $kegiatan->id }})">
                   <i class="fa fa-user-plus" aria-hidden="true"></i>
                   Tambah Mitra Baru
                 </button>
@@ -161,6 +161,7 @@
                                       @if ($mitra->kecamatan=='050')
                                           Longkib
                                       @else
+                                      -
                                           {{ $mitra->kecamatan }}
                                       @endif
                                   @endif
@@ -212,7 +213,7 @@
             </tbody>
           
           </table>
-        <!--{{$mitras->links()}}-->
+        {{$mitras->links()}}
           @endif
   
         </div>
