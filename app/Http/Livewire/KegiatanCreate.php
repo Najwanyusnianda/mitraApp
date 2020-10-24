@@ -21,16 +21,24 @@ class KegiatanCreate extends Component
     public $selesai_pelatihan;
     public $selesai_pelaksanaan;
     public $master_kegiatan_id;
+    public $template_sertifikat_path;
+    public $template_spk_path;
 
     public $template_sertifikat;
     public $template_spk;
 
     public $kegiatans;
     public $kegiatan_error;
+    public $isUpdate;
+
+
+    protected $listeners = ['updateKegiatan' => 'handleKegiatan'];
 
     public function mount()
     {
         $this->kegiatans=[];
+   
+
     }
     
     public function render()
@@ -52,7 +60,7 @@ class KegiatanCreate extends Component
             'master_kegiatan_id'=>'required',
         ]);
         if(!empty($this->master_kegiatan_id)){
-            $path_sertifikat='Data/'.$this->nama_kegiatan.'/sertifikat';
+        $path_sertifikat='Data/'.$this->nama_kegiatan.'/sertifikat';
         $path_spk='Data/'.$this->nama_kegiatan.'/spk';
         $path_template='Data/'.$this->nama_kegiatan.'/template';
         Storage::makeDirectory($path_sertifikat);
@@ -139,5 +147,18 @@ class KegiatanCreate extends Component
         $this->tahun=null;
         $this->deskripsi=null;
         $this->kegiatan_error=false;
+    }
+
+    public function handleKegiatan($kegiatan){
+        $this->isUpdate=true;
+        $this->nama_kegiatan=$kegiatan['nama_kegiatan'];
+        $this->master_kegiatan_id=$kegiatan['master_kegiatan_id'];
+        $this->$mulai_pelatihan=$kegiatan['mulai_pelatihan'];
+        $this->$mulai_pelaksanaan=$kegiatan['mulai_pelaksanaan'];
+        $this->$selesai_pelatihan=$kegiatan['selesai_pelatihan'];
+        $this->$selesai_pelaksanaan=$kegiatan['selesai_pelaksanaan'];
+        $this->$template_sertifikat_path=$kegiatan['template_sertifikat_path'];
+        $this->$template_spk_path=$kegiatan['template_spk_path'];
+
     }
 }

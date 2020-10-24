@@ -14,16 +14,26 @@
             <div class="row-12  ">
                 <div class="card col-sm-6 mx-auto shadow-lg p-3 mb-5 bg-white rounded">
                   <div class="card-header">
-                    <span class="mr-2 tag {{$kegiatan->is_active ? 'tag-info ' : '' }} badge-sm"> {{$kegiatan->is_active ? 'aktif' : 'selesai' }} </span>
+                    <!--<span class="mr-2 tag {{$kegiatan->is_active ? 'tag-info ' : '' }} badge-sm"> {{$kegiatan->is_active ? 'aktif' : 'selesai' }} </span>-->
                     <h3 class="card-title">
                          {{$kegiatan->nama_kegiatan }} {{ $kegiatan->tahun }}
                     </h3>
                    
                     <div class="card-options">
     
-                      
+                      <div class="item-action dropdown">
+                        <a href="javascript:void(0)" data-toggle="dropdown" class="icon" aria-expanded="false"><i class="fe fe-more-vertical"></i></a>
+                        <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; transform: translate3d(-181px, 20px, 0px); top: 0px; left: 0px; will-change: transform;">
+               
+                          <a href="#" class="dropdown-item" wire:click="updateData({{ $kegiatan->id }})"><i class="dropdown-icon fe fe-edit-2"></i>Update Kegiatan</a>
+                          <a href="#" class="dropdown-item" wire:click="confirmation({{ $kegiatan->id }})"><i class="dropdown-icon fe fe-trash"  ></i> Hapus Kegiatan</a>
+                          <div class="dropdown-divider"></div>
+                          <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fe fe-link"></i> Template Sertifikat</a>
+                          <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fe fe-link"></i> Template SPK</a>
+                        </div>
+                      </div>
                       @if ($kegiatan->is_active && auth()->user()->role==1)
-                      <a href="#" class="btn btn-outline-danger btn-sm ml-2" wire:click="confirmation({{ $kegiatan->id }})"> Tutup</a>
+              
                       @else
                           
                       @endif
@@ -36,28 +46,19 @@
                         <li class="breadcrumb-item " aria-current="page">
                           <i class="fe fe-users" data-toggle="tooltip" title="" data-original-title="fe fe-calendar"></i>
                           Mitra</li>
+                           : &nbsp;  
+                          @forelse ($count_mitra as $count)
+                          @if ($count->kegiatan_id==$kegiatan->id)
+                             <strong>{{ $count->count }} </strong>&nbsp;   Orang
+                          @else    
+                          
+                          @endif
+                      @empty
+                         <span class="badge badge-warning">tidak tersedia</span>
+                      @endforelse
                       </ol>
                     </nav>
-                    <div class="row align-items-center">
-
-                      <div class="col-sm-6">
-                          <span class="text-muted"> Jumlah Mitra</span>
-                      </div>
-                      <div class="col-sm 6">
-
-                        :                         @forelse ($count_mitra as $count)
-                        @if ($count->kegiatan_id==$kegiatan->id)
-                            {{ $count->count }}
-                        @else    
-                        
-                        @endif
-                    @empty
-                       <span class="badge badge-warning">tidak tersedia</span>
-                    @endforelse
-  
-                      </div>
-                    </div>
-                    <hr class="mt-0 mb-2">
+ 
                   
                     <nav aria-label="breadcrumb">
                       <ol class="breadcrumb">

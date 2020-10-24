@@ -186,6 +186,14 @@
         </div>
     </div>
     <div class="row">
+        <div class="col-sm-6 ">
+            <div class="card">
+                <div class="card-header">
+                    Jumlah Mitra Per Kecamatan
+                </div>
+                <canvas id="barChartM"></canvas>
+            </div>
+        </div>
         <div class="col-sm-6">
             <div class="card">
                 <div class="card-header">
@@ -195,14 +203,7 @@
             </div>
         </div>
 
-        <div class="col-sm-6 ">
-            <div class="card">
-                <div class="card-header">
-                    Jumlah Mitra Per Kecamatan
-                </div>
-                <canvas id="barChartM"></canvas>
-            </div>
-        </div>
+
     </div>
 
 </div>

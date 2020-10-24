@@ -30,6 +30,14 @@ Route::get('/', function () {
         
     });
 Route::group(['middleware' => ['auth']], function () {
+    Route::get('files/{file_name}', function($file_name = null)
+        {
+    $path = storage_path().'/'.'app'.'/'.$file_name;
+    dd($path);
+    if (file_exists($path)) {
+        return Response::download($path);
+    }
+    })->name('get.files');
     Route::group(['layout' => 'master', 'section' => 'content'], function () {
     
     //dashboard
@@ -47,7 +55,8 @@ Route::group(['middleware' => ['auth']], function () {
     //kegiatan
     Route::livewire('/kegiatan/index','kegiatan-index');
     Route::livewire('/kegiatan/create','kegiatan-create');
-
+    Route::livewire('/kegiatan/update/{id}','kegiatan-update');
+    
     //mitra
     //Route::livewire('/mitra/create/{id}','mitra-create');
     Route::livewire('/mitra/kegiatan', 'mitra-index');

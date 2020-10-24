@@ -7,6 +7,7 @@ use Livewire\WithPagination;
 use App\Kegiatan;
 use App\KegiatanMitra;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 class KegiatanIndex extends Component
 {   
 
@@ -128,11 +129,22 @@ class KegiatanIndex extends Component
     public function inActiveKegiatan(){
         $this->dispatchBrowserEvent('closeConfirmationModal');
         $kegiatan=Kegiatan::find($this->kegiatan_id);
-        $kegiatan->update([
-            'is_active'=>0
-        ]);
+        $path_kegiatan='Data/'.$kegiatan->nama_kegiatan;
+        $kegiatan_mitra=KegiatanMitra::where('kegiatan_id',$kegiatan->id);
+        File::deleteDirectory(storage_path('app/'.$path_kegiatan));
+        $kegiatan->delete();
+        $kegiatan_mitra->delete();
+        
+        
        
-        $this->emit('refreshComponent');
+        //$this->emit('refreshComponent');
+    }
+
+
+    public function updateData($kegiatan_id){
+        
+        return redirect()->to('/kegiatan/update/'.$kegiatan_id);
+        //$this->emit('updateKegiatan',$kegiatan);
     }
 
 
