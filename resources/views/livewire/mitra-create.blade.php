@@ -98,7 +98,7 @@
             <div class="col-sm-12">
                 <div class="form-group">
                     <label class="form-label"><span class="mr-4">4.</span>Alamat Domisili Saat Ini</label>
-                    <select name="" class="form-control custom-select" wire:model="kecamatan">
+                    <select name="" class="form-control custom-select  @error('kecamatan') is-invalid @enderror" wire:model="kecamatan">
                         <option value="" selected>Pilih Kecamatan</option>
                         @if(!empty($kecamatans))
                             @foreach($kecamatans as $key => $kec)
@@ -128,6 +128,11 @@
                             @endforeach
                         @endif
                     </select>
+                    @error('kecamatan')
+                    <div class="invalid-feedback d-block">
+                        <strong>{{ $message }}</strong>
+                    </div>
+                    @enderror
                     <textarea class="form-control mt-4" id="alamat" wire:model="alamat" rows="2"></textarea>
 
                 </div>
@@ -139,17 +144,17 @@
             <div class="col-sm-6">
                 <label class="form-label"><span class="mr-4">5.</span>Tanggal Lahir
                 </label>
+                @error('tanggal_lahir')
+                <div class="invalid-feedback d-block">
+                    <strong>{{ $message }}</strong>
+                </div>
+                @enderror
             </div>
             <div class="col-sm 6" wire:ignore>
                 <div class="form-group mb-2 ml-5">
                     <input wire:model="tanggal_lahir" type="date" name="tanggal_lahir" id="tanggal_lahir"
                         class="form-control @error('tanggal_lahir') is-invalid @enderror" placeholder="Tanggal Lahir"
                         value="{{ !empty($tanggal_lahir) ? $tanggal_lahir : '' }}">
-                    @error('tanggal_lahir')
-                        <div class="invalid-feedback d-block">
-                            <strong>{{ $message }}</strong>
-                        </div>
-                    @enderror
                 </div>
 
             </div>
@@ -227,7 +232,7 @@
 
         <div class="row align-items-center">
             <div class="col-sm-6" wire:ignore>
-                <label class="form-label"><span class="mr-4">10.</span>Ijazah Tertinggi
+                <label class="form-label"><span class="mr-4">9.</span>Ijazah Tertinggi
                 </label>
             </div>
             <div class="col-sm 6" wire:ignore>
@@ -249,7 +254,7 @@
 
         <div class="row align-items-center">
             <div class="col-sm-6">
-                <label class="form-label"><span class="mr-4">11.</span>Pekerjaan/Kegiatan Sehari-hari
+                <label class="form-label"><span class="mr-4">10.</span>Pekerjaan/Kegiatan Sehari-hari
                 </label>
             </div>
             <div class="col-sm 6">
@@ -270,7 +275,7 @@
 
         <div class="row align-items-center">
             <div class="col-sm-6">
-                <label class="form-label"><span class="mr-4">12.</span>Nomor Handphone yang bisa dihubungi
+                <label class="form-label"><span class="mr-4">11.</span>Nomor Handphone yang bisa dihubungi
                 </label>
             </div>
             <div class="col-sm 6">
@@ -290,7 +295,7 @@
 
         <div class="row align-items-center">
             <div class="col-sm-6">
-                <label class="form-label"><span class="mr-4">13.</span>Alamat Email
+                <label class="form-label"><span class="mr-4">12.</span>Alamat Email
                 </label>
             </div>
             <div class="col-sm 6">
@@ -331,13 +336,13 @@
             </div>
             <div class="row align-items-center">
               <div class="col-sm-6">
-                  <label class="form-label"><span class="mr-4">14.</span>Pengalaman Menjadi Petugas Sensus/Survei
+                  <label class="form-label"><span class="mr-4">13.</span>Pengalaman Menjadi Petugas Sensus/Survei
                   </label>
               </div>
               <div class="col-sm 6">
                   <div class="form-group mb-2 ml-5">
                       <input wire:model="pengalaman" type="text" name="pengalaman" id="pengalaman"
-                          class="form-control  @error('pengalaman') is-invalid @enderror" placeholder="Nomor Hp"
+                          class="form-control  @error('pengalaman') is-invalid @enderror" placeholder="Isikan Pengalaman sebagai Petugas Sensus/ Survei BPS"
                           aria-describedby="helpId">
                         @error('pengalaman')
                           <div class="invalid-feedback d-block">
@@ -350,7 +355,7 @@
             <hr class="mt-0 mb-2">
           <div class="row align-items-center">
               <div class="col-sm-6">
-                  <label class="form-label"><span class="mr-4">15.</span>Memiliki Smartphone
+                  <label class="form-label"><span class="mr-4">14.</span>Memiliki Smartphone
                   </label>
               </div>
               <div class="col-sm 6">
@@ -377,7 +382,7 @@
           <hr class="mt-0 mb-2">
           <div class="row align-items-center">
             <div class="col-sm-6">
-                <label class="form-label"><span class="mr-4">16.</span>Memiliki Kendaran Bermotor
+                <label class="form-label"><span class="mr-4">15.</span>Memiliki Kendaran Bermotor
                 </label>
             </div>
             <div class="col-sm 6">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 use App\Exports\KegiatanMitraExport;
 use Maatwebsite\Excel\Facades\Excel;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
@@ -14,7 +15,7 @@ use PhpOffice\PhpSpreadsheet\IOFactory;
 use App\KegiatanMitra;
 use App\Mitra;
 use App\Kegiatan;
-use File;
+//use File;
 use ZipArchive;
 
 class OutputController extends Controller
@@ -300,13 +301,13 @@ class OutputController extends Controller
         $count_mitra=count($mitras);
         
 
-        $worksheet1->setCellValueByColumnAndRow(1,2,'Peserta Pelatihan '.$kegiatan->nama_kegiatan.' '.$kegiatan->tahun);
+     
 
         $temp_path='app/spj/spj_temp.xlsx';
         $load_path=storage_path($temp_path);
         $spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load($load_path);
         $worksheet1 = $spreadsheet->getSheet(0);
-
+        $worksheet1->setCellValueByColumnAndRow(1,2,'Peserta Pelatihan '.$kegiatan->nama_kegiatan.' '.$kegiatan->tahun);
         //insert new row;
         $worksheet1->insertNewRowBefore(13, $count_mitra);
         //$worksheet1->setCellValue('J9', 12345.6789);

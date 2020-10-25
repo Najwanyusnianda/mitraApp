@@ -30,14 +30,8 @@ Route::get('/', function () {
         
     });
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('files/{file_name}', function($file_name = null)
-        {
-    $path = storage_path().'/'.'app'.'/'.$file_name;
-    dd($path);
-    if (file_exists($path)) {
-        return Response::download($path);
-    }
-    })->name('get.files');
+    Route::get('files/sertifikat/{kegiatan_id}', 'KegiatanTemplateController@getTemplateSertifikat')->name('get.files_sertifikat');
+    Route::get('files/spk/{kegiatan_id}', 'KegiatanTemplateController@getTemplateSPK')->name('get.files_spk');
     Route::group(['layout' => 'master', 'section' => 'content'], function () {
     
     //dashboard

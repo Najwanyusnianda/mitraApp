@@ -109,7 +109,42 @@ class MitraCreate extends Component
     public function store(){
         
       
+        $this->validate([
+            'name'=>'required|min:3',
+            'phone'=>'required|numeric|min:8',
+            'email'=>'email',
+            'nik'=>'required|digits:16',
+            'pekerjaan'=>'required',
+            'tanggal_lahir'=>'required',
+            'is_gadget'=>'required',
+            'is_kendaraan'=>'required',
+            'jenis_kelamin'=>'required',
+            'pendidikan'=>'required',
+            'agama'=>'required',
+            'kecamatan'=>'required',
+            'jenis_kelamin'=>'required'         
+        
+        ],
+        [
+            'name.required'=>'Nama tidak boleh kosong',
+            'name.min'=>'Nama minimal terdiri dari 3 huruf',
+            'name.alpha'=>'Nama harus terdiri dari huruf',
+            'phone.numeric'=>'Nomor handphone tidak valid',
+            'phone.between'=>'Nomor handphone tidak valid',
+            'phone.required'=>' Nomor Hp tidak boleh kosong',
+            'nik.digits'=>'NIK harus terdiri dari 16 digit',
+            'nik.required'=>'NIK tidak boleh kosong',
+            'email.email'=>'Email tidak valid',
+            'pekerjaan.required'=>'Pekerjaan harus diisi',
+            'kecamatan.required'=>'kecamatan tidak boleh kosong',
+            'agama.required'=>' Agama tidak boleh kosong',
+            'pendidikan.required'=>'Ijazah tidak boleh kosong',
+            'jenis_kelamin.required'=>'Jenis Kelamin tidak boleh kosong',
+            'tanggal_lahir.required'=>'Tanggal Lahir tidak boleh kosong',
+            'is_gadget.required'=>'Keterangan Gadget belum ditentukan',
+            'is_kendaraan.required'=>'Keterangan kendaraan belum ditentukan',
 
+    ]);
 
         $is_mitra_already=Mitra::where('nik',$this->nik)->first();
         
@@ -270,7 +305,7 @@ class MitraCreate extends Component
         $this->bulan_lahir=$tanggal_lahir[1];
         $this->tahun_lahir=$tanggal_lahir[0];
         $this->hari_lahir=$tanggal_lahir[2];
-      
+        
         $this->nik=$mitra['nik'];
         $this->email=$mitra['email'] ?? '';
         $this->pengalaman=$mitra['pengalaman'];
@@ -296,12 +331,38 @@ class MitraCreate extends Component
 
         if($this->step==1){
          
-            $this->validate([
-            'name'=>'required|min:3',
-            'phone'=>'required|min:4',
-            'nik'=>'required',
-            'pekerjaan'=>'required',          
+        $this->validate([
+                'name'=>'required|min:3',
+                'phone'=>'required|numeric|min:8',
+                'email'=>'email',
+                'nik'=>'required|digits:16',
+                'pekerjaan'=>'required',
+                'tanggal_lahir'=>'required',
+                //'is_gadget'=>'required',
+                // 'is_kendaraan'=>'required',
+                'jenis_kelamin'=>'required',
+                'pendidikan'=>'required',
+                'agama'=>'required',
+                'kecamatan'=>'required',
+                'jenis_kelamin'=>'required'         
             
+            ],
+            [
+                'name.required'=>'Nama tidak boleh kosong',
+                'name.min'=>'Nama minimal terdiri dari 3 huruf',
+                'name.alpha'=>'Nama harus terdiri dari huruf',
+                'phone.numeric'=>'Nomor handphone tidak valid',
+                'phone.between'=>'Nomor handphone tidak valid',
+                'nik.digits'=>'NIK harus terdiri dari 16 digit',
+                'nik.required'=>'NIK tidak boleh kosong',
+                'email.email'=>'Email tidak valid',
+                'pekerjaan.required'=>'Pekerjaan harus diisi',
+                'kecamatan.required'=>'kecamatan tidak boleh kosong',
+                'agama.required'=>' Agama tidak boleh kosong',
+                'pendidikan'=>'Ijazah tidak boleh kosong',
+                'jenis_kelamin'=>'Jenis Kelamin tidak boleh kosong',
+                'tanggal_lahir'=>'Tanggal Lahir tidak boleh kosong',
+
         ]);
         }
         $this->step=$step;

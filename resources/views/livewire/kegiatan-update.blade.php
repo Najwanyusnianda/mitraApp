@@ -114,7 +114,7 @@
                 </div>
                 <div class="form-group">
                   <div class="form-label">Template Sertifikat : 
-                      <a href="{{route('get.files',[$template_sertifikat_path]) }}">ss</a>
+                      <a href="{{route('get.files_sertifikat',[$kegiatan_id]) }}" target="_blank">Template Saat ini</a>
                   </div>
                  <!-- <div class="custom-file">
                     <input type="file" class="custom-file-input" name="template_sertifikat" id="template_sertifikat" wire:model="template_sertifikat">
@@ -124,7 +124,10 @@
                   <small> Contoh template Sertifikat: <a href="{{ asset('template/template_sertifikat.docx') }}" target="_blank">disini</a> </small>
                 </div>
 
-                <div class="form-label">Template SPK</div>
+                <div class="form-label">Template SPK:
+                  <a href="{{route('get.files_spk',[$kegiatan_id]) }}" target="_blank">Template Saat ini</a>
+                </div>
+
                <!-- <div class="custom-file">
                   <input type="file" class="custom-file-input" name="template_spk" wire:model="template_spk">
                   <label class="custom-file-label text-truncate">Pilih File</label>
