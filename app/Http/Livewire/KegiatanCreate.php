@@ -56,8 +56,23 @@ class KegiatanCreate extends Component
         $this->validate([
             'nama_kegiatan'=>'required|min:3',
             'tahun'=>'required|digits:4|integer|min:1900',
+            'mulai_pelatihan'=>'required',
+            'selesai_pelatihan'=>'required|date|after_or_equal:mulai_pelatihan',
+            'mulai_pelaksanaan'=>'required|date|after_or_equal:selesai_pelatihan',
+            'selesai_pelaksanaan'=>'required|date|after_or_equal:mulai_pelaksanaan',
             //'deskripsi'=>'required',
             'master_kegiatan_id'=>'required',
+            'template_sertifikat'=>'required|mimes:doc,docx|max:10000',
+            'template_spk'=>'required|mimes:doc,docx|max:10000'
+        ] ,
+        [
+            'required'=> 'kolom tidak boleh kosong',
+            'date'=>'Tanggal tidak valid',
+            'after_or_equal'=>'Tanggal tidak valid',
+            'template_spk.mimes'=>'Format file yang diterima: .docx .doc ',
+            'template_sertifikat.mimes'=>'Format file yang diterima: .docx .doc ',
+            'template_spk.max'=>'Ukuran Maksimal 10mb',
+            'template_sertifikat.max'=>'Ukuran Maksimal 10mb',
         ]);
         if(!empty($this->master_kegiatan_id)){
         $path_sertifikat='Data/'.$this->nama_kegiatan.'/sertifikat';
@@ -71,6 +86,8 @@ class KegiatanCreate extends Component
         $ext2=$this->template_spk->getClientOriginalExtension();
         $path_sertifikat=$this->template_sertifikat->storeAs($path_template,'template_sertifikat_'.$this->nama_kegiatan.'-'.$this->tahun.'.'.$ext);
         $path_spk=$this->template_spk->storeAs($path_template,'template_spk_'.$this->nama_kegiatan.'-'.$this->tahun.'.'.$ext2);
+       
+
         $kegiatan=Kegiatan::create([
             'nama_kegiatan'=>$this->nama_kegiatan,
             'tahun'=>$this->tahun,

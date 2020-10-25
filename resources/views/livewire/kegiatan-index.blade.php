@@ -28,8 +28,8 @@
                           <a href="#" class="dropdown-item" wire:click="updateData({{ $kegiatan->id }})"><i class="dropdown-icon fe fe-edit-2"></i>Update Kegiatan</a>
                           <a href="#" class="dropdown-item" wire:click="confirmation({{ $kegiatan->id }})"><i class="dropdown-icon fe fe-trash"  ></i> Hapus Kegiatan</a>
                           <div class="dropdown-divider"></div>
-                          <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fe fe-link"></i> Template Sertifikat</a>
-                          <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fe fe-link"></i> Template SPK</a>
+                          <a href="{{route('get.files_sertifikat',[$kegiatan->id]) }}" target="_blank" class="dropdown-item"><i class="dropdown-icon fe fe-link"></i> Template Sertifikat</a>
+                          <a  href="{{route('get.files_spk',[$kegiatan->id]) }}" target="_blank" class="dropdown-item"><i class="dropdown-icon fe fe-link"></i> Template SPK</a>
                         </div>
                       </div>
                       @if ($kegiatan->is_active && auth()->user()->role==1)

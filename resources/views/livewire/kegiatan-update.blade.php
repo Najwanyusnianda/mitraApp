@@ -13,7 +13,7 @@
               <div class="card-body p-6">
                 <div class="form-group">
                   <label class="form-label">Nama Kegiatan</label>
-                  <input type="text" id="nama_kegiatan" wire:model="nama_kegiatan" class="form-control form-control-lg" placeholder="Isikan Nama Kegiatan" disabled>
+                  <input type="text" id="nama_kegiatan" wire:model="nama_kegiatan" class="form-control form-control-lg @error('nama_kegiatan') is-invalid @enderror" placeholder="Isikan Nama Kegiatan" disabled>
                   @if(!empty($kegiatans))
                   <div class="position-absolute  w-100 list-group bg-white shadow-lg row" id="kegiatan-list"
                       style="z-index: 1000">

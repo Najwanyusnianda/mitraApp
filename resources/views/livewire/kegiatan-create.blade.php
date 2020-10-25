@@ -21,7 +21,7 @@
               <div class="card-body p-6">
                 <div class="form-group">
                   <label class="form-label">Nama Kegiatan</label>
-                  <input type="text" id="nama_kegiatan" wire:model="nama_kegiatan" class="form-control form-control-lg" placeholder="Isikan Nama Kegiatan">
+                  <input type="text" id="nama_kegiatan" wire:model="nama_kegiatan" class="form-control form-control-lg @error('nama_kegiatan') is-invalid @enderror" placeholder="Isikan Nama Kegiatan">
                   @if(!empty($kegiatans))
                   <div class="position-absolute  w-100 list-group bg-white shadow-lg row" id="kegiatan-list"
                       style="z-index: 1000">
@@ -50,26 +50,33 @@
                 <div class="form-group">
                      <label class="form-label">Tahun </label>
                     <!-- <input type="text" class="form-control" placeholder="Isikan Tahun Pelaksanaan" wire:model="tahun" value="{{\Carbon\Carbon::now()->year}}">-->
-                       <select name="" class="form-control custom-select" wire:model="tahun">
-                      <option value="" selected="selected">Tahun</option>
+                       <select name="" class="form-control custom-select  @error('tahun') is-invalid @enderror" wire:model="tahun">
+                      <option value="" selected="selected" >Tahun</option>
                     @for($i = (int)\Carbon\carbon::now()->year-5; $i < (int)\Carbon\carbon::now()->year+3; $i++)
                     <option value="{{ $i }}">{{ $i }}</option>
                     @endfor
                        </select>
+                       @error('tahun')
+                       <div class="invalid-feedback d-block">
+                           <strong>{{ $message }}</strong>
+                       </div>
+                   @enderror
                 </div>
                 <div class="form-group">
                   <label class="form-label">Deskripsi</label>
                   <textarea class="form-control" id="deskripsi" wire:model="deskripsi" rows="3"></textarea>
                 </div>
                 <div class="form-group" wire:ignore>
-                  <label class="form-label">Tanggal Pelatihan</label>
+                  <label class="form-label">Tanggal Pelatihan 
+
+                  </label>
                   <div class="row gutters-xs">
                     <div class="col-6">
                         <input wire:model="mulai_pelatihan" type="date" name="mulai_pelatihan"
                         id="mulai_pelatihan" 
                         class="form-control @error('mulai_pelatihan') is-invalid @enderror" 
                         placeholder="Waktu Mulai Pelatihan" >
-                        @error('tanggal_lahir')
+                        @error('mulai_pelatihan')
                         <div class="invalid-feedback d-block" >
                          <strong>{{ $message }}</strong>
                          </div>
@@ -90,7 +97,7 @@
                     </div>
                   </div>
                 </div>
-                
+
                 <div class="form-group" wire:ignore >
                   <label class="form-label">Tanggal Pelaksanaan Lapangan:</label>
                   <div class="row gutters-xs">
@@ -120,7 +127,12 @@
                     </div>
                   </div>
                 </div>
-                <div class="form-group">
+                @error('mulai_pelaksanaan')
+                <div class="invalid-feedback d-block">
+                    <strong>{{ $message }}</strong>
+                </div>
+              @enderror
+                <div class="form-group" >
                   <div class="form-label">Template Sertifikat</div>
                  <!-- <div class="custom-file">
                     <input type="file" class="custom-file-input" name="template_sertifikat" id="template_sertifikat" wire:model="template_sertifikat">
@@ -128,6 +140,11 @@
                   </div>-->
                   <input type="file" class="form-control-file text-truncate"  id="template_sertifikat" wire:model="template_sertifikat">
                   <small> Contoh template Sertifikat: <a href="{{ asset('template/template_sertifikat.docx') }}" target="_blank">disini</a> </small>
+                  @error('template_sertifikat')
+                  <div class="invalid-feedback d-block">
+                      <strong>{{ $message }}</strong>
+                  </div>
+               @enderror
                 </div>
 
                 <div class="form-label">Template SPK</div>
@@ -137,6 +154,11 @@
                 </div>-->
                 <input type="file" class="form-control-file text-truncate" name="template_spk" wire:model="template_spk">
                 <small> Contoh template SPK: <a href="{{ asset('template/spk_template.docx') }}" target="_blank">disini</a> </small>
+                @error('template_spk')
+                <div class="invalid-feedback d-block">
+                    <strong>{{ $message }}</strong>
+                </div>
+             @enderror
               </div>
               
                 
